@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep a[href] {
+  text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+  :host section {
+    text-align: left;
+  }
+}

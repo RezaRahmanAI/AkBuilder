@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HeroSectionComponent } from './hero-section/hero-section.component';
 import { HistoryComponent } from './history/history.component';
 import { OwnerSpeechComponent } from './owner-speech/owner-speech.component';
 import { MissionVisionComponent } from './mission-vision/mission-vision.component';
 import { TeamModalComponent } from './team-modal/team-modal.component';
+import { PageHeroComponent } from '../../components/page-hero/page-hero.component';
 import { TeamService } from '../../services/team.service';
 import { AboutUs, Team } from '../../models/model';
 import { TeamComponent } from './team/team.component';
@@ -21,7 +21,7 @@ import { AnimationService } from '../../services/animation.service';
   imports: [
     CommonModule,
     RouterModule,
-    HeroSectionComponent,
+    PageHeroComponent,
     HistoryComponent,
     OwnerSpeechComponent,
     MissionVisionComponent,

@@ -1,6 +1,109 @@
 <app-hero-slide />
+
+<section class="neo-section home-strategy">
+  <div class="neo-section__header">
+    <span class="neo-section__tag">Blueprint</span>
+    <h2 class="neo-section__title">A design-led experience for every buyer</h2>
+    <p class="neo-section__subtitle">
+      We combine soft gradients, tactile cards, and crisp typography so prospects can browse projects, compare amenities, and book visits without friction.
+    </p>
+  </div>
+  <div class="grid gap-6 md:grid-cols-3">
+    <article class="home-card">
+      <div class="home-card__icon">🏙️</div>
+      <h3>Project storytelling</h3>
+      <p>Large imagery, contextual stats, and anchored calls-to-action highlight the promise of each residence.</p>
+      <a routerLink="/projects" class="home-card__link">Explore the collection</a>
+    </article>
+    <article class="home-card">
+      <div class="home-card__icon">🧭</div>
+      <h3>Guided navigation</h3>
+      <p>Sticky filters, scannable labels, and breadcrumbs make switching between ongoing, upcoming, and completed effortless.</p>
+      <a routerLink="/gallery" class="home-card__link">Browse visuals</a>
+    </article>
+    <article class="home-card">
+      <div class="home-card__icon">🤝</div>
+      <h3>Human support</h3>
+      <p>Contextual CTAs lead to concierge chat, visit booking, or a quick call—perfect for high-intent buyers.</p>
+      <a routerLink="/contact" class="home-card__link">Plan a visit</a>
+    </article>
+  </div>
+</section>
+
 <app-project-explore />
+
+<section class="neo-section home-experience">
+  <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] items-center">
+    <div class="space-y-5">
+      <span class="neo-section__tag">Experience</span>
+      <h2 class="neo-section__title">Light-filled layouts, crafted amenities, concierge follow-through</h2>
+      <p class="neo-section__subtitle">
+        Each page mirrors that promise: calm gradients, soft shadows, and responsive grids keep content legible from desktop to handheld.
+      </p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="experience-chip">
+          <p class="experience-chip__label">Responsive by default</p>
+          <p class="experience-chip__value">Auto-flowing grids for tablet & mobile</p>
+        </div>
+        <div class="experience-chip">
+          <p class="experience-chip__label">Clarity-first UI</p>
+          <p class="experience-chip__value">High contrast text + tactile buttons</p>
+        </div>
+        <div class="experience-chip">
+          <p class="experience-chip__label">Micro-interactions</p>
+          <p class="experience-chip__value">Hover lifts, focus rings, animated progress</p>
+        </div>
+        <div class="experience-chip">
+          <p class="experience-chip__label">Fast actions</p>
+          <p class="experience-chip__value">Anchored CTAs for booking + inquiries</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a routerLink="/about" class="neo-button">Meet the studio</a>
+        <a routerLink="/blogs" class="neo-outline-button">Read design notes</a>
+      </div>
+    </div>
+    <div class="home-experience__panel">
+      <div class="home-experience__badge">Mobile-first</div>
+      <h3>Layouts that breathe</h3>
+      <p>Cards use generous radius, blurred backdrops, and pill-shaped buttons for a tactile, premium feel on any screen.</p>
+      <ul class="home-experience__list">
+        <li>Grid auto-fit for cards and stats</li>
+        <li>Sticky filter shells on listing pages</li>
+        <li>Aria-labelled controls and keyboard-friendly sliders</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <app-slider />
 <app-vision-banner />
 <app-testimonial />
-<!-- <app-follow-update /> -->
+
+<section class="neo-section home-cta">
+  <div class="home-cta__card">
+    <div class="home-cta__content">
+      <p class="home-cta__eyebrow">Ready for a walkthrough?</p>
+      <h3>Let’s pair you with the right home.</h3>
+      <p>Share your needs and we’ll curate options with pricing, floor plans, and neighborhood intel.</p>
+      <div class="flex flex-wrap gap-3">
+        <a routerLink="/contact" class="neo-button">Book a call</a>
+        <a routerLink="/projects" class="neo-outline-button">View projects</a>
+      </div>
+    </div>
+    <div class="home-cta__metrics">
+      <div>
+        <p class="home-cta__metric">15</p>
+        <p class="home-cta__metric-label">live + upcoming projects</p>
+      </div>
+      <div>
+        <p class="home-cta__metric">24h</p>
+        <p class="home-cta__metric-label">response time</p>
+      </div>
+      <div>
+        <p class="home-cta__metric">4.8★</p>
+        <p class="home-cta__metric-label">client satisfaction</p>
+      </div>
+    </div>
+  </div>
+</section>

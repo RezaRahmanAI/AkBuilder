@@ -1,76 +1,20 @@
 <div class="relative overflow-hidden text-ink">
-  <!-- Project Header -->
-<section
-  class="relative flex min-h-[20rem] items-center justify-center overflow-hidden py-16 sm:py-20"
-  aria-labelledby="projectHeroTitle"
->
-  <div class="absolute inset-0">
-    <div
-      class="absolute -top-16 left-0 h-[120%] w-full bg-cover bg-center transition-transform duration-500 parallax-bg"
-      style="background-image: url('/images/banner/banner-3.png')"
-      [style.transform]="scrollTransform"
-    ></div>
-    <div
-      class="absolute inset-0 from-emerald-950/85 via-emerald-900/70 to-brand/70"
-    ></div>
-  </div>
-
-  <div class="hero__accent hero__accent--one"></div>
-  <div class="hero__accent hero__accent--two"></div>
-
-  <div class="relative z-10 flex h-full w-full items-center">
-    <div
-      class="mx-auto flex h-full w-[80%] flex-col justify-center py-12 md:py-16"
-    >
-      <div
-        class="grid items-center gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] h-full"
-      >
-        <div class="space-y-6 text-center lg:text-left">
-          <span
-            class="inline-flex items-center justify-center gap-2 text-[0.7rem] uppercase tracking-[0.6em] text-white/70 lg:justify-start"
-          >
-            <span class="h-2 w-2 rounded-full bg-accent"></span>
-            Signature Collection
-          </span>
-          <h1
-            class="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl"
-            id="projectHeroTitle"
-          >
-            Projects
-          </h1>
-
-          <nav
-            class="flex items-center justify-center gap-3 text-sm text-white/60 lg:justify-start"
-            aria-label="Breadcrumb"
-          >
-            <a
-              routerLink="/"
-              class="relative text-white/70 transition-colors duration-300 hover:text-white focus-visible:text-white"
-            >
-              Home
-            </a>
-            <span aria-hidden="true" class="text-white/40">/</span>
-            <span class="text-white">Projects</span>
-          </nav>
-          <div
-            class="flex flex-col items-center gap-4 sm:flex-row lg:justify-start"
-          >
-            <div
-              class="inline-flex items-center gap-3 rounded-full bg-white/5 px-5 py-3 text-white/80 backdrop-blur-xl ring-1 ring-white/10"
-            >
-              <span
-                class="h-2.5 w-2.5 rounded-full bg-accent shadow-[0_0_15px_rgba(255,119,27,0.6)] animate-pulse"
-              ></span>
-              <span class="text-xs uppercase tracking-[0.3em]"
-                >Stills • Motion • Atmospheres</span
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  <app-page-hero
+    eyebrow="Portfolio"
+    title="Residences shaped for light, calm, and community"
+    subtitle="Browse ongoing, upcoming, and completed projects with curated galleries, amenities, and live availability. Filters stay anchored for quick discovery."
+    accent="Rajshahi flagship collection"
+    ctaLabel="Talk to a specialist"
+    ctaLink="/contact"
+    secondaryLabel="View gallery"
+    secondaryLink="/gallery"
+    [stats]="[
+      { label: 'Curated listings', value: (state.list?.length || 0) + ' live', detail: 'Updated in real-time' },
+      { label: 'Categories', value: '3 modes', detail: 'Ongoing • Upcoming • Completed' },
+      { label: 'Project types', value: 'Residential / Commercial', detail: 'Configured by intent' },
+      { label: 'Site visits', value: 'Bookable', detail: 'Schedule from details page' }
+    ]"
+  />
 
   <section id="project-filters" class="relative -mt-14 pb-16">
     <div class="mx-auto w-[min(1180px,92%)] md:w-[80%]">
