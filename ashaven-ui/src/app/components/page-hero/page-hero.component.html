@@ -1,0 +1,74 @@
+<section
+  class="relative overflow-hidden bg-gradient-to-br from-brand via-brand/95 to-emerald-950 py-16 text-pure sm:py-20"
+  [class.text-center]="alignment === 'center'"
+>
+  <div class="absolute inset-0">
+    <div class="absolute -left-40 -top-44 h-[52vw] w-[52vw] rounded-full bg-accent/35 blur-3xl"></div>
+    <div class="absolute -bottom-56 right-[-18vw] h-[58vw] w-[58vw] rounded-full bg-brand/45 blur-3xl"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.06),_transparent_60%)]" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(120deg,_rgba(12,27,18,0.95),_rgba(6,16,11,0.88))]" aria-hidden="true"></div>
+    <div
+      class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity"
+      [style.backgroundImage]="'url(' + background + ')'"></div>
+  </div>
+
+  <div class="relative mx-auto flex w-[min(1180px,92%)] md:w-[80%] flex-col gap-12">
+    <div class="grid items-start gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(260px,2fr)]">
+      <div class="space-y-6" [class.mx-auto]="alignment === 'center'" [class.text-center]="alignment === 'center'">
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[0.7rem] uppercase tracking-[0.5em] text-white/70">
+          <span class="h-2 w-2 rounded-full bg-accent shadow-[0_0_15px_rgba(255,119,27,0.6)]"></span>
+          {{ eyebrow }}
+        </div>
+
+        <div class="space-y-4">
+          <h1 class="font-serif text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
+            {{ title }}
+          </h1>
+          <p class="max-w-2xl text-lg text-white/75" [class.mx-auto]="alignment === 'center'">
+            {{ subtitle }}
+          </p>
+          <div *ngIf="accent" class="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/80">
+            <span class="h-2.5 w-2.5 rounded-full bg-accent animate-pulse shadow-[0_0_15px_rgba(255,119,27,0.6)]"></span>
+            {{ accent }}
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3" [class.justify-center]="alignment === 'center'">
+          <a
+            *ngIf="ctaLabel && ctaLink"
+            class="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-pure shadow-lg transition hover:-translate-y-0.5 hover:bg-orange-500"
+            [routerLink]="ctaLink"
+          >
+            {{ ctaLabel }}
+          </a>
+          <a
+            *ngIf="secondaryLabel && secondaryLink"
+            class="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/80 transition hover:-translate-y-0.5 hover:border-white hover:text-white"
+            [routerLink]="secondaryLink"
+          >
+            {{ secondaryLabel }}
+          </a>
+        </div>
+      </div>
+
+      <div class="relative rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_35px_90px_rgba(8,18,12,0.6)] backdrop-blur">
+        <div class="flex flex-col gap-5">
+          <h2 class="text-sm font-semibold uppercase tracking-[0.25em] text-white/60">Project pulse</h2>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div
+              class="rounded-2xl border border-white/10 bg-white/10 p-4 text-left"
+              *ngFor="let stat of stats"
+            >
+              <p class="text-xs font-semibold uppercase tracking-[0.32em] text-white/60">{{ stat.label }}</p>
+              <p class="mt-2 text-2xl font-semibold">{{ stat.value }}</p>
+              <p *ngIf="stat.detail" class="mt-1 text-sm text-white/70">{{ stat.detail }}</p>
+            </div>
+          </div>
+          <p class="text-sm text-white/70">
+            Built for clarity, crafted for conversion. Every hero adapts fluidly to mobile and desktop with softened gradients and tactile shadows.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
