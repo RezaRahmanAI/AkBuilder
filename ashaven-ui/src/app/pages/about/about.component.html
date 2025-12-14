@@ -1,20 +1,5 @@
 <div class="relative overflow-hidden">
-  <app-page-hero
-    eyebrow="About"
-    title="Developer-crafted homes where light, air, and community flow together"
-    subtitle="Ashaven Developers curates sustainable, detail-rich residences in Rajshahi. This page shares the story, ethos, and team behind every key handed over."
-    accent="Rajshahi • Bangladesh"
-    ctaLabel="View projects"
-    ctaLink="/projects"
-    secondaryLabel="Meet the team"
-    secondaryLink="#team"
-    [stats]="[
-      { label: 'Years building', value: '10+', detail: 'Delivering crafted homes since our inception' },
-      { label: 'Families settled', value: '450+', detail: 'Keys delivered with aftercare' },
-      { label: 'Quality checks', value: '30+', detail: 'Touchpoints across each project lifecycle' },
-      { label: 'Cities served', value: '3', detail: 'Rajshahi, Dhaka, Chattogram' },
-    ]"
-  />
+  <app-hero-section />
   <app-history [history]="state.about.history"></app-history>
   <!-- <app-owner-speech
     [ownerName]="state.about.ownerName"
@@ -43,11 +28,7 @@
     (imageError)="onImageError($event)"
   />
 
-  <app-team
-    id="team"
-    [teams]="state.teams"
-    (toggle)="onToggle($event)"
-  ></app-team>
+  <app-team [teams]="state.teams" (toggle)="onToggle($event)"></app-team>
   <app-team-modal
     *ngIf="isModalVisible"
     [selectedTeamMember]="state.selectedTeamMember"
