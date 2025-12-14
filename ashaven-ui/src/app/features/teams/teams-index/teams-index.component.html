@@ -1,0 +1,144 @@
+<div class="space-y-6">
+  <div class="flex items-center justify-between gap-4">
+    <div>
+      <h6 class="text-xl font-semibold text-slate-900">Advisory team</h6>
+      <p class="text-sm text-slate-500">Introduce your specialists and update their profiles.</p>
+    </div>
+    <button
+      type="button"
+      (click)="openCreateModal()"
+      class="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-brand/90"
+    >
+      Add team member
+    </button>
+  </div>
+
+  <app-team-form
+    *ngIf="showFormModal"
+    [team]="selectedTeam!"
+    [mode]="formMode"
+    (close)="closeFormModal()"
+    (saved)="onTeamSaved()"
+  ></app-team-form>
+
+  <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <table class="min-w-full table-auto divide-y divide-slate-100 text-left text-sm text-slate-600">
+      <thead class="bg-slate-100/80 text-xs font-semibold uppercase tracking-wide text-slate-500">
+        <tr>
+          <th class="px-6 py-3">Name</th>
+          <th class="px-6 py-3">Designation</th>
+          <th class="px-6 py-3">Description</th>
+          <th class="px-6 py-3">Facebook</th>
+          <th class="px-6 py-3">Twitter</th>
+          <th class="px-6 py-3">LinkedIn</th>
+          <th class="px-6 py-3">Image</th>
+          <th class="px-6 py-3">Status</th>
+          <th class="px-6 py-3">Order</th>
+          <th class="px-6 py-3 text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+        <tr *ngFor="let item of teams" class="transition duration-150 hover:bg-slate-50">
+          <th scope="row" class="px-6 py-4 whitespace-nowrap font-medium text-slate-900">
+            {{ item.name }}
+          </th>
+          <td class="px-6 py-4">{{ item.designation || '—' }}</td>
+          <td class="px-6 py-4">
+            {{
+              item.description
+                ? (item.description | slice : 0 : 120) + (item.description.length > 120 ? '…' : '')
+                : 'No description'
+            }}
+          </td>
+          <td class="px-6 py-4">
+            <a
+              *ngIf="item.facebook; else noLink"
+              [href]="item.facebook"
+              target="_blank"
+              rel="noopener"
+              class="text-brand transition hover:text-brand/80"
+              >View</a
+            >
+          </td>
+          <td class="px-6 py-4">
+            <a
+              *ngIf="item.twiter; else noLink"
+              [href]="item.twiter"
+              target="_blank"
+              rel="noopener"
+              class="text-brand transition hover:text-brand/80"
+              >View</a
+            >
+          </td>
+          <td class="px-6 py-4">
+            <a
+              *ngIf="item.linkthen; else noLink"
+              [href]="item.linkthen"
+              target="_blank"
+              rel="noopener"
+              class="text-brand transition hover:text-brand/80"
+              >View</a
+            >
+          </td>
+          <td class="px-6 py-4">
+            <img
+              [src]="apiBaseUrl + '/api/attachment/get/' + item.image"
+              alt="{{ item.name }} headshot"
+              class="h-12 w-12 rounded-xl object-cover ring-1 ring-slate-200"
+            />
+          </td>
+          <td class="px-6 py-4">
+            <span
+              *ngIf="item.isActive; else inactiveBadge"
+              class="inline-flex items-center gap-1 rounded-full bg-brand/10 px-3 py-1 text-xs font-medium text-brand"
+            >
+              <i class="fas fa-check-circle"></i>
+              Active
+            </span>
+          </td>
+          <td class="px-6 py-4">{{ item.order }}</td>
+          <td class="px-6 py-4">
+            <div class="flex flex-wrap justify-end gap-2">
+              <button
+                (click)="openEditModal(item)"
+                class="rounded-full border border-brand/20 px-4 py-2 text-sm font-medium text-brand transition hover:bg-brand hover:text-white"
+              >
+                Edit
+              </button>
+              <button
+                *ngIf="item.isActive"
+                (click)="toggleActiveStatus(item.id, false)"
+                class="rounded-full border border-amber-200 px-4 py-2 text-sm font-medium text-amber-600 transition hover:bg-amber-50"
+              >
+                Deactivate
+              </button>
+              <button
+                *ngIf="!item.isActive"
+                (click)="toggleActiveStatus(item.id, true)"
+                class="rounded-full border border-brand/20 px-4 py-2 text-sm font-medium text-brand transition hover:bg-brand hover:text-white"
+              >
+                Activate
+              </button>
+              <button
+                (click)="deleteTeam(item.id)"
+                class="rounded-full border border-rose-200 px-4 py-2 text-sm font-medium text-rose-600 transition hover:bg-rose-50"
+              >
+                Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+        <ng-template #noLink>—</ng-template>
+        <ng-template #inactiveBadge>
+          <span class="inline-flex items-center gap-1 rounded-full bg-rose-50 px-3 py-1 text-xs font-medium text-rose-500">
+            <i class="fas fa-times-circle"></i>
+            Inactive
+          </span>
+        </ng-template>
+      </tbody>
+    </table>
+    <div *ngIf="!teams.length" class="px-6 py-8 text-center text-sm text-slate-500">
+      No team members yet. Add your first advisor to get started.
+    </div>
+  </div>
+</div>

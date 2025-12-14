@@ -1,0 +1,129 @@
+<div class="space-y-6">
+  <!-- Header -->
+  <div class="flex items-center justify-between gap-4">
+    <div>
+      <h6 class="text-xl font-semibold text-slate-900">Property listings</h6>
+      <p class="text-sm text-slate-500">Oversee every project showcased on the public site.</p>
+    </div>
+    <a
+      [routerLink]="['create']"
+      class="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-brand/90"
+    >
+      Create project
+    </a>
+  </div>
+
+  <!-- Projects Table -->
+  <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <table class="min-w-full table-auto divide-y divide-slate-100 text-left text-sm text-slate-600">
+      <thead class="bg-slate-100/80 text-xs font-semibold uppercase tracking-wide text-slate-500">
+        <tr>
+          <th class="px-6 py-3">Name</th>
+          <th class="px-6 py-3">Description</th>
+          <th class="px-6 py-3">Address</th>
+          <th class="px-6 py-3">Thumbnail</th>
+          <th class="px-6 py-3">Category</th>
+          <th class="px-6 py-3">Type</th>          
+          <th class="px-6 py-3">Offer title</th>
+          <th class="px-6 py-3">Offer date</th>
+          <th class="px-6 py-3">Status</th>
+          <th class="px-6 py-3">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-400">
+        <tr *ngFor="let item of projects" class="transition duration-150 hover:bg-slate-50">
+          <td class="px-6 py-4 whitespace-nowrap font-medium text-slate-900">
+            {{ item.name }}
+          </td>
+          <td class="px-6 py-4">
+            <ng-container *ngIf="item.description; else noDescription">
+              {{ item.description | slice : 0 : 100
+              }}{{ item.description.length > 100 ? "..." : "" }}
+            </ng-container>
+            <ng-template #noDescription>-</ng-template>
+          </td>
+          <td class="px-6 py-4">{{ item.address }}</td>
+          <td class="px-6 py-4">
+            <img
+              class="w-10 h-10 object-cover rounded"
+              [src]="apiBaseUrl + '/api/attachment/get/' + item.thumbnail"
+              alt="Thumbnail"
+            />
+          </td>
+          <td class="px-6 py-4">{{ item.category }}</td>
+          <td class="px-6 py-4">{{ item.type }}</td>
+          
+          <td class="px-6 py-4">{{ item.offerTitle }}</td>
+          <td class="px-6 py-4">
+            {{ item.offerDateTime | date : "short" }}
+          </td>
+          <td class="px-6 py-4">
+            <span
+              *ngIf="item.isActive"
+              class="inline-flex items-center gap-1 rounded-full bg-brand/10 px-3 py-1 text-xs font-medium text-brand"
+            >
+              <i class="fas fa-check-circle"></i>
+              Active
+            </span>
+            <span
+              *ngIf="!item.isActive"
+              class="inline-flex items-center gap-1 rounded-full bg-rose-50 px-3 py-1 text-xs font-medium text-rose-500"
+            >
+              <i class="fas fa-times-circle"></i>
+              Inactive
+            </span>
+          </td>
+          <td class="px-6 py-4 text-right">
+            <div class="flex flex-wrap justify-end gap-2">
+              <a
+                [routerLink]="[item.id, 'edit']"
+                class="rounded-full border border-brand/20 px-4 py-2 text-sm font-medium text-brand transition hover:bg-brand hover:text-white"
+              >
+                Edit
+              </a>
+
+              <button
+                *ngIf="item.isActive"
+                (click)="toggleProjectActive(item.id, false)"
+                class="rounded-full border border-amber-200 px-4 py-2 text-sm font-medium text-amber-600 transition hover:bg-amber-50"
+              >
+                Deactivate
+              </button>
+
+              <button
+                *ngIf="!item.isActive"
+                (click)="toggleProjectActive(item.id, true)"
+                class="rounded-full border border-brand/20 px-4 py-2 text-sm font-medium text-brand transition hover:bg-brand hover:text-white"
+              >
+                Activate
+              </button>
+
+              <button
+                (click)="deleteProject(item.id)"
+                class="rounded-full border border-rose-200 px-4 py-2 text-sm font-medium text-rose-600 transition hover:bg-rose-50"
+              >
+                Delete
+              </button>
+
+              <a
+                [routerLink]="[item.id, 'gallery']"
+                class="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+              >
+                Gallery
+              </a>
+
+              <a
+                [routerLink]="[item.id, 'features']"
+                class="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+              >
+                Features
+              </a>             
+
+              
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

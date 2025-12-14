@@ -1,0 +1,67 @@
+<section class="neo-section  neo-slider">
+  <div >
+    <div class="neo-section__header">
+      <span class="neo-section__tag">Featured</span>
+      <h2 class="neo-section__title">Signature Properties</h2>
+      <p class="neo-section__subtitle">
+        A rotating showcase of living spaces shaped by bespoke architecture, thoughtful amenities, and luminous community design.
+      </p>
+    </div>
+
+    <div class="neo-slider__surface">
+      <swiper-container
+        #swiper
+        init="false"
+        class="neo-slider__container"
+        aria-label="Signature properties slider"
+      >
+        <swiper-slide *ngFor="let slide of slides" class="neo-slider__slide">
+          <!-- Exact project-card design -->
+          <article class="project-card group">
+            <a [routerLink]="['/projectdetails', slide.id]" class="project-card__link">
+              <div class="project-card__image">
+                <img
+                  [src]="slide.image"
+                  [attr.alt]="slide.name || 'Project image'"
+                  loading="lazy"
+                  (error)="onImageError($event)"
+                />
+                <div class="project-card__overlay"></div>
+                <div class="project-card__meta">
+                  <span class="project-chip">
+                    <i class="ri-time-line"></i>
+                    {{ slide.category || 'In development' }}
+                  </span>
+                  <span class="project-chip">
+                    <i class="ri-building-4-line"></i>
+                    {{ slide.type || 'Mixed use' }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="project-card__body">
+                <h3>{{ slide.name }}</h3>
+                <p>{{ slide.address || 'Address forthcoming' }}</p>
+                <span class="project-card__cta">
+                  View details
+                  <i class="ri-arrow-right-line"></i>
+                </span>
+              </div>
+            </a>
+          </article>
+        </swiper-slide>
+
+        <div class="swiper-pagination neo-slider__pagination"></div>
+      </swiper-container>
+
+      <div class="neo-slider__controls" role="group" aria-label="Slider navigation">
+        <button type="button" aria-label="Previous slide" class="neo-slider__control neo-slider__control--prev">
+          <span>&larr;</span>
+        </button>
+        <button type="button" aria-label="Next slide" class="neo-slider__control neo-slider__control--next">
+          <span>&rarr;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,472 @@
+<div
+  class="relative min-h-screen bg-slate-50 text-slate-900 md:grid md:grid-cols-[280px_1fr]"
+  (click)="closeSidebar($event)"
+>
+  <aside
+    class="hidden h-full flex-col gap-10 border-r border-slate-200 bg-white p-8 xl:flex"
+  >
+    <div class="flex items-center gap-4">
+      <span
+        class="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200 bg-slate-100 text-sm font-semibold tracking-[0.18em] text-slate-600"
+        >AE</span
+      >
+      <div class="space-y-1">
+        <strong class="block font-serif text-lg uppercase tracking-[0.18em]"
+          >Ashaven Developer</strong
+        >
+        <span class="block text-xs uppercase tracking-[0.28em] text-slate-500"
+          >Control Centre</span
+        >
+      </div>
+    </div>
+
+    <nav class="flex flex-1 flex-col gap-2" aria-label="Dashboard navigation">
+      <a
+        routerLink="/dashboard"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive
+        #overviewRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+        [ngClass]="
+          overviewRla.isActive
+            ? 'bg-brand text-white shadow-md'
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+        "
+      >
+        <i class="fas fa-chart-line"></i>
+        <span>Overview</span>
+      </a>
+      <a
+        routerLink="/dashboard/projects"
+        routerLinkActive
+        #projectsRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+        [ngClass]="
+          projectsRla.isActive
+            ? 'bg-brand text-white shadow-md'
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+        "
+      >
+        <i class="fas fa-city"></i>
+        <span>Property listings</span>
+      </a>
+      <a
+        routerLink="/dashboard/clients"
+        routerLinkActive
+        #clientsRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+        [ngClass]="
+          clientsRla.isActive
+            ? 'bg-brand text-white shadow-md'
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+        "
+      >
+        <i class="fas fa-user-tie"></i>
+        <span>Client registry</span>
+      </a>
+      <a
+        routerLink="/dashboard/teams"
+        routerLinkActive
+        #teamsRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+        [ngClass]="
+          teamsRla.isActive
+            ? 'bg-brand text-white shadow-md'
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+        "
+      >
+        <i class="fas fa-users"></i>
+        <span>Advisory team</span>
+      </a>
+
+      <a
+        routerLink="/dashboard/about-us"
+        routerLinkActive
+        #aboutRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+        [ngClass]="
+          aboutRla.isActive
+            ? 'bg-brand text-white shadow-md'
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+        "
+      >
+        <i class="fas fa-circle-info text-lg"></i>
+        <span>About Us</span>
+      </a>
+
+      <!-- <a
+        routerLink="/dashboard/testimonials"
+        routerLinkActive
+        #testimonialsRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+        [ngClass]="
+          testimonialsRla.isActive
+            ? 'bg-brand text-white shadow-md'
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+        "
+      >
+        <i class="fas fa-comment-dots"></i>
+        <span>Blogs</span>
+      </a> -->
+
+      <a
+        routerLink="/dashboard/testimonials"
+        routerLinkActive
+        #testimonialsRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+        [ngClass]="
+          testimonialsRla.isActive
+            ? 'bg-brand text-white shadow-md'
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+        "
+      >
+        <i class="fas fa-comment-dots"></i>
+        <span>Testimonials</span>
+      </a>
+      <a
+        routerLink="/dashboard/blogs"
+        routerLinkActive
+        #blogsRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+        [ngClass]="
+          blogsRla.isActive
+            ? 'bg-brand text-white shadow-md'
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+        "
+      >
+        <i class="fas fa-newspaper"></i>
+        <span>Journal</span>
+      </a>
+      <a
+        routerLink="/dashboard/gallery"
+        routerLinkActive
+        #galleryRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+        [ngClass]="
+          galleryRla.isActive
+            ? 'bg-brand text-white shadow-md'
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+        "
+      >
+        <i class="fas fa-images"></i>
+        <span>Gallery</span>
+      </a>
+      <a
+        routerLink="/dashboard/faq"
+        routerLinkActive
+        #faqRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+        [ngClass]="
+          faqRla.isActive
+            ? 'bg-brand text-white shadow-md'
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+        "
+      >
+        <i class="fas fa-question-circle"></i>
+        <span>FAQ</span>
+      </a>
+
+      <button
+        type="button"
+        class="mt-auto flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-600 transition hover:-translate-y-0.5 hover:bg-slate-100 hover:text-slate-900"
+        (click)="logout()"
+      >
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Sign out</span>
+      </button>
+    </nav>
+  </aside>
+
+  <aside
+    *ngIf="showSidebar"
+    class="fixed inset-0 z-50 flex bg-slate-900/30 backdrop-blur-sm xl:hidden"
+  >
+    <div
+      class="flex w-full max-w-xs flex-col gap-6 border-r border-slate-200 bg-white p-6"
+    >
+      <div
+        class="flex items-center justify-between text-xs uppercase tracking-[0.28em] text-slate-500"
+      >
+        <span>Navigate</span>
+        <button
+          type="button"
+          (click)="toggleSidebar()"
+          aria-label="Close navigation"
+          class="text-2xl text-slate-500 transition hover:text-slate-900"
+        >
+          &times;
+        </button>
+      </div>
+      <nav class="flex flex-col gap-2" aria-label="Mobile dashboard navigation">
+        <a
+          routerLink="/dashboard"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive
+          #mobileOverview="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+          [ngClass]="
+            mobileOverview.isActive
+              ? 'bg-brand text-white'
+              : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+          "
+        >
+          <i class="fas fa-chart-line"></i>
+          <span>Overview</span>
+        </a>
+        <a
+          routerLink="/dashboard/projects"
+          routerLinkActive
+          #mobileProjects="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+          [ngClass]="
+            mobileProjects.isActive
+              ? 'bg-brand text-white'
+              : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+          "
+        >
+          <i class="fas fa-city"></i>
+          <span>Property listings</span>
+        </a>
+        <a
+          routerLink="/dashboard/clients"
+          routerLinkActive
+          #mobileClients="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+          [ngClass]="
+            mobileClients.isActive
+              ? 'bg-brand text-white'
+              : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+          "
+        >
+          <i class="fas fa-user-tie"></i>
+          <span>Client registry</span>
+        </a>
+        <a
+          routerLink="/dashboard/teams"
+          routerLinkActive
+          #mobileTeams="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+          [ngClass]="
+            mobileTeams.isActive
+              ? 'bg-brand text-white'
+              : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+          "
+        >
+          <i class="fas fa-users"></i>
+          <span>Advisory team</span>
+        </a>
+        <a
+          routerLink="/dashboard/testimonials"
+          routerLinkActive
+          #mobileTestimonials="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+          [ngClass]="
+            mobileTestimonials.isActive
+              ? 'bg-brand text-white'
+              : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+          "
+        >
+          <i class="fas fa-comment-dots"></i>
+          <span>Testimonials</span>
+        </a>
+        <a
+          routerLink="/dashboard/blogs"
+          routerLinkActive
+          #mobileBlogs="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+          [ngClass]="
+            mobileBlogs.isActive
+              ? 'bg-brand text-white'
+              : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+          "
+        >
+          <i class="fas fa-newspaper"></i>
+          <span>Journal</span>
+        </a>
+        <a
+          routerLink="/dashboard/gallery"
+          routerLinkActive
+          #mobileGallery="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+          [ngClass]="
+            mobileGallery.isActive
+              ? 'bg-brand text-white'
+              : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+          "
+        >
+          <i class="fas fa-images"></i>
+          <span>Gallery</span>
+        </a>
+        <a
+          routerLink="/dashboard/faq"
+          routerLinkActive
+          #mobileFaq="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition"
+          [ngClass]="
+            mobileFaq.isActive
+              ? 'bg-brand text-white'
+              : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+          "
+        >
+          <i class="fas fa-question-circle"></i>
+          <span>FAQ</span>
+        </a>
+        <button
+          type="button"
+          class="mt-4 flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-medium text-slate-600 transition hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-900"
+          (click)="logout()"
+        >
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Sign out</span>
+        </button>
+      </nav>
+    </div>
+  </aside>
+
+  <div class="relative flex min-h-screen flex-col bg-white">
+    <header
+      class="sticky top-0 z-20 flex items-center justify-between gap-4 border-b border-slate-200 bg-white px-6 py-4"
+    >
+      <button
+        type="button"
+        class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-slate-100 text-lg text-slate-600 transition hover:bg-slate-200 xl:hidden"
+        (click)="toggleSidebar()"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="flex flex-col text-left">
+        <span class="text-xs uppercase tracking-[0.28em] text-slate-500"
+          >Welcome back, Agent</span
+        >
+        <strong class="font-serif text-xl">Performance dashboard</strong>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div
+          class="hidden items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-4 py-2 text-sm text-slate-600 lg:flex"
+        >
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            placeholder="Search the portfolio"
+            class="w-40 bg-transparent text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none"
+          />
+        </div>
+        <button
+          class="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-slate-100 text-lg text-slate-600 transition hover:bg-slate-200"
+          type="button"
+          aria-label="Notifications"
+        >
+          <i class="fas fa-bell"></i>
+          <span
+            class="absolute right-2 top-2 h-2 w-2 rounded-full bg-accent"
+          ></span>
+        </button>
+        <div class="relative" (clickOutside)="closeProfileModal()">
+          <button
+            class="flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 bg-accent text-sm font-semibold text-white"
+            (click)="toggleProfileDropdown()"
+          >
+            AE
+          </button>
+          <div
+            *ngIf="showProfileDropdown"
+            class="absolute right-0 mt-2 w-44 rounded-2xl border border-slate-200 bg-white p-2 text-sm shadow-lg"
+          >
+            <button
+              type="button"
+              (click)="openProfileModal()"
+              class="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-slate-700 transition hover:bg-slate-100 hover:text-slate-900"
+            >
+              Profile
+            </button>
+            <button
+              type="button"
+              (click)="logout()"
+              class="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-slate-700 transition hover:bg-slate-100 hover:text-slate-900"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="relative flex-1 overflow-hidden" #mainContent>
+      <div class="h-full overflow-auto px-6 py-8">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div
+  *ngIf="showProfileModal"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/30 backdrop-blur"
+>
+  <div
+    class="w-[min(90%,26rem)] rounded-3xl border border-slate-200 bg-white p-8 text-slate-900 shadow-xl"
+  >
+    <h2 class="font-serif text-2xl">Profile</h2>
+    <form
+      [formGroup]="profileForm"
+      (ngSubmit)="saveProfile()"
+      class="mt-6 flex flex-col gap-4"
+    >
+      <label
+        class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-600"
+        >Username</label
+      >
+      <input
+        formControlName="username"
+        class="rounded-2xl border border-slate-300 bg-slate-100 px-4 py-2 text-sm text-slate-900 focus:border-accent focus:outline-none"
+      />
+
+      <label
+        class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-600"
+        >New Password</label
+      >
+      <input
+        type="password"
+        formControlName="password"
+        class="rounded-2xl border border-slate-300 bg-slate-100 px-4 py-2 text-sm text-slate-900 focus:border-accent focus:outline-none"
+      />
+
+      <label
+        class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-600"
+        >Confirm Password</label
+      >
+      <input
+        type="password"
+        formControlName="confirmPassword"
+        class="rounded-2xl border border-slate-300 bg-slate-100 px-4 py-2 text-sm text-slate-900 focus:border-accent focus:outline-none"
+      />
+
+      <div class="mt-4 flex justify-end gap-3">
+        <button
+          type="button"
+          class="rounded-full border border-slate-300 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-900"
+          (click)="closeProfileModal()"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-pure shadow-lg transition hover:-translate-y-0.5 hover:bg-orange-500"
+        >
+          Save changes
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

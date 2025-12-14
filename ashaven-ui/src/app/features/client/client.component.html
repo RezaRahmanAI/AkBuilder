@@ -1,0 +1,66 @@
+<div class="space-y-6 rounded-3xl border border-slate-200 bg-white p-6 text-slate-700 shadow-sm">
+  <div class="flex items-center justify-between gap-4">
+    <h2 class="text-xl font-semibold text-slate-900">Contact submissions</h2>
+    <span class="text-sm font-medium uppercase tracking-[0.28em] text-slate-400">Inbox</span>
+  </div>
+
+  <!-- Error Message -->
+  <div
+    *ngIf="errorMessage"
+    class="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-600"
+  >
+    {{ errorMessage }}
+  </div>
+
+  <!-- Table -->
+  <div class="overflow-hidden rounded-2xl border border-slate-200">
+    <table class="w-full table-auto border-collapse bg-white text-left text-sm">
+      <thead class="bg-slate-100/80 text-xs font-semibold uppercase tracking-wide text-slate-500">
+        <tr>
+          <th class="px-5 py-3">Name</th>
+          <th class="px-5 py-3">Email</th>
+          <th class="px-5 py-3">Phone</th>
+          <th class="px-5 py-3">Subject</th>
+          <th class="px-5 py-3">Message</th>
+          <th class="px-5 py-3">Date</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100 text-slate-600">
+        <tr
+          *ngFor="let contact of contacts"
+          class="transition-colors duration-150 hover:bg-slate-50"
+        >
+          <td class="px-5 py-3 text-slate-900">{{ contact.name }}</td>
+          <td class="px-5 py-3">{{ contact.email }}</td>
+          <td class="px-5 py-3">{{ contact.phone || 'N/A' }}</td>
+          <td class="px-5 py-3">{{ contact.subject }}</td>
+          <td class="px-5 py-3">{{ contact.message }}</td>
+          <td class="px-5 py-3">{{ contact.date | date: 'yyyy-MM-dd' }}</td>
+        </tr>
+        <tr *ngIf="contacts.length === 0 && !errorMessage" class="text-center">
+          <td colspan="7" class="px-5 py-6 text-sm text-slate-500">No submissions found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="flex items-center justify-between gap-4">
+    <button
+      (click)="changePage(-1)"
+      [disabled]="currentPage === 1"
+      class="rounded-full bg-brand px-4 py-2 text-sm font-medium text-white transition hover:bg-brand/90 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+    >
+      Previous
+    </button>
+    <span class="text-sm font-medium text-slate-500">Page {{ currentPage }}</span>
+    <button
+      (click)="changePage(1)"
+      [disabled]="contacts.length < pageSize"
+      class="rounded-full bg-brand px-4 py-2 text-sm font-medium text-white transition hover:bg-brand/90 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+    >
+      Next
+    </button>
+  </div>
+</div>
+

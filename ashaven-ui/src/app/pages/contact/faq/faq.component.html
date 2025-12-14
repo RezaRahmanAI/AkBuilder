@@ -1,0 +1,38 @@
+<section class="faq-section relative overflow-hidden">
+  <div class="faq-gradient"></div>
+  <div class="faq-aurora faq-aurora--emerald"></div>
+  <div class="faq-aurora faq-aurora--violet"></div>
+  <div class="faq-grid"></div>
+
+  <div class="relative w-[min(1180px,92%)] md:w-[80%] mx-auto py-20 md:py-24">
+    <div class="text-center fade-up space-y-4">
+      <span class="faq-pill">Frequently asked</span>
+      <h2 class="text-3xl md:text-4xl font-semibold text-[var(--luxe-forest-900)]">
+        Answers to the questions our residents ask the most.
+      </h2>
+      <p class="text-[rgba(32,71,38,0.7)] max-w-3xl mx-auto">
+        We have compiled the insights that help you move forward faster. If you cannot find what you need, our concierge team is just a message away.
+      </p>
+    </div>
+
+    <div class="mt-12 space-y-4 fade-up">
+      <div *ngFor="let faq of faqs; let i = index" class="faq-card" [class.is-open]="faq.isOpen">
+        <button class="faq-toggle" (click)="toggleFaq(faq)">
+          <div class="toggle-copy">
+            <span class="toggle-index">0{{ i + 1 }}</span>
+            <span class="toggle-question">{{ faq.question }}</span>
+          </div>
+          <span class="toggle-icon" [ngClass]="{'is-open': faq.isOpen}">
+            <i class="ri-add-line"></i>
+          </span>
+        </button>
+        <div
+          [@slideInOut]="faq.isOpen ? 'open' : 'closed'"
+          class="faq-answer"
+        >
+          <p>{{ faq.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

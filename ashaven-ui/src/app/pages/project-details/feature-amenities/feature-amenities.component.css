@@ -1,0 +1,8 @@
+/* Add group hover for inner border effect */
+article {
+  position: relative;
+}
+
+article:hover .absolute {
+  opacity: 1;
+}

@@ -1,0 +1,32 @@
+<div class="relative">
+  <input type="hidden" id="projectId" [value]="projectId" />
+  <app-at-glance
+    id="atGlance"
+    [project]="state.data"
+    [baseUrl]="baseUrl"
+    (registerNowClicked)="scrollToContactForm()"
+    (imageError)="onImageError($event)"
+  ></app-at-glance>
+  <app-feature-amenities
+    id="featureAndAmenities"
+    [features]="state.list"
+    [baseUrl]="baseUrl"
+    (imageError)="onImageError($event)"
+  ></app-feature-amenities>
+  <app-project-gallery
+    id="projectGallery"
+    [gallery]="state.gallery"
+    [baseUrl]="baseUrl"
+    (imageError)="onImageError($event)"
+  ></app-project-gallery>
+  <app-location-map
+    id="locationMap"
+    (registerNowClicked)="scrollToContactForm()"
+    [mapIframe]="state.data?.mapLink"
+  ></app-location-map>
+  <app-contact-form
+    id="contacting"
+    (formSubmit)="onFormSubmit()"
+  ></app-contact-form>
+  <app-swiper-slider />
+</div>
