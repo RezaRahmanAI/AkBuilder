@@ -2,21 +2,418 @@
   display: block;
 }
 
-@keyframes float {
+.neo-hero {
+  background: radial-gradient(circle at 20% 20%, rgba(255, 119, 27, 0.12), transparent 40%),
+    radial-gradient(circle at 80% 10%, rgba(96, 202, 154, 0.14), transparent 45%),
+    linear-gradient(125deg, rgba(9, 24, 17, 0.98), rgba(6, 14, 11, 0.92));
+  padding: clamp(4rem, 8vw, 6.5rem) 0;
+}
+
+.neo-hero__shell {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+}
+
+.neo-hero__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: center;
+}
+
+.neo-hero__atmosphere {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.neo-hero__orb {
+  position: absolute;
+  width: 48vw;
+  height: 48vw;
+  border-radius: 999px;
+  filter: blur(120px);
+  opacity: 0.45;
+}
+
+.neo-hero__orb--one {
+  top: -28%;
+  left: -12%;
+  background: radial-gradient(circle, rgba(255, 119, 27, 0.28), transparent 65%);
+}
+
+.neo-hero__orb--two {
+  bottom: -32%;
+  right: -8%;
+  background: radial-gradient(circle, rgba(60, 189, 140, 0.35), transparent 60%);
+}
+
+.neo-hero__mesh {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.1) 0, transparent 35%),
+    linear-gradient(220deg, rgba(255, 255, 255, 0.07) 0, transparent 35%);
+  opacity: 0.4;
+}
+
+.neo-hero__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  z-index: 1;
+}
+
+.neo-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  letter-spacing: 0.24em;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.neo-hero__pulse {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #ff771b, #ffc164);
+  box-shadow: 0 0 0 0 rgba(255, 119, 27, 0.65);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
   0% {
-    transform: translateY(0);
+    box-shadow: 0 0 0 0 rgba(255, 119, 27, 0.65);
   }
-  50% {
-    transform: translateY(-10px);
+  70% {
+    box-shadow: 0 0 0 16px rgba(255, 119, 27, 0);
   }
   100% {
-    transform: translateY(0);
+    box-shadow: 0 0 0 0 rgba(255, 119, 27, 0);
   }
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+.neo-hero__title h1 {
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  position: relative;
 }
 
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.neo-hero__caption {
+  color: rgba(255, 255, 255, 0.72);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+}
+
+.neo-hero__lede {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.7;
+  max-width: 50ch;
+}
+
+.neo-hero__underline {
+  position: absolute;
+  inset: auto 0 -10px 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff771b, transparent);
+  filter: drop-shadow(0 0 14px rgba(255, 119, 27, 0.65));
+}
+
+.neo-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.neo-hero__metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.8rem;
+}
+
+.metric-card {
+  padding: 1rem 1.1rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.24);
+}
+
+.metric-card__label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.metric-card__value {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.metric-card__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: linear-gradient(120deg, rgba(255, 119, 27, 0.25), rgba(255, 255, 255, 0.05));
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.neo-hero__progress {
+  display: grid;
+  gap: 0.4rem;
+  align-items: center;
+  grid-template-columns: 1fr auto;
+  width: min(520px, 100%);
+}
+
+.neo-hero__progress-label {
+  grid-column: span 2;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.neo-hero__progress-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.neo-hero__progress-fill {
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  background: linear-gradient(90deg, #ff771b, #9ef2c1);
+  transition: transform 120ms linear;
+}
+
+.neo-hero__progress-count {
+  font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.neo-hero__visual {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+}
+
+.neo-hero__frame {
+  position: relative;
+  border-radius: 1.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  box-shadow: 0 35px 120px rgba(0, 0, 0, 0.35);
+}
+
+.neo-hero__image {
+  width: 100%;
+  height: clamp(340px, 50vw, 620px);
+  object-fit: cover;
+  display: block;
+}
+
+.neo-hero__glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.55) 90%);
+}
+
+.neo-hero__badge {
+  position: absolute;
+  min-width: 180px;
+  padding: 0.85rem 1rem;
+  border-radius: 1.1rem;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.neo-hero__badge--top {
+  top: 8%;
+  left: 6%;
+}
+
+.neo-hero__badge--bottom {
+  bottom: 10%;
+  right: 6%;
+}
+
+.badge-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.neo-hero__badge strong {
+  display: block;
+  font-size: 1.1rem;
+}
+
+.neo-hero__badge p {
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0.25rem 0 0;
+}
+
+.neo-hero__controls {
+  position: absolute;
+  inset: auto 1rem 1rem auto;
+  display: inline-flex;
+  gap: 0.5rem;
+  z-index: 4;
+}
+
+.neo-hero__controls button {
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.45);
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.neo-hero__controls button:hover,
+.neo-hero__controls button:focus-visible {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.neo-hero__navigator {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+}
+
+.neo-hero__navigator-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1rem 1.25rem 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.neo-hero__navigator-header p {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.neo-hero__navigator-header span {
+  font-size: 0.9rem;
+}
+
+.neo-hero__navigator-list {
+  display: flex;
+  gap: 0.8rem;
+  padding: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.neo-hero__navigator-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: white;
+  min-width: 240px;
+  scroll-snap-align: start;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.neo-hero__navigator-item:hover,
+.neo-hero__navigator-item:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.neo-hero__navigator-item.is-active {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(120deg, rgba(255, 119, 27, 0.22), rgba(255, 255, 255, 0.08));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.navigator-index {
+  font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.navigator-copy strong {
+  display: block;
+  font-weight: 700;
+}
+
+.navigator-copy small {
+  display: block;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.navigator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(120deg, #ff771b, #ffe0b5);
+  box-shadow: 0 0 0 6px rgba(255, 119, 27, 0.16);
+}
+
+@media (max-width: 900px) {
+  .neo-hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .neo-hero__frame {
+    order: -1;
+  }
+
+  .neo-hero__badge--top {
+    left: 4%;
+  }
+
+  .neo-hero__badge--bottom {
+    right: 4%;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

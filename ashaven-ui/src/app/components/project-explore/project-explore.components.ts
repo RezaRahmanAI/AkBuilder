@@ -44,12 +44,14 @@ export class ProjectExploreComponent {
     },
   ];
 
-  onMouseMove(event: MouseEvent) {
+  private findCard(event: MouseEvent): HTMLElement | null {
     const wrapper = event.currentTarget as HTMLElement | null;
-    const card = wrapper?.querySelector(
-      '.neo-project-card__inner'
-    ) as HTMLElement | null;
-    if (!wrapper || !card) {
+    return wrapper?.querySelector('.discover-card__inner') as HTMLElement | null;
+  }
+
+  onMouseMove(event: MouseEvent) {
+    const card = this.findCard(event);
+    if (!card) {
       return;
     }
 
@@ -58,17 +60,14 @@ export class ProjectExploreComponent {
     const y = event.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * 10;
-    const rotateY = ((x - centerX) / centerX) * -10;
+    const rotateX = ((y - centerY) / centerY) * 8;
+    const rotateY = ((x - centerX) / centerX) * -8;
 
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
   }
 
   onMouseLeave(event: MouseEvent) {
-    const wrapper = event.currentTarget as HTMLElement | null;
-    const card = wrapper?.querySelector(
-      '.neo-project-card__inner'
-    ) as HTMLElement | null;
+    const card = this.findCard(event);
     if (!card) {
       return;
     }

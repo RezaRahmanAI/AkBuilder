@@ -1,52 +1,60 @@
-
 .neo-section__header {
   display: grid;
-  gap: .6rem;
+  gap: 0.6rem;
   margin-bottom: clamp(1.4rem, 3vw, 2rem);
 }
 
+.neo-section__tag {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--luxe-amber);
+}
+
 .neo-section__title {
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  line-height: 1.15;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  line-height: 1.1;
   font-weight: 700;
   color: var(--luxe-forest-900);
 }
+
 .neo-section__subtitle {
-  max-width: 60ch;
-  color: rgba(32,71,38,.7);
-  line-height: 1.6;
+  max-width: 68ch;
+  color: rgba(32, 71, 38, 0.72);
+  line-height: 1.7;
 }
 
-/* ===== Slider surface ===== */
 .neo-slider__surface {
   position: relative;
   border-radius: var(--neo-radius-lg);
-  padding: clamp(2.2rem, 5vw, 3rem) clamp(1.1rem, 3vw, 2rem);
-  background: linear-gradient(160deg, rgba(255,255,255,.95), rgba(241,251,236,.92));
-  border: 1px solid rgba(32,71,38,.12);
-  box-shadow: 0 45px 120px rgba(19,53,31,.2);
+  padding: clamp(2.2rem, 5vw, 3rem) clamp(1.4rem, 3vw, 2.25rem);
+  background: radial-gradient(circle at 10% 20%, rgba(255, 119, 27, 0.1), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(60, 117, 186, 0.12), transparent 45%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(241, 251, 236, 0.92));
+  border: 1px solid rgba(32, 71, 38, 0.12);
+  box-shadow: 0 45px 120px rgba(19, 53, 31, 0.2);
   overflow: hidden;
 }
+
 .neo-slider__surface::before {
   content: '';
   position: absolute;
   inset: -50% -25% auto -25%;
   height: 60%;
-  background: radial-gradient(circle, rgba(255,119,27,.18), transparent 70%);
-  opacity: .6;
+  background: radial-gradient(circle, rgba(255, 119, 27, 0.14), transparent 70%);
+  opacity: 0.6;
   filter: blur(20px);
   pointer-events: none;
 }
 
-/* ===== Swiper container ===== */
 .neo-slider__container {
   width: 100%;
 }
+
 .neo-slider__slide {
-  padding: clamp(.4rem, 1.5vw, 1rem);
+  padding: clamp(0.4rem, 1.5vw, 1rem);
 }
 
-/* ===== Exact project-card styling (from your projects grid) ===== */
 .project-card {
   border-radius: 1.75rem;
   overflow: hidden;
@@ -56,10 +64,12 @@
   transition: transform 220ms ease, box-shadow 220ms ease;
   height: 100%;
 }
+
 .project-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 32px 64px rgba(19, 53, 31, 0.22);
 }
+
 .project-card__link {
   display: flex;
   flex-direction: column;
@@ -68,21 +78,23 @@
   text-decoration: none;
 }
 
-/* Media block */
 .project-card__image {
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
 }
+
 .project-card__image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 260ms ease;
 }
+
 .project-card:hover .project-card__image img {
   transform: scale(1.06);
 }
+
 .project-card__overlay {
   position: absolute;
   inset: 0;
@@ -90,7 +102,6 @@
   opacity: 0.85;
 }
 
-/* Chips */
 .project-card__meta {
   position: absolute;
   bottom: 1rem;
@@ -101,6 +112,7 @@
   gap: 0.6rem;
   z-index: 2;
 }
+
 .project-chip {
   display: inline-flex;
   align-items: center;
@@ -114,23 +126,36 @@
   box-shadow: 0 12px 24px rgba(32, 71, 38, 0.15);
 }
 
-/* Body */
 .project-card__body {
-  padding: 1.5rem 1.5rem 1.4rem; /* slightly tighter for slider */
+  padding: 1.5rem 1.5rem 1.4rem;
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
   flex-grow: 1;
 }
+
+.project-card__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
 .project-card__body h3 {
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--luxe-forest-900);
 }
+
+.project-card__tag {
+  color: rgba(32, 71, 38, 0.6);
+  font-size: 0.9rem;
+}
+
 .project-card__body p {
   color: rgba(32, 71, 38, 0.65);
   line-height: 1.5;
 }
+
 .project-card__cta {
   display: inline-flex;
   align-items: center;
@@ -139,15 +164,16 @@
   color: var(--luxe-amber);
   transition: transform 200ms ease;
 }
+
 .project-card:hover .project-card__cta {
   transform: translateX(4px);
 }
 
-/* Pagination bullets */
 .neo-slider__pagination {
   position: static !important;
   margin-top: clamp(1.1rem, 2vw, 1.6rem);
 }
+
 .neo-slider__pagination .swiper-pagination-bullet {
   width: 10px;
   height: 10px;
@@ -155,13 +181,13 @@
   opacity: 1;
   transition: transform 0.3s ease, background 0.3s ease;
 }
+
 .neo-slider__pagination .swiper-pagination-bullet-active {
   transform: scale(1.4);
   background: linear-gradient(120deg, var(--luxe-amber), var(--luxe-amber-soft));
   box-shadow: 0 0 15px rgba(255, 119, 27, 0.35);
 }
 
-/* Controls */
 .neo-slider__controls {
   position: absolute;
   right: clamp(1.2rem, 3vw, 2rem);
@@ -170,9 +196,10 @@
   gap: 0.75rem;
   z-index: 3;
 }
+
 .neo-slider__control {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 14px;
   border: 1px solid rgba(32, 71, 38, 0.2);
   background: rgba(255, 255, 255, 0.85);
@@ -184,6 +211,7 @@
   cursor: pointer;
   transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
+
 .neo-slider__control:hover,
 .neo-slider__control:focus-visible {
   transform: translateY(-3px);
@@ -191,26 +219,13 @@
   background: rgba(255, 255, 255, 0.95);
 }
 
-/* Mobile tweaks */
 @media (max-width: 767px) {
   .neo-slider__surface {
     padding: clamp(1.75rem, 8vw, 2.2rem) clamp(1rem, 5vw, 1.4rem);
   }
   .neo-slider__controls {
     position: static;
-    justify-content: center;
-    margin-top: 1.2rem;
-  }
-  /* shorter image ratio to fit mobile height */
-  .project-card__image { aspect-ratio: 16 / 11; }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .project-card,
-  .neo-slider__control,
-  .neo-slider__pagination .swiper-pagination-bullet,
-  .project-card__cta {
-    transition: none !important;
+    justify-content: flex-end;
+    margin-top: 1rem;
   }
 }
