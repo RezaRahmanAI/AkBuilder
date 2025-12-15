@@ -1,11 +1,4 @@
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
-  NgZone,
-  OnDestroy,
-} from '@angular/core';
+import { Component, AfterViewInit, NgZone, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -35,11 +28,10 @@ interface ProjectItem {
   styleUrls: ['./project.component.css'],
 })
 export class ProjectsComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('categorySelect') categorySelect!: ElementRef<HTMLSelectElement>;
-  @ViewChild('typeSelect') typeSelect!: ElementRef<HTMLSelectElement>;
-
   scrollTransform = 'translateY(-60px)';
   baseUrl = environment.baseUrl;
+  selectedCategory: string = 'all';
+  selectedType: string = 'all';
 
   state = {
     list: [] as ProjectItem[],
@@ -73,10 +65,7 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
     // Read category from query params (e.g., /projects?category=Ongoing)
     this.route.queryParams.subscribe((params) => {
       const category = params['category'] || 'all';
-
-      if (this.categorySelect) {
-        this.categorySelect.nativeElement.value = category;
-      }
+      this.selectedCategory = category;
 
       // Fetch projects with the pre-set filter
       this.getActiveProjects();
@@ -84,8 +73,8 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
   }
 
   getActiveProjects(): void {
-    const category = this.categorySelect?.nativeElement.value || 'all';
-    const type = this.typeSelect?.nativeElement.value || 'all';
+    const category = this.selectedCategory || 'all';
+    const type = this.selectedType || 'all';
 
     const params = new URLSearchParams();
     if (category !== 'all') params.append('category', category);
@@ -125,8 +114,8 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
   }
 
   resetFilters(): void {
-    if (this.categorySelect) this.categorySelect.nativeElement.value = 'all';
-    if (this.typeSelect) this.typeSelect.nativeElement.value = 'all';
+    this.selectedCategory = 'all';
+    this.selectedType = 'all';
     this.getActiveProjects();
   }
 
@@ -140,5 +129,50 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  setCategory(category: string): void {
+    this.selectedCategory = category;
+    this.getActiveProjects();
+  }
+
+  updateType(type: string): void {
+    this.selectedType = type;
+    this.getActiveProjects();
+  }
+
+  statusBadgeClass(category: string): string {
+    switch (category) {
+      case 'Ongoing':
+        return 'status-badge status-badge--ongoing';
+      case 'Upcoming':
+        return 'status-badge status-badge--upcoming';
+      case 'Completed':
+        return 'status-badge status-badge--completed';
+      default:
+        return 'status-badge';
+    }
+  }
+
+  statusDotClass(category: string): string {
+    switch (category) {
+      case 'Ongoing':
+        return 'status-dot status-dot--ongoing';
+      case 'Upcoming':
+        return 'status-dot status-dot--upcoming';
+      case 'Completed':
+        return 'status-dot status-dot--completed';
+      default:
+        return 'status-dot';
+    }
+  }
+
+  statusLabel(category: string | undefined): string {
+    return (category || 'Ongoing').toUpperCase();
+  }
+
+  categoryButtonClass(category: string): string {
+    const isActive = this.selectedCategory === category;
+    return `filter-pill ${isActive ? 'filter-pill--active' : ''}`;
   }
 }
