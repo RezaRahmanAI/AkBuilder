@@ -1,7 +1,168 @@
-<div  class="relative overflow-hidden">  
-  <app-contact-hero />
-  <app-get-in-touch />
-  <app-contact-info-map />
-  <app-faq />
-  <!-- <app-contact-from /> -->
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white">
+  <div class="px-5 md:px-20 xl:px-40 flex flex-1 justify-center py-12 md:py-16">
+    <div class="flex w-full max-w-[1200px] flex-col">
+      <div class="flex flex-wrap justify-between gap-3 mb-10">
+        <div class="flex min-w-72 flex-col gap-3">
+          <p class="text-4xl font-black leading-tight tracking-[-0.033em]">Get in Touch</p>
+          <p class="text-[#637588] dark:text-[#9ba8b8] text-base leading-normal max-w-[640px]">
+            Have questions about a listing or need a valuation? Our team is ready to help you find your dream property.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div class="lg:col-span-7 flex flex-col bg-surface-light dark:bg-surface-dark rounded-xl p-6 md:p-8 shadow-sm border border-[#dce0e5] dark:border-[#2b333b]">
+          <h2 class="tracking-light text-[24px] font-bold leading-tight mb-6">Send us a message</h2>
+          <form class="flex flex-col gap-5">
+            <div class="flex flex-col md:flex-row gap-5">
+              <label class="flex flex-col flex-1">
+                <p class="text-sm font-medium leading-normal pb-2">Full Name</p>
+                <input
+                  class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dce0e5] dark:border-[#3e4a5b] bg-white dark:bg-[#222b36] focus:border-primary h-12 px-4 text-base leading-normal placeholder:text-[#637588]"
+                  placeholder="John Doe"
+                  name="fullName"
+                  autocomplete="name"
+                />
+              </label>
+              <label class="flex flex-col flex-1">
+                <p class="text-sm font-medium leading-normal pb-2">Phone Number</p>
+                <input
+                  class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dce0e5] dark:border-[#3e4a5b] bg-white dark:bg-[#222b36] focus:border-primary h-12 px-4 text-base leading-normal placeholder:text-[#637588]"
+                  placeholder="+1 (555) 000-0000"
+                  type="tel"
+                  name="phone"
+                  autocomplete="tel"
+                />
+              </label>
+            </div>
+            <div class="flex flex-col md:flex-row gap-5">
+              <label class="flex flex-col flex-1">
+                <p class="text-sm font-medium leading-normal pb-2">Email Address</p>
+                <input
+                  class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dce0e5] dark:border-[#3e4a5b] bg-white dark:bg-[#222b36] focus:border-primary h-12 px-4 text-base leading-normal placeholder:text-[#637588]"
+                  placeholder="john@example.com"
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                />
+              </label>
+              <label class="flex flex-col flex-1">
+                <p class="text-sm font-medium leading-normal pb-2">I'm interested in</p>
+                <div class="relative">
+                  <select
+                    class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dce0e5] dark:border-[#3e4a5b] bg-white dark:bg-[#222b36] focus:border-primary h-12 px-4 text-base leading-normal appearance-none pr-10"
+                    name="interest"
+                  >
+                    <option>Buying a Property</option>
+                    <option>Selling a Property</option>
+                    <option>Renting a Property</option>
+                    <option>Property Valuation</option>
+                    <option>Other Inquiry</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#637588]">
+                    <span class="material-symbols-outlined">expand_more</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <label class="flex flex-col flex-1">
+              <p class="text-sm font-medium leading-normal pb-2">Message</p>
+              <textarea
+                class="flex w-full min-w-0 flex-1 resize-y rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dce0e5] dark:border-[#3e4a5b] bg-white dark:bg-[#222b36] focus:border-primary min-h-[160px] p-4 text-base leading-normal placeholder:text-[#637588]"
+                placeholder="I'm interested in listing #4059..."
+                name="message"
+              ></textarea>
+            </label>
+            <div class="flex items-center justify-between pt-2">
+              <p class="text-xs text-[#637588] dark:text-[#9ba8b8]">We respect your privacy and will never share your info.</p>
+              <button
+                class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-all shadow-md"
+                type="submit"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          <div class="flex flex-col gap-4">
+            <h3 class="text-lg font-bold leading-tight mb-1">Contact Information</h3>
+            <div class="flex gap-4 rounded-xl border border-[#dce0e5] dark:border-[#2b333b] bg-surface-light dark:bg-surface-dark p-4 items-center shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary">
+                <span class="material-symbols-outlined">call</span>
+              </div>
+              <div class="flex flex-col">
+                <h2 class="text-sm font-bold leading-tight">Phone</h2>
+                <a class="text-[#637588] dark:text-[#9ba8b8] text-sm leading-normal hover:text-primary transition-colors" href="tel:+15551234567">+1 (555) 123-4567</a>
+              </div>
+            </div>
+            <div class="flex gap-4 rounded-xl border border-[#dce0e5] dark:border-[#2b333b] bg-surface-light dark:bg-surface-dark p-4 items-center shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary">
+                <span class="material-symbols-outlined">mail</span>
+              </div>
+              <div class="flex flex-col">
+                <h2 class="text-sm font-bold leading-tight">Email</h2>
+                <a
+                  class="text-[#637588] dark:text-[#9ba8b8] text-sm leading-normal hover:text-primary transition-colors"
+                  href="mailto:hello&#64;estatepro.com"
+                >
+                  hello&#64;estatepro.com
+                </a>
+              </div>
+            </div>
+            <div class="flex gap-4 rounded-xl border border-[#dce0e5] dark:border-[#2b333b] bg-surface-light dark:bg-surface-dark p-4 items-center shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary">
+                <span class="material-symbols-outlined">location_on</span>
+              </div>
+              <div class="flex flex-col">
+                <h2 class="text-sm font-bold leading-tight">Visit Us</h2>
+                <p class="text-[#637588] dark:text-[#9ba8b8] text-sm leading-normal">123 Market St, Suite 400, SF, CA</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2 mt-2">
+            <div class="relative w-full h-64 lg:h-80 rounded-xl overflow-hidden shadow-sm border border-[#dce0e5] dark:border-[#2b333b] bg-gray-200 group">
+              <img
+                alt="Map Location"
+                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtpBN_b9dwikjQlvb2hWERtCa34yFdw8nzbD2qjLhBFbPbPD6EnrwjvstYl3ndE3XFSuF_3HCdN1UGWHlwe6WXJCxxVyEbjpKtDEHaKYJkt3achV-nFv3A2aqH2N45puos3ajgmRJvU0PuQVhBH87ohiGAv2EGVSZGQpc1ZqYZ098l1DQ92f5f_yX6FWsUgEGOZjGgoE6_YzFfltKVhS7kZ6mxM-4sAP4HpldUcC1_bAPXiocEgKl9OX88ycwT8XwdW3m949SRZA"
+              />
+              <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div class="bg-primary text-white p-2 rounded-full shadow-lg animate-bounce">
+                  <span class="material-symbols-outlined text-2xl">location_on</span>
+                </div>
+              </div>
+              <a
+                class="absolute bottom-4 left-4 right-4 bg-white/90 dark:bg-black/80 backdrop-blur-sm p-3 rounded-lg text-center text-sm font-medium text-[#111418] dark:text-white shadow-sm hover:bg-white transition-colors"
+                href="#"
+              >
+                Open in Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div class="mt-4 p-4 bg-primary/5 dark:bg-primary/10 rounded-xl border border-primary/10">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden">
+                <img
+                  alt="Agent"
+                  class="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtrD6rs9T5Ofl-mDsF4Fxg1GSB2VF-5meM467Or0TNI8yi3Cph4T0d_u2gDkcd3F7dmJYn7lgbST2oWVwx6YVxWzElxVJOVxJdApYbrYjygRzMTBSzguPBXnJB83Oit9BYR-BD4HWRP8A5g4bjv1ZaPM249kDaY_EMPwP3XYAm15fo6P9YqsjeWQu_LWCRWes5XqMQnIvh3ey0U6yTwuyKPtnnlBgpKfww9X0sQCYo00F7vdAWI-IYHuXSkt3FgVN_yMQXErYbXw"
+                />
+              </div>
+              <div class="flex-1">
+                <p class="text-sm font-bold">Chat with an Agent</p>
+                <p class="text-xs text-[#637588]">Online now • Typical reply in 5m</p>
+              </div>
+              <button class="text-primary hover:bg-primary/10 p-2 rounded-full" type="button">
+                <span class="material-symbols-outlined">chat</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
