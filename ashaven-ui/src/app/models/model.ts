@@ -80,6 +80,18 @@ export interface AboutUs {
   twitter: string;
 }
 
+export interface ProjectStats {
+  ongoing: number;
+  upcoming: number;
+  completed: number;
+}
+
+export interface AboutPageData {
+  about: AboutUs | null;
+  teams: Team[];
+  stats: ProjectStats;
+}
+
 export interface Contactus {
   id?: string;
   name: string;

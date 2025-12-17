@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../environments/environment';
-import { AboutUs } from '../models/model';
+import { AboutPageData, AboutUs } from '../models/model';
 
 
 @Injectable({
@@ -16,6 +16,10 @@ export class AboutUsService {
 
   getAboutUs(): Observable<AboutUs[]> {
     return this.http.get<AboutUs[]>(`${this.apiBaseUrl}/api/aboutus`);
+  }
+
+  getAboutPageData(): Observable<AboutPageData> {
+    return this.http.get<AboutPageData>(`${this.apiBaseUrl}/api/website/getaboutpage`);
   }
 
   createAboutUs(formData: FormData): Observable<string> {
