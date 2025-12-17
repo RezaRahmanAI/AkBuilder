@@ -11,17 +11,12 @@
 
   <div *ngIf="activeSlide as active" class="neo-hero__shell">
     <div class="neo-hero__grid">
-      <div class="neo-hero__intro">
-        <span class="neo-hero__eyebrow">
-          <span class="neo-hero__pulse"></span>
-          Curated living experience
-        </span>
-
+      <div class="neo-hero__intro">        
         <div class="neo-hero__title">
           <p class="neo-hero__caption">{{ active.topic }}</p>
           <h1>
             {{ active.title }}
-            <span class="neo-hero__underline"></span>
+            <span class="neo-hero__underline mb-2"></span>
           </h1>
           <p class="neo-hero__lede">
             {{ active.des }}
@@ -88,19 +83,7 @@
             loading="lazy"
           />
           <div class="neo-hero__glow"></div>
-
-          <div class="neo-hero__badge neo-hero__badge--top">
-            <span class="badge-label">Now touring</span>
-            <strong>{{ active.thumbnailTitle }}</strong>
-            <p>{{ active.topic }}</p>
-          </div>
-
-          <div class="neo-hero__badge neo-hero__badge--bottom">
-            <span class="badge-label">Atmosphere</span>
-            <strong>{{ active.author }}</strong>
-            <p>{{ active.thumbnailDescription }}</p>
-          </div>
-
+          
           <div class="neo-hero__controls" role="group" aria-label="Hero navigation">
             <button type="button" (click)="prev()" aria-label="Previous highlight">
               <span aria-hidden="true">&#8592;</span>
@@ -111,30 +94,6 @@
           </div>
         </div>
 
-        <nav class="neo-hero__navigator" aria-label="Project quick navigation">
-          <div class="neo-hero__navigator-header">
-            <p>Switch the lens</p>
-            <span>Swipe through estates</span>
-          </div>
-          <div class="neo-hero__navigator-list">
-            <button
-              #navItem
-              type="button"
-              class="neo-hero__navigator-item"
-              *ngFor="let project of slides; let i = index; trackBy: trackBySlide"
-              [ngClass]="{ 'is-active': i === currentIndex }"
-              (click)="goToSlide(i)"
-              [attr.aria-label]="'Go to ' + project.thumbnailTitle"
-            >
-              <span class="navigator-index">{{ i + 1 | number : '2.0' }}</span>
-              <span class="navigator-copy">
-                <strong>{{ project.thumbnailTitle }}</strong>
-                <small>{{ project.thumbnailDescription }}</small>
-              </span>
-              <span class="navigator-dot" aria-hidden="true"></span>
-            </button>
-          </div>
-        </nav>
       </div>
     </div>
   </div>

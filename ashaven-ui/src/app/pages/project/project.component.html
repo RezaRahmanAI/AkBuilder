@@ -1,4 +1,6 @@
-<main class="flex-1 flex flex-col w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 py-6 text-ink">
+<main
+  class="flex-1 flex flex-col w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 py-6 text-ink"
+>
   <div class="flex flex-col gap-4 mb-6">
     <div class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
       <a class="hover:underline hover:text-accent" routerLink="/">Home</a>
@@ -7,7 +9,9 @@
     </div>
     <div class="flex flex-wrap justify-between items-end gap-4">
       <div class="flex flex-col gap-2">
-        <h1 class="text-ink text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">
+        <h1
+          class="text-ink text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]"
+        >
           Real Estate &amp; Projects
         </h1>
         <p class="text-slate-500 text-base">
@@ -15,13 +19,6 @@
         </p>
       </div>
       <div class="flex gap-2">
-        <button
-          class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-slate-100 text-ink text-sm font-bold hover:bg-slate-200 transition-colors"
-          type="button"
-        >
-          <i class="ri-notification-2-line text-lg"></i>
-          <span class="truncate">Save Search</span>
-        </button>
         <button
           class="flex md:hidden items-center justify-center gap-2 rounded-lg h-10 px-4 bg-slate-100 text-ink text-sm font-bold hover:bg-slate-200 transition-colors"
           type="button"
@@ -34,12 +31,16 @@
   </div>
 
   <div
-    class="sticky top-[65px] z-40 bg-white pt-2 pb-4 -mx-4 px-4 md:-mx-8 md:px-8 border-b border-gray-200 mb-6 transition-all duration-300"
+    class="sticky top-[65px] z-40 bg-white pt-2 pb-4 -mx-4 px-4 md:-mx-8 md:px-8 border-b border-gray-200 m-6 transition-all duration-300"
   >
-    <div class="flex flex-col lg:flex-row gap-4 lg:items-center justify-between">
+    <div
+      class="flex flex-col lg:flex-row gap-4 lg:items-center justify-between"
+    >
       <div class="w-full lg:max-w-md">
         <label class="flex flex-col w-full h-11 relative group">
-          <div class="flex w-full items-stretch rounded-lg h-full border border-transparent focus-within:border-accent transition-colors bg-white shadow-sm">
+          <div
+            class="flex w-full items-stretch rounded-lg h-full border border-transparent focus-within:border-accent transition-colors bg-white shadow-sm"
+          >
             <div class="text-slate-500 flex items-center justify-center pl-3">
               <i class="ri-search-2-line"></i>
             </div>
@@ -55,7 +56,10 @@
 
       <div class="flex flex-1 overflow-x-auto pb-2 lg:pb-0 gap-3 items-center">
         <div class="flex items-center gap-2 mr-2 shrink-0">
-          <span class="text-xs font-bold text-gray-500 uppercase tracking-wider hidden xl:block mr-1">Status:</span>
+          <span
+            class="text-xs font-bold text-gray-500 uppercase tracking-wider hidden xl:block mr-1"
+            >Status:</span
+          >
           <button
             type="button"
             class="category-toggle"
@@ -63,7 +67,10 @@
             (click)="setCategory('Ongoing')"
             [attr.aria-pressed]="selectedCategory === 'Ongoing'"
           >
-            <span class="w-2 h-2 rounded-full" [ngClass]="statusDotClass('Ongoing')"></span>
+            <span
+              class="w-2 h-2 rounded-full"
+              [ngClass]="statusDotClass('Ongoing')"
+            ></span>
             <p class="text-sm font-medium">Ongoing</p>
           </button>
           <button
@@ -73,7 +80,10 @@
             (click)="setCategory('Upcoming')"
             [attr.aria-pressed]="selectedCategory === 'Upcoming'"
           >
-            <span class="w-2 h-2 rounded-full" [ngClass]="statusDotClass('Upcoming')"></span>
+            <span
+              class="w-2 h-2 rounded-full"
+              [ngClass]="statusDotClass('Upcoming')"
+            ></span>
             <p class="text-sm font-medium">Upcoming</p>
           </button>
           <button
@@ -83,7 +93,10 @@
             (click)="setCategory('Completed')"
             [attr.aria-pressed]="selectedCategory === 'Completed'"
           >
-            <span class="w-2 h-2 rounded-full" [ngClass]="statusDotClass('Completed')"></span>
+            <span
+              class="w-2 h-2 rounded-full"
+              [ngClass]="statusDotClass('Completed')"
+            ></span>
             <p class="text-sm font-medium">Completed</p>
           </button>
         </div>
@@ -114,14 +127,6 @@
             Reset filters
           </button>
         </div>
-
-        <div class="ml-auto hidden lg:flex items-center gap-2 border-l pl-4 border-gray-300 h-8">
-          <span class="text-sm text-gray-500 whitespace-nowrap">Sort by:</span>
-          <select class="bg-transparent border-none text-sm font-semibold text-ink focus:ring-0 cursor-pointer py-0 pl-0 pr-8">
-            <option>Newest</option>
-            <option>Oldest</option>
-          </select>
-        </div>
       </div>
     </div>
   </div>
@@ -131,10 +136,19 @@
       *ngFor="let item of state.list"
       class="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 cursor-pointer"
     >
-      <a [routerLink]="['/projectdetails', item.id]" class="flex flex-col h-full">
+      <a
+        [routerLink]="['/projectdetails', item.id]"
+        class="flex flex-col h-full"
+      >
         <div class="relative w-full aspect-[4/3] overflow-hidden">
-          <div class="absolute top-3 left-3 z-10" [ngClass]="statusBadgeClass(item.category)">
-            <span class="w-1.5 h-1.5 rounded-full" [ngClass]="statusDotClass(item.category)"></span>
+          <div
+            class="absolute top-3 left-3 z-10"
+            [ngClass]="statusBadgeClass(item.category)"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full"
+              [ngClass]="statusDotClass(item.category)"
+            ></span>
             {{ statusLabel(item.category) }}
           </div>
           <button
@@ -159,20 +173,33 @@
           <div class="flex items-center gap-4 text-ink/90 mt-1">
             <div class="flex items-center gap-1.5">
               <i class="ri-building-4-line text-gray-400 text-lg"></i>
-              <span class="text-sm font-semibold">{{ item.type || 'Mixed use' }}</span>
+              <span class="text-sm font-semibold">{{
+                item.type || "Mixed use"
+              }}</span>
             </div>
             <div class="w-px h-4 bg-gray-300"></div>
             <div class="flex items-center gap-1.5">
               <i class="ri-time-line text-gray-400 text-lg"></i>
-              <span class="text-sm font-semibold">{{ item.category || 'In development' }}</span>
+              <span class="text-sm font-semibold">{{
+                item.category || "In development"
+              }}</span>
             </div>
           </div>
-          <p class="text-ink/80 text-sm font-medium truncate" title="{{ item.address || 'Address forthcoming' }}">
-            {{ item.address || 'Address forthcoming' }}
+          <p
+            class="text-ink/80 text-sm font-medium truncate"
+            title="{{ item.address || 'Address forthcoming' }}"
+          >
+            {{ item.address || "Address forthcoming" }}
           </p>
-          <div class="mt-2 pt-3 border-t border-gray-100 flex justify-between items-center">
-            <span class="text-xs text-gray-500">{{ item.canSchedule ? 'Scheduling available' : 'View project details' }}</span>
-            <span class="text-accent text-sm font-semibold inline-flex items-center gap-1">
+          <div
+            class="mt-2 pt-3 border-t border-gray-100 flex justify-between items-center"
+          >
+            <span class="text-xs text-gray-500">{{
+              item.canSchedule ? "Scheduling available" : "View project details"
+            }}</span>
+            <span
+              class="text-accent text-sm font-semibold inline-flex items-center gap-1"
+            >
               View details
               <i class="ri-arrow-right-line"></i>
             </span>
