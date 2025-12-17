@@ -1,23 +1,63 @@
-<div class="relative overflow-hidden">
+<div class="bg-white/90">
   <app-hero-section />
-  <app-history [history]="state.about.history"></app-history>
-  <!-- <app-owner-speech
-    [ownerName]="state.about.ownerName"
-    [ownerDesignation]="state.about.ownerDesignation"
-    [ownerSpeech]="state.about.ownerSpeech"
-    [ownerImage]="state.about.ownerImage"
-    (imageError)="onImageError($event)"
-  ></app-owner-speech> -->
+
+  <section class="w-full max-w-6xl px-4 py-12 md:py-16 mx-auto">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div
+        *ngFor="let stat of stats"
+        class="flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+      >
+        <p class="flex items-center gap-2 text-sm font-medium text-slate-500">
+          <i [class]="stat.icon + ' text-amber-600 text-lg'"></i>
+          {{ stat.label }}
+        </p>
+        <p class="text-3xl font-bold text-slate-900">{{ stat.value }}</p>
+      </div>
+    </div>
+  </section>
+
+  <app-history
+    [history]="state.about.history"
+    [primaryImage]="state.about.missionImage"
+    [secondaryImage]="state.about.visionImage"
+  ></app-history>
+
   <app-mission-vision
     [mission]="state.about.mission"
     [missionImage]="state.about.missionImage"
     [vision]="state.about.vision"
     [visionImage]="state.about.visionImage"
-    (imageError)="onImageError($event)"
   ></app-mission-vision>
 
+  <section class="w-full max-w-6xl px-4 py-16 mx-auto space-y-8">
+    <div class="flex flex-col items-center gap-3 text-center">
+      <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.45em] text-amber-600">
+        <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+        Our Core Values
+      </p>
+      <h2 class="text-3xl font-bold leading-tight text-slate-900 md:text-4xl">Principles that shape every promise</h2>
+      <p class="max-w-2xl text-lg text-slate-600">
+        From transparency to community focus, these commitments guide how we plan, build, and care for every resident.
+      </p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-3">
+      <div
+        *ngFor="let value of coreValues"
+        class="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+      >
+        <div class="flex size-12 items-center justify-center rounded-full bg-amber-50 text-amber-600">
+          <i [class]="value.icon + ' text-2xl'"></i>
+        </div>
+        <div class="space-y-2">
+          <h3 class="text-xl font-semibold text-slate-900">{{ value.title }}</h3>
+          <p class="text-sm leading-relaxed text-slate-600">{{ value.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <app-owner-speech
-  [title]="'chairman'"
+    [title]="'Chairman'"
     [ownerName]="state.about.ownerName"
     [ownerDesignation]="state.about.ownerDesignation"
     [ownerSpeech]="state.about.ownerSpeech"
@@ -35,4 +75,33 @@
     (toggle)="onToggle()"
     (imageError)="onImageError($event)"
   ></app-team-modal>
+
+  <section class="w-full max-w-6xl px-4 py-20 mx-auto">
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 px-8 py-12 shadow-2xl sm:px-12 md:px-16">
+      <div class="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-white/25 blur-3xl"></div>
+      <div class="absolute -left-8 -bottom-12 h-32 w-32 rounded-full bg-black/10 blur-2xl"></div>
+      <div class="relative flex flex-col gap-6 text-center sm:text-left sm:flex-row sm:items-center sm:justify-between">
+        <div class="space-y-3 text-slate-900">
+          <h2 class="text-3xl font-black leading-tight sm:text-4xl">Ready to find your dream home?</h2>
+          <p class="max-w-2xl text-lg font-medium text-slate-800">
+            Join the families who discovered their perfect address with us. Let’s talk about the neighborhood that fits your life.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <a
+            routerLink="/projects"
+            class="inline-flex h-12 min-w-[160px] items-center justify-center rounded-lg bg-white px-6 text-base font-semibold text-amber-600 shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
+          >
+            Browse Listings
+          </a>
+          <a
+            routerLink="/contact"
+            class="inline-flex h-12 min-w-[160px] items-center justify-center rounded-lg border border-white/40 bg-white/10 px-6 text-base font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
+          >
+            Contact Agent
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

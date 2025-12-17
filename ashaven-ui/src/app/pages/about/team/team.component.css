@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+section {
+  position: relative;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 15% 20%, rgba(251, 191, 36, 0.08), transparent 35%),
+    radial-gradient(circle at 85% 10%, rgba(59, 130, 246, 0.08), transparent 30%);
+  pointer-events: none;
+  z-index: 0;
+}

@@ -1,46 +1,40 @@
-<!-- About Header -->
 <section
-  class="relative flex min-h-[20rem] items-center justify-center overflow-hidden py-16 sm:py-20"
+  class="relative flex min-h-[520px] items-center justify-center overflow-hidden rounded-none bg-slate-900/90 py-16 sm:py-24"
   aria-labelledby="aboutHeroTitle"
 >
-  <div class="absolute inset-0">
-    <div
-      class="absolute -top-16 left-0 h-[120%] w-full bg-cover bg-center transition-transform duration-500 parallax-bg"
-      style="background-image: url('/images/banner/banner-3.png')"
-      [style.transform]="scrollTransform"
-    ></div>
-    <div class="absolute inset-0 from-emerald-950/85 via-emerald-900/70 to-brand/70"></div>
-  </div>
+  <div
+    class="absolute inset-0 bg-cover bg-center"
+    style="background-image: linear-gradient(rgba(15,23,42,0.35),rgba(15,23,42,0.85)), url('/images/banner/banner-3.png')"
+  ></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70"></div>
 
-  <div class="hero__accent hero__accent--one"></div>
-  <div class="hero__accent hero__accent--two"></div>
+  <div class="relative z-10 w-full max-w-6xl px-4 text-center text-white">
+    <div class="mx-auto flex max-w-3xl flex-col gap-4">
+      <p class="inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.45em] text-slate-200/80">
+        <span class="h-2 w-2 rounded-full bg-amber-400"></span>
+        Since 2005
+      </p>
+      <h1 id="aboutHeroTitle" class="text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+        Redefining Real Estate Across Bangladesh
+      </h1>
+      <p class="text-lg leading-relaxed text-slate-100/90 sm:text-xl">
+        We help families discover vibrant communities, thoughtful design, and homes where every detail supports a life well lived.
+      </p>
+    </div>
 
-  <div class="relative z-10 flex h-full w-full items-center">
-    <div class="mx-auto flex h-full w-[80%] flex-col justify-center py-12 md:py-16">
-      <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] h-full">
-        <div class="space-y-6 text-center lg:text-left">
-          <span class="inline-flex items-center justify-center gap-2 text-[0.7rem] uppercase tracking-[0.6em] text-white/70 lg:justify-start">
-            <span class="h-2 w-2 rounded-full bg-accent"></span>
-            Our story
-          </span>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight text-white" id="aboutHeroTitle">
-            Crafting Havens Where Luxury Meets Serenity
-          </h1>
-          <div class="flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
-            <a
-              routerLink="/projects"
-              class="group inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-white backdrop-blur transition duration-300 hover:bg-white hover:text-dark"
-            >
-              Explore Projects
-              <i class="ri-arrow-right-up-line text-base transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-1"></i>
-            </a>
-            <div class="inline-flex items-center gap-3 rounded-full bg-white/5 px-5 py-3 text-white/80 backdrop-blur-xl ring-1 ring-white/10">
-              <span class="h-2.5 w-2.5 rounded-full bg-accent shadow-[0_0_15px_rgba(249,115,22,0.6)] animate-pulse"></span>
-              <span class="text-xs uppercase tracking-[0.3em]">Dhaka • Chattogram • Sylhet</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <a
+        routerLink="/projects"
+        class="inline-flex h-12 min-w-[160px] items-center justify-center rounded-lg bg-amber-400 px-6 text-base font-semibold text-slate-900 shadow-lg transition-transform hover:-translate-y-0.5 hover:shadow-xl"
+      >
+        View Our Projects
+      </a>
+      <a
+        routerLink="/contact"
+        class="inline-flex h-12 min-w-[160px] items-center justify-center rounded-lg border border-white/30 bg-white/10 px-6 text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+      >
+        Meet Our Team
+      </a>
     </div>
   </div>
 </section>
