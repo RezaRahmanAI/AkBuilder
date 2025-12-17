@@ -6,8 +6,7 @@ import { HistoryComponent } from './history/history.component';
 import { OwnerSpeechComponent } from './owner-speech/owner-speech.component';
 import { MissionVisionComponent } from './mission-vision/mission-vision.component';
 import { TeamModalComponent } from './team-modal/team-modal.component';
-import { TeamService } from '../../services/team.service';
-import { AboutUs, Team } from '../../models/model';
+import { AboutPageData, AboutUs, ProjectStats, Team } from '../../models/model';
 import { TeamComponent } from './team/team.component';
 import { environment } from '../../environments/environment';
 import { AboutUsService } from '../../services/about-us.service';
@@ -33,13 +32,6 @@ import { AnimationService } from '../../services/animation.service';
 })
 export class AboutComponent implements OnInit, AfterViewInit {
   baseUrl = environment.baseUrl;
-
-  stats = [
-    { label: 'Homes delivered', value: '5,000+', icon: 'ri-home-5-line' },
-    { label: 'Sales volume', value: '$2B+', icon: 'ri-hand-coin-line' },
-    { label: 'Client satisfaction', value: '98%', icon: 'ri-emotion-happy-line' },
-    { label: 'Projects completed', value: '180+', icon: 'ri-community-line' },
-  ];
 
   coreValues = [
     {
@@ -79,6 +71,7 @@ export class AboutComponent implements OnInit, AfterViewInit {
     };
     teams: Team[];
     selectedTeamMember: Team | null;
+    stats: ProjectStats;
   } = {
     about: {
       history: '',
@@ -96,6 +89,11 @@ export class AboutComponent implements OnInit, AfterViewInit {
     },
     teams: [],
     selectedTeamMember: null,
+    stats: {
+      ongoing: 0,
+      upcoming: 0,
+      completed: 0,
+    },
   };
 
   expandedSections: { [key: string]: boolean } = {
@@ -109,7 +107,6 @@ export class AboutComponent implements OnInit, AfterViewInit {
 
   constructor(
     private aboutUsService: AboutUsService,
-    private teamService: TeamService,
     private anim: AnimationService
   ) {}
 
@@ -120,15 +117,12 @@ export class AboutComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.fetchAboutData();
-    this.fetchTeamMembers();
   }
 
   fetchAboutData(): void {
-    this.aboutUsService.getAboutUs().subscribe({
-      
-      next: (data: AboutUs[]) => {
-        console.log(data)
-        const about = data[0] || this.state.about;
+    this.aboutUsService.getAboutPageData().subscribe({
+      next: (data: AboutPageData) => {
+        const about = data.about || this.state.about;
         this.state.about = {
           history: about.history || '',
           ownerName: about.ownerName || '',
@@ -149,22 +143,8 @@ export class AboutComponent implements OnInit, AfterViewInit {
             ? `${this.baseUrl}/api/attachment/get/${about.visionImage}`
             : '/images/fallback.png',
         };
-      },
-      error: (error) => {
-        this.aboutUsService.showError(
-          `Failed to fetch About Us data: ${error.message || 'Unknown error'}`
-        );
-        console.error('Error fetching About Us:', error);
-      },
-    });
-  }
-
-  fetchTeamMembers(): void {
-    this.teamService.getActiveTeams().subscribe({
-      next: (data: Team[]) => {
-        // 👈 API type, not Team
-        this.state.teams = data.map<Team>((member) => ({
-          id: String(member.id), // ✅ make it a string
+        this.state.teams = (data.teams || []).map<Team>((member) => ({
+          id: String(member.id),
           name: member.name,
           designation: member.designation,
           image: member.image
@@ -175,14 +155,16 @@ export class AboutComponent implements OnInit, AfterViewInit {
           twiter: member.twiter ?? '',
           linkthen: member.linkthen ?? '',
           isActive: member.isActive,
-          order: member.order ?? 0, // keep order required
+          order: member.order ?? 0,
         }));
+
+        this.state.stats = data.stats || this.state.stats;
       },
       error: (error) => {
-        this.teamService.showError(
-          `Failed to fetch Team Members: ${error.message || 'Unknown error'}`
+        this.aboutUsService.showError(
+          `Failed to fetch About Page data: ${error.message || 'Unknown error'}`
         );
-        console.error('Error fetching Team Members:', error);
+        console.error('Error fetching About Page data:', error);
       },
     });
   }

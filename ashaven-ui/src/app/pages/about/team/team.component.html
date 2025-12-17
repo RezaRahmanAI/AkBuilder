@@ -1,12 +1,12 @@
 <section class="w-full max-w-6xl px-4 py-16 mx-auto space-y-8">
   <div class="flex flex-col items-center gap-3 text-center">
-    <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.45em] text-amber-600">
-      <span class="h-2 w-2 rounded-full bg-amber-500"></span>
-      Board of Directors
+    <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.45em] text-blue-600">
+      <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+      Meet the Experts
     </p>
-    <h2 class="text-3xl font-bold leading-tight text-slate-900 md:text-4xl">Meet the experts guiding every project</h2>
+    <h2 class="text-3xl font-bold leading-tight text-slate-900 md:text-4xl">The dedicated professionals guiding you home</h2>
     <p class="max-w-2xl text-lg text-slate-600">
-      Seasoned leaders, designers, and strategists partnering with you to create places that feel like home.
+      The people behind every handshake, site visit, and key handover.
     </p>
   </div>
 
@@ -24,14 +24,14 @@
           loading="lazy"
         />
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/60"></div>
-        <div class="absolute inset-0 flex items-center justify-center gap-3 bg-amber-500/0 transition-colors duration-300 group-hover:bg-amber-500/20">
+        <div class="absolute inset-0 flex items-center justify-center gap-3 bg-blue-600/0 transition-colors duration-300 group-hover:bg-blue-600/25">
           <a
             *ngIf="teamitem.linkthen"
             [href]="teamitem.linkthen"
             target="_blank"
             rel="noopener noreferrer"
             (click)="$event.stopPropagation()"
-            class="flex size-10 items-center justify-center rounded-full bg-white text-slate-900 shadow-md transition hover:scale-105"
+            class="flex size-10 items-center justify-center rounded-full bg-white text-blue-700 shadow-md transition hover:scale-105"
             aria-label="LinkedIn"
           >
             <i class="ri-linkedin-fill"></i>
@@ -42,7 +42,7 @@
             target="_blank"
             rel="noopener noreferrer"
             (click)="$event.stopPropagation()"
-            class="flex size-10 items-center justify-center rounded-full bg-white text-slate-900 shadow-md transition hover:scale-105"
+            class="flex size-10 items-center justify-center rounded-full bg-white text-blue-700 shadow-md transition hover:scale-105"
             aria-label="Facebook"
           >
             <i class="ri-facebook-fill"></i>
@@ -53,7 +53,7 @@
             target="_blank"
             rel="noopener noreferrer"
             (click)="$event.stopPropagation()"
-            class="flex size-10 items-center justify-center rounded-full bg-white text-slate-900 shadow-md transition hover:scale-105"
+            class="flex size-10 items-center justify-center rounded-full bg-white text-blue-700 shadow-md transition hover:scale-105"
             aria-label="Twitter"
           >
             <i class="ri-twitter-fill"></i>
@@ -62,7 +62,7 @@
       </div>
       <div class="flex flex-1 flex-col gap-1 px-4 py-5 text-center">
         <h3 class="text-lg font-semibold text-slate-900">{{ teamitem.name }}</h3>
-        <p class="text-sm font-medium uppercase tracking-[0.2em] text-amber-600">{{ teamitem.designation }}</p>
+        <p class="text-sm font-medium uppercase tracking-[0.2em] text-blue-600">{{ teamitem.designation }}</p>
         <p class="text-sm text-slate-600">{{ teamitem.description }}</p>
       </div>
     </article>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Real_Estate.server.api.Data;
 using Real_Estate.server.api.Models;
+using System;
 
 namespace Real_Estate.server.api.Controllers
 {
@@ -78,6 +79,31 @@ namespace Real_Estate.server.api.Controllers
         {
             var data = await context.Aboutus.FirstOrDefaultAsync();
             return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("getaboutpage")]
+        public async Task<IActionResult> GetAboutPage()
+        {
+            var about = await context.Aboutus.FirstOrDefaultAsync();
+            var teams = await context.Teams
+                .Where(e => e.IsActive == true)
+                .OrderBy(e => e.Order)
+                .ToListAsync();
+            var projects = await context.Projects.Where(p => p.IsActive).ToListAsync();
+
+            int CountByCategory(string category) => projects.Count(
+                p => string.Equals(p.Category, category, StringComparison.OrdinalIgnoreCase)
+            );
+
+            var stats = new
+            {
+                Ongoing = CountByCategory("Ongoing"),
+                Upcoming = CountByCategory("Upcoming"),
+                Completed = CountByCategory("Completed"),
+            };
+
+            return Ok(new { about, teams, stats });
         }
 
         [HttpGet]
