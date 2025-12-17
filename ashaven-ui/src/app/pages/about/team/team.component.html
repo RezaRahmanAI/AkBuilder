@@ -1,88 +1,70 @@
-<div class="our_team py-20 px-6 fade-up">
-  <div class="w-[80%] mx-auto">
-    <h2
-      class="text-4xl md:text-5xl font-bold text-[var(--dark)] mb-16 text-center"
-    >
+<section class="w-full max-w-6xl px-4 py-16 mx-auto space-y-8">
+  <div class="flex flex-col items-center gap-3 text-center">
+    <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.45em] text-amber-600">
+      <span class="h-2 w-2 rounded-full bg-amber-500"></span>
       Board of Directors
-    </h2>
+    </p>
+    <h2 class="text-3xl font-bold leading-tight text-slate-900 md:text-4xl">Meet the experts guiding every project</h2>
+    <p class="max-w-2xl text-lg text-slate-600">
+      Seasoned leaders, designers, and strategists partnering with you to create places that feel like home.
+    </p>
+  </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-      <div
-        *ngFor="let teamitem of teams"
-        (click)="onToggle(teamitem)"
-        class="team_card group relative p-8 rounded-2xl shadow-lg bg-white/70 backdrop-blur-md border border-[var(--accent-light)] cursor-pointer transition-transform duration-500 hover:-translate-y-3 hover:shadow-2xl"
-      >
-        <div class="flex flex-col items-center">
-          <!-- IMAGE -->
-          <div
-  class="team_image mb-6 overflow-hidden rounded-full w-44 h-44 ring-4 ring-[var(--accent-light)] group-hover:ring-[var(--accent)] transition-all duration-500"
->
-  <img
-    [src]="teamitem.image"
-    alt="{{ teamitem.name }}"
-    class="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-500"
-    loading="lazy"
-/>
-</div>
-
-
-          <!-- TEXT CONTENT -->
-          <div class="text-center">
-            <h3
-              class="team_name text-2xl font-semibold text-[var(--dark)] mb-2"
-            >
-              {{ teamitem.name }}
-            </h3>
-            <p
-              class="team_designation text-[var(--accent)] font-medium mb-4 uppercase tracking-wide"
-            >
-              {{ teamitem.designation }}
-            </p>
-            <p
-              class="team_description text-sm text-gray-700 leading-relaxed px-2"
-            >
-              {{ teamitem.description }}
-            </p>
-
-            <!-- SOCIAL LINKS -->
-            <!-- SOCIAL LINKS -->
-            <div class="flex justify-center gap-4 mt-4">
-              <!-- LinkedIn -->
-              <a
-                [href]="teamitem.linkthen"
-                target="_blank"
-                rel="noopener noreferrer"
-                [attr.aria-label]="'LinkedIn of ' + teamitem.name"
-                class="flex items-center justify-center w-10 h-10 rounded-full bg-accent text-white text-xl hover:bg-dark"
-              >
-                <i class="ri-linkedin-fill"></i>
-              </a>
-
-              <!-- Facebook -->
-              <a
-                [href]="teamitem.facebook"
-                target="_blank"
-                rel="noopener noreferrer"
-                [attr.aria-label]="'Facebook of ' + teamitem.name"
-                class="flex items-center justify-center w-10 h-10 rounded-full bg-accent text-white text-xl hover:bg-dark"
-              >
-                <i class="ri-facebook-fill"></i>
-              </a>
-
-              <!-- Twitter -->
-              <a
-                [href]="teamitem.twiter"
-                target="_blank"
-                rel="noopener noreferrer"
-                [attr.aria-label]="'Twitter of ' + teamitem.name"
-                class="flex items-center justify-center w-10 h-10 rounded-full bg-accent text-white text-xl hover:bg-dark"
-              >
-                <i class="ri-twitter-fill"></i>
-              </a>
-            </div>
-          </div>
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <article
+      *ngFor="let teamitem of teams"
+      (click)="onToggle(teamitem)"
+      class="group flex cursor-pointer flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-2 hover:shadow-xl"
+    >
+      <div class="relative overflow-hidden">
+        <img
+          [src]="teamitem.image"
+          [alt]="teamitem.name"
+          class="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/60"></div>
+        <div class="absolute inset-0 flex items-center justify-center gap-3 bg-amber-500/0 transition-colors duration-300 group-hover:bg-amber-500/20">
+          <a
+            *ngIf="teamitem.linkthen"
+            [href]="teamitem.linkthen"
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="$event.stopPropagation()"
+            class="flex size-10 items-center justify-center rounded-full bg-white text-slate-900 shadow-md transition hover:scale-105"
+            aria-label="LinkedIn"
+          >
+            <i class="ri-linkedin-fill"></i>
+          </a>
+          <a
+            *ngIf="teamitem.facebook"
+            [href]="teamitem.facebook"
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="$event.stopPropagation()"
+            class="flex size-10 items-center justify-center rounded-full bg-white text-slate-900 shadow-md transition hover:scale-105"
+            aria-label="Facebook"
+          >
+            <i class="ri-facebook-fill"></i>
+          </a>
+          <a
+            *ngIf="teamitem.twiter"
+            [href]="teamitem.twiter"
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="$event.stopPropagation()"
+            class="flex size-10 items-center justify-center rounded-full bg-white text-slate-900 shadow-md transition hover:scale-105"
+            aria-label="Twitter"
+          >
+            <i class="ri-twitter-fill"></i>
+          </a>
         </div>
       </div>
-    </div>
+      <div class="flex flex-1 flex-col gap-1 px-4 py-5 text-center">
+        <h3 class="text-lg font-semibold text-slate-900">{{ teamitem.name }}</h3>
+        <p class="text-sm font-medium uppercase tracking-[0.2em] text-amber-600">{{ teamitem.designation }}</p>
+        <p class="text-sm text-slate-600">{{ teamitem.description }}</p>
+      </div>
+    </article>
   </div>
-</div>
+</section>

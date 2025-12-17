@@ -34,6 +34,34 @@ import { AnimationService } from '../../services/animation.service';
 export class AboutComponent implements OnInit, AfterViewInit {
   baseUrl = environment.baseUrl;
 
+  stats = [
+    { label: 'Homes delivered', value: '5,000+', icon: 'ri-home-5-line' },
+    { label: 'Sales volume', value: '$2B+', icon: 'ri-hand-coin-line' },
+    { label: 'Client satisfaction', value: '98%', icon: 'ri-emotion-happy-line' },
+    { label: 'Projects completed', value: '180+', icon: 'ri-community-line' },
+  ];
+
+  coreValues = [
+    {
+      title: 'Integrity',
+      description:
+        'Transparent communication and accountability keep every promise we make to residents and partners.',
+      icon: 'ri-verified-badge-line',
+    },
+    {
+      title: 'Expertise',
+      description:
+        'Seasoned teams blend local insight with global standards to guide confident real estate decisions.',
+      icon: 'ri-lightbulb-flash-line',
+    },
+    {
+      title: 'Community',
+      description:
+        'We create vibrant neighborhoods with shared amenities, thoughtful design, and long-term stewardship.',
+      icon: 'ri-team-line',
+    },
+  ];
+
   state: {
     about: {
       history?: string;

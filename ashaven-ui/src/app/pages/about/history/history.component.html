@@ -1,56 +1,53 @@
-<section class="neo-section relative py-20">
-  <div class="history-section__glow history-section__glow--one"></div>
-  <div class="history-section__glow history-section__glow--two"></div>
-
-  <div class="mx-auto flex flex-col gap-12 lg:flex-row lg:items-start">
-    <div class="space-y-6 lg:w-7/12">
-      <span class="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.6em] text-accent">
-        <span class="h-2 w-2 rounded-full bg-accent"></span>
-        Our legacy
-      </span>
-      <h2 class="text-4xl font-semibold leading-tight text-dark md:text-5xl">
-        The History
-        <span class="block text-accent">Of AS Haven</span>
+<section class="relative mx-auto w-full max-w-6xl px-4 py-16 lg:py-20">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-100 via-white to-slate-50"></div>
+  <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+    <div class="space-y-6">
+      <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.5em] text-amber-600" [@headingAnimation]>
+        <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+        Our History
+      </p>
+      <h2 class="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl lg:text-5xl" [@headingAnimation]>
+        Built on trust, inspired by community
       </h2>
-      <div class="relative overflow-hidden rounded-3xl bg-white/90 p-8 shadow-xl backdrop-blur-md">
-        <div class="history-section__halo"></div>
-        <p
-          class="text-lg leading-relaxed text-dark/80"
-          *ngIf="history; else noHistory"
-          [@textAnimation]
-        >
-          {{ history }}
-        </p>
-        <ng-template #noHistory>
-          <p class="text-lightDark" [@textAnimation]>No history available.</p>
-        </ng-template>
+      <p class="text-lg leading-relaxed text-slate-600" *ngIf="history; else noHistory" [@textAnimation]>
+        {{ history }}
+      </p>
+      <ng-template #noHistory>
+        <p class="text-slate-500" [@textAnimation]>No history available.</p>
+      </ng-template>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div class="rounded-xl border border-slate-200 bg-white/90 p-5 shadow-sm">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-amber-600">Years of excellence</p>
+          <p class="mt-2 text-2xl font-bold text-slate-900">19+</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white/90 p-5 shadow-sm">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-amber-600">Cities served</p>
+          <p class="mt-2 text-2xl font-bold text-slate-900">5</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white/90 p-5 shadow-sm">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-amber-600">Happy residents</p>
+          <p class="mt-2 text-2xl font-bold text-slate-900">5,000+</p>
+        </div>
       </div>
     </div>
 
-    <div class="space-y-6 lg:w-5/12">
-      <div class="rounded-3xl border border-dark/10 bg-gradient-to-br from-white via-white/90 to-accent/10 p-8 shadow-xl">
-        <h3 class="mb-6 text-2xl font-semibold text-dark">Defining moments</h3>
-        <ul class="space-y-5 text-dark/80">
-          <li class="flex gap-4">
-            <span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-accent"></span>
-            <p>Delivered landmark residences in Dhaka’s most sought-after neighbourhoods.</p>
-          </li>
-          <li class="flex gap-4">
-            <span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-accent"></span>
-            <p>Introduced boutique amenities inspired by global hospitality brands.</p>
-          </li>
-          <li class="flex gap-4">
-            <span class="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-accent"></span>
-            <p>Elevated sustainable design with smart energy solutions and biophilic spaces.</p>
-          </li>
-        </ul>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="relative overflow-hidden rounded-2xl shadow-lg">
+        <div
+          class="aspect-[3/4] w-full bg-cover bg-center"
+          [ngStyle]="{ 'background-image': primaryImage ? 'url(' + primaryImage + ')' : 'none' }"
+        ></div>
+        <div *ngIf="!primaryImage" class="absolute inset-0 flex items-center justify-center bg-slate-100 text-slate-500">
+          No image
+        </div>
       </div>
-
-      <div class="flex items-center gap-5 rounded-3xl bg-dark px-6 py-7 text-accent shadow-xl">
-        <div class="text-5xl font-semibold leading-none">100%</div>
-        <div class="space-y-1">
-          <p class="text-sm uppercase tracking-[0.4em] text-accent">Client trust</p>
-          <p class="text-base text-black">Consistent satisfaction ratings from residents and partners.</p>
+      <div class="relative overflow-hidden rounded-2xl shadow-lg">
+        <div
+          class="aspect-[3/4] w-full bg-cover bg-center"
+          [ngStyle]="{ 'background-image': secondaryImage ? 'url(' + secondaryImage + ')' : 'none' }"
+        ></div>
+        <div *ngIf="!secondaryImage" class="absolute inset-0 flex items-center justify-center bg-slate-100 text-slate-500">
+          No image
         </div>
       </div>
     </div>

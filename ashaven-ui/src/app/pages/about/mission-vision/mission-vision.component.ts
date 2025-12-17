@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -36,11 +36,4 @@ export class MissionVisionComponent {
   @Input() missionImage?: string;
   @Input() vision?: string;
   @Input() visionImage?: string;
-  @Output() imageError = new EventEmitter<Event>();
-
-
-
-  onImageError(event: Event) {
-    this.imageError.emit(event);
-  }
 }

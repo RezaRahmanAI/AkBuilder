@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
@@ -12,7 +12,7 @@ import {
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [CommonModule, ],
+  imports: [CommonModule],
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css'],
   animations: [
@@ -28,8 +28,8 @@ import {
     ]),
   ],
 })
-export class HistoryComponent  {
+export class HistoryComponent {
   @Input() history?: string;
-
-
+  @Input() primaryImage?: string;
+  @Input() secondaryImage?: string;
 }
