@@ -35,6 +35,8 @@ export class BlogDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
   countdowns = signal<string[]>([]);
   countdown = signal<any>(null);
   offerActive = signal<boolean>(true);
+  readonly fallbackDescription =
+    '<p class="text-slate-700 dark:text-slate-300">Content loading...</p>';
   private readonly destroy$ = new Subject<void>();
   private countdownIntervalId: ReturnType<typeof setInterval> | null = null;
   private resizeObserver?: ResizeObserver;
