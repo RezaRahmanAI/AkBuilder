@@ -1,67 +1,147 @@
-<div>
-  <div
-    class="relative bg-cover bg-center w-full h-[60vh] md:h-[80vh] flex items-center justify-center"
-    style="background-image: url('/images/banner/banner-3.png')"
-  >
-  </div>
+<div class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen">
+  <main class="flex-1 w-full max-w-[1024px] mx-auto px-4 sm:px-6 md:px-8 py-10 md:py-14">
+    <!-- Breadcrumbs -->
+    <nav class="flex flex-wrap gap-2 py-4 mb-2 items-center text-sm font-medium text-slate-500 dark:text-slate-400">
+      <a routerLink="/" class="hover:text-primary transition-colors">Home</a>
+      <span class="text-slate-300 dark:text-slate-600">/</span>
+      <a routerLink="/blogs" class="hover:text-primary transition-colors">News</a>
+      <span class="text-slate-300 dark:text-slate-600">/</span>
+      <span class="text-slate-900 dark:text-white">Blog Details</span>
+    </nav>
 
-  <!-- Offer Countdown -->
-  <div
-    class="offer_time_bar absolute top-24 sm:top-28 md:top-40 lg:top-1/4 xl:top-1/3 left-0 right-0 mt-14 fade-up"
-    *ngIf="offerActive()"
-    data-animate="offer"
-  >
-    <h2
-      class="text-slate-200 text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold text-center"
-    >
-      Offer Time
-    </h2>
-    <div class="mt-8 text-center" *ngIf="countdown()">
-      <span class="count-badge">{{ countdown()?.days }}</span>
-      <span class="count-badge">{{ countdown()?.hours }}</span>
-      <span class="count-badge">{{ countdown()?.minutes }}</span>
-      <span class="count-badge">{{ countdown()?.seconds }}</span>
-    </div>
-  </div>
+    <!-- Article Header -->
+    <div class="flex flex-col gap-6 mb-8 max-w-4xl mx-auto">
+      <div class="flex">
+        <span
+          class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-primary/10 dark:bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider"
+        >
+          {{ data()?.category || 'Blog' }}
+        </span>
+      </div>
 
-<!-- Blog Content -->
-<div class="blog_details_section py-14 px-4 max-w-5xl ">
-  <div class="flex flex-col lg:flex-row gap-10 items-start" id="blogRow">
-    
-    <!-- Left Side: Title & Description -->
-    <div class="lg:w-1/6 sticky top-24 text-right">
-      <!-- <h2 class="text-4xl font-extrabold text-slate-900 mb-6">
-        {{ data()?.title }}
-      </h2>
-      <p class="text-slate-500 text-sm mb-8">
-        {{ data()?.createdAt | date : "mediumDate" }}
-      </p> -->
-      
-    </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white">
+        {{ data()?.title || 'Blog title loading...' }}
+      </h1>
 
-    <!-- Right Side: Image -->
-    <div class="lg:w-5/6">
-      <h2 class="text-4xl font-extrabold text-slate-900 mb-6 fade-up">
-        {{ data()?.title }}
-      </h2>
-      <p class="text-slate-500 text-sm mb-8">
-        Blogs / {{ data()?.postedDate | date : 'MMM d, y' }}
+      <p class="text-xl md:text-2xl text-slate-500 dark:text-slate-300 italic leading-relaxed">
+        {{ data()?.subtitle || 'Explore the latest insights and stories from the Ashaven team.' }}
       </p>
-      <img
-        *ngIf="data()?.image"
-        [src]="data()?.image"
-        alt="Blog Image"
-        id="blogImage"
-        class="w-full h-[50vh] md:h-[80vh] shadow-lg transition-transform duration-300 transform"
-        loading="lazy"
-      />
-      <div
-        class="prose prose-lg max-w-none text-slate-800 leading-relaxed tracking-wide fade-up"
-        [innerHTML]="data()?.description"
-      ></div>
+
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between border-t border-b border-slate-200 dark:border-slate-800 py-5 mt-4 gap-4">
+        <div class="flex items-center gap-4">
+          <div
+            class="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center ring-2 ring-white dark:ring-slate-800"
+            [ngStyle]="{ backgroundImage: data()?.picture ? 'url(' + data()?.picture + ')' : 'url(/images/fallback.png)' }"
+            [attr.aria-label]="data()?.name || 'Author avatar'"
+          ></div>
+          <div class="flex flex-col">
+            <span class="text-slate-900 dark:text-white font-bold text-base">{{ data()?.name || 'Ashaven Team' }}</span>
+            <span class="text-slate-500 dark:text-slate-400 text-sm">
+              {{ data()?.postedDate ? (data()?.postedDate | date: 'MMM d, y') : 'Loading date...' }} •
+              {{ data()?.readingTime || '5 min read' }}
+            </span>
+          </div>
+        </div>
+        <div class="flex gap-2 text-slate-500 dark:text-slate-400 self-start sm:self-center">
+          <button class="flex items-center gap-2 px-3 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors text-sm font-medium group">
+            <span class="material-symbols-outlined text-[20px] group-hover:text-primary">share</span>
+            <span class="hidden sm:inline">Share</span>
+          </button>
+          <button class="flex items-center gap-2 px-3 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors text-sm font-medium group">
+            <span class="material-symbols-outlined text-[20px] group-hover:text-primary">bookmark_border</span>
+            <span class="hidden sm:inline">Save</span>
+          </button>
+        </div>
+      </div>
     </div>
 
-  </div>
-</div>
+    <!-- Hero Image -->
+    <figure class="w-full mb-12">
+      <div class="w-full aspect-[16/10] md:aspect-[21/9] rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700">
+        <img
+          [src]="data()?.image"
+          alt="Blog hero image"
+          class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+          id="blogImage"
+          (error)="onImageError($event)"
+        />
+      </div>
+      <figcaption class="mt-3 text-center text-sm text-slate-500 dark:text-slate-400 italic">
+        {{ data()?.caption || data()?.title || 'Explore the latest from our newsroom.' }}
+      </figcaption>
+    </figure>
 
+    <!-- Article Body -->
+    <article class="relative flex flex-col md:flex-row gap-12">
+      <aside class="hidden md:flex flex-col gap-6 sticky top-24 h-fit w-12 shrink-0 items-center pt-2">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest [writing-mode:vertical-rl] rotate-180">Share Article</span>
+        <div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-700"></div>
+        <a class="group w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-primary hover:border-primary hover:text-white transition-all shadow-sm" href="#">
+          <span class="material-symbols-outlined text-[18px]">mail</span>
+        </a>
+        <a class="group w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-primary hover:border-primary hover:text-white transition-all shadow-sm" href="#">
+          <span class="material-symbols-outlined text-[18px]">link</span>
+        </a>
+        <a class="group w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-primary hover:border-primary hover:text-white transition-all shadow-sm" href="#">
+          <span class="material-symbols-outlined text-[18px]">print</span>
+        </a>
+      </aside>
+
+      <div class="flex-1 max-w-none md:max-w-2xl mx-auto leading-loose">
+        <div
+          class="article-content prose prose-lg max-w-none text-slate-800 dark:text-slate-200 prose-headings:text-slate-900 prose-a:text-primary prose-strong:text-slate-900 dark:prose-headings:text-white"
+          [innerHTML]="data()?.description || '<p class=\"text-slate-700 dark:text-slate-300\">Content loading...</p>'"
+        ></div>
+
+        <div class="flex flex-wrap gap-2 mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
+          <span class="text-sm font-bold text-slate-400 dark:text-slate-500 mr-2 self-center uppercase tracking-wider">Tags:</span>
+          <ng-container *ngIf="data()?.tags?.length; else defaultTags">
+            <a
+              *ngFor="let tag of data()?.tags"
+              class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary dark:hover:border-primary rounded-full text-sm text-slate-600 dark:text-slate-300 transition-colors font-medium"
+              href="#"
+            >
+              #{{ tag }}
+            </a>
+          </ng-container>
+          <ng-template #defaultTags>
+            <a class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary dark:hover:border-primary rounded-full text-sm text-slate-600 dark:text-slate-300 transition-colors font-medium" href="#">#News</a>
+            <a class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary dark:hover:border-primary rounded-full text-sm text-slate-600 dark:text-slate-300 transition-colors font-medium" href="#">#Insights</a>
+            <a class="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary dark:hover:border-primary rounded-full text-sm text-slate-600 dark:text-slate-300 transition-colors font-medium" href="#">#Updates</a>
+          </ng-template>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Related Articles -->
+  <section class="bg-white dark:bg-[#0d141c] py-16 border-t border-slate-100 dark:border-slate-800 mt-8">
+    <div class="max-w-[1024px] mx-auto px-4 sm:px-6 md:px-8">
+      <div class="flex items-center justify-between mb-10">
+        <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Related News</h2>
+        <a routerLink="/blogs" class="text-primary font-bold text-sm hover:underline">View All</a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8" *ngIf="list().length; else emptyRelated">
+        <article class="group flex flex-col gap-4 cursor-pointer" *ngFor="let item of list() | slice:0:3">
+          <div class="aspect-[4/3] w-full overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800 relative">
+            <div
+              class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+              [ngStyle]="{ backgroundImage: 'url(' + item.image + ')' }"
+              [attr.aria-label]="item.title"
+            ></div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <span class="text-xs font-bold text-primary uppercase tracking-wider">{{ item.category || 'News' }}</span>
+            <a [routerLink]="['/blogs', item.id]" class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-tight">
+              {{ item.title }}
+            </a>
+            <span class="text-sm text-slate-500 dark:text-slate-400">{{ item.postedDate | date: 'MMM d, y' }}</span>
+          </div>
+        </article>
+      </div>
+      <ng-template #emptyRelated>
+        <p class="text-slate-500 dark:text-slate-400">More stories coming soon.</p>
+      </ng-template>
+    </div>
+  </section>
 </div>
