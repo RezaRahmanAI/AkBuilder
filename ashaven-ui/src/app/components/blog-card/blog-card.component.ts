@@ -26,4 +26,33 @@ export class BlogCardComponent {
 
     return `${this.baseUrl}/api/attachment/get/${image}`;
   }
+
+  authorPhoto(picture?: string | null): string {
+    if (!picture) {
+      return 'none';
+    }
+
+    if (!this.baseUrl) {
+      return `url('${picture}')`;
+    }
+
+    return `url('${this.baseUrl}/api/attachment/get/${picture}')`;
+  }
+
+  initials(name?: string | null): string {
+    if (!name) {
+      return 'AT';
+    }
+
+    const parts = name.trim().split(/\s+/);
+    const first = parts[0]?.[0] ?? '';
+    const last = parts.length > 1 ? parts[parts.length - 1]?.[0] ?? '' : '';
+    return `${first}${last}`.toUpperCase() || 'AT';
+  }
+
+  readingTime(description?: string | null): string {
+    const words = description?.trim().split(/\s+/).filter(Boolean).length ?? 0;
+    const minutes = Math.max(1, Math.ceil(words / 200));
+    return `${minutes} min read`;
+  }
 }
