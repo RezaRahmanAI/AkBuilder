@@ -5,13 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LenisService } from '../../services/lenis.service';
-import { AtGlanceComponent } from './at-glance/at-glance.component';
-import { FeatureAmenitiesComponent } from './feature-amenities/feature-amenities.component';
-import { ProjectGalleryComponent } from './project-gallery/project-gallery.component';
-import { LocationMapComponent } from './location-map/location-map.component';
-import { ContactFormComponent } from './contact-form/contact-form.component';
+import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
 import { environment } from '../../environments/environment';
-import { SwiperSliderComponent } from './swiper-slider/swiper-slider.component';
 import { Project } from '../../models/model';
 
 
@@ -40,13 +35,8 @@ interface RelatedProject {
   imports: [
     CommonModule,
     RouterModule,
-    AtGlanceComponent,
-    FeatureAmenitiesComponent,
-    ProjectGalleryComponent,
-    LocationMapComponent,
-    ContactFormComponent,
-    SwiperSliderComponent,
-],
+    SafeUrlPipe,
+  ],
   templateUrl: './project-details.component.html',
   styleUrls: ['./project-details.component.css'],
 })

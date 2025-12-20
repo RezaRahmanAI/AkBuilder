@@ -1,32 +1,444 @@
-<div class="relative">
-  <input type="hidden" id="projectId" [value]="projectId" />
-  <app-at-glance
-    id="atGlance"
-    [project]="state.data"
-    [baseUrl]="baseUrl"
-    (registerNowClicked)="scrollToContactForm()"
-    (imageError)="onImageError($event)"
-  ></app-at-glance>
-  <app-feature-amenities
-    id="featureAndAmenities"
-    [features]="state.list"
-    [baseUrl]="baseUrl"
-    (imageError)="onImageError($event)"
-  ></app-feature-amenities>
-  <app-project-gallery
-    id="projectGallery"
-    [gallery]="state.gallery"
-    [baseUrl]="baseUrl"
-    (imageError)="onImageError($event)"
-  ></app-project-gallery>
-  <app-location-map
-    id="locationMap"
-    (registerNowClicked)="scrollToContactForm()"
-    [mapIframe]="state.data?.mapLink"
-  ></app-location-map>
-  <app-contact-form
-    id="contacting"
-    (formSubmit)="onFormSubmit()"
-  ></app-contact-form>
-  <app-swiper-slider />
-</div>
+<main class="bg-[#f6f7f8] text-[#111418] min-h-screen">
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <nav class="flex flex-wrap items-center text-sm text-gray-500 gap-y-1">
+      <a class="hover:text-[#197fe6] hover:underline" routerLink="/">Home</a>
+      <span class="mx-2 text-gray-300">/</span>
+      <a class="hover:text-[#197fe6] hover:underline" routerLink="/project">Projects</a>
+      <span class="mx-2 text-gray-300">/</span>
+      <span class="text-gray-900 font-medium">
+        {{ state.data?.name || 'Project details' }}
+      </span>
+    </nav>
+  </div>
+
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+    <div
+      class="grid grid-cols-1 md:grid-cols-4 gap-2 h-[360px] md:h-[500px] rounded-2xl overflow-hidden relative group"
+    >
+      <ng-container *ngIf="state.gallery?.length; else galleryPlaceholder">
+        <ng-container
+          *ngFor="let item of state.gallery | slice: 0 : 5; let idx = index"
+        >
+          <div
+            class="h-full w-full bg-gray-200"
+            [ngClass]="{
+              'md:col-span-2 md:row-span-2': idx === 0,
+              'hidden md:block': idx > 0
+            }"
+          >
+            <ng-container [ngSwitch]="item.contentType">
+              <img
+                *ngSwitchCase="'Image'"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                [src]="baseUrl + '/api/attachment/get/' + item.content"
+                [alt]="state.data?.name || 'Project image'"
+                (error)="onImageError($event)"
+              />
+              <video
+                *ngSwitchDefault
+                class="w-full h-full object-cover"
+                [src]="baseUrl + '/api/attachment/get/' + item.content"
+                controls
+              ></video>
+            </ng-container>
+
+            <div
+              *ngIf="idx === 4 && state.gallery.length > 5"
+              class="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer hover:bg-black/50 transition-colors"
+            >
+              <span class="text-white font-medium flex items-center gap-2">
+                <span class="material-symbols-outlined">grid_view</span>
+                View all {{ state.gallery.length }} photos
+              </span>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <ng-template #galleryPlaceholder>
+        <div class="md:col-span-4 flex items-center justify-center bg-gray-200 text-gray-500">
+          No gallery items available for this project yet.
+        </div>
+      </ng-template>
+
+      <div class="absolute bottom-4 right-4 md:hidden" *ngIf="state.gallery?.length">
+        <button
+          class="bg-white/90 backdrop-blur text-gray-900 px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm flex items-center gap-1"
+        >
+          <span class="material-symbols-outlined text-sm">photo_library</span>
+          1/{{ state.gallery.length }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <div class="flex-1 min-w-0 space-y-8">
+        <div class="pb-6 border-b border-gray-100">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+            <div>
+              <h1 class="text-3xl font-bold text-gray-900 tracking-tight mb-2">
+                {{ state.data?.name || 'Project Name' }}
+              </h1>
+              <p class="text-lg text-gray-500">
+                {{ state.data?.address || 'Location details coming soon' }}
+              </p>
+            </div>
+            <div class="flex flex-col items-end gap-3">
+              <button
+                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-bold rounded-lg shadow-sm text-white bg-[#197fe6] hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#197fe6] transition-all"
+                (click)="scrollToContactForm()"
+                type="button"
+              >
+                Request Information
+              </button>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-6 mt-6">
+            <div class="flex items-center gap-2 text-gray-700">
+              <span
+                class="material-symbols-outlined text-gray-400"
+                style="font-variation-settings: 'FILL' 1"
+              >
+                square_foot
+              </span>
+              <span class="font-bold text-lg">{{ state.data?.landArea || 'N/A' }}</span>
+              <span class="text-sm font-medium text-gray-500">Land Area</span>
+            </div>
+            <div class="w-px h-6 bg-gray-200"></div>
+            <div class="flex items-center gap-2 text-gray-700">
+              <span
+                class="material-symbols-outlined text-gray-400"
+                style="font-variation-settings: 'FILL' 1"
+              >
+                apartment
+              </span>
+              <span class="font-bold text-lg">
+                {{ state.data?.numberOfApartments || 'N/A' }}
+              </span>
+              <span class="text-sm font-medium text-gray-500">Apartments</span>
+            </div>
+            <div class="w-px h-6 bg-gray-200"></div>
+            <div class="flex items-center gap-2 text-gray-700">
+              <span
+                class="material-symbols-outlined text-gray-400"
+                style="font-variation-settings: 'FILL' 1"
+              >
+                local_parking
+              </span>
+              <span class="font-bold text-lg">
+                {{ state.data?.numberOfParking || 'N/A' }}
+              </span>
+              <span class="text-sm font-medium text-gray-500">Parking</span>
+            </div>
+            <div class="w-px h-6 bg-gray-200"></div>
+            <div class="flex items-center gap-2 text-gray-700">
+              <span class="material-symbols-outlined text-gray-400">calendar_month</span>
+              <span class="font-bold text-lg">
+                {{ state.data?.createDate ? (state.data?.createDate | date: 'yyyy') : 'N/A' }}
+              </span>
+              <span class="text-sm font-medium text-gray-500">Built</span>
+            </div>
+          </div>
+        </div>
+
+        <section class="space-y-4">
+          <h3 class="text-xl font-bold text-gray-900">About this project</h3>
+          <div class="prose max-w-none text-gray-600 leading-relaxed">
+            <p>
+              {{ state.data?.description || 'Details about this project will be shared soon.' }}
+            </p>
+            <p *ngIf="state.data?.content">
+              {{ state.data?.content }}
+            </p>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-gray-100">
+          <h3 class="text-xl font-bold text-gray-900">Facts &amp; Features</h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-y-4 gap-x-8">
+            <div>
+              <div class="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-1">
+                Type
+              </div>
+              <div class="text-gray-900 font-medium">
+                {{ state.data?.type || 'Residential' }}
+              </div>
+            </div>
+            <div>
+              <div class="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-1">
+                Category
+              </div>
+              <div class="text-gray-900 font-medium">
+                {{ state.data?.category || 'Apartment' }}
+              </div>
+            </div>
+            <div>
+              <div class="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-1">
+                Land Area
+              </div>
+              <div class="text-gray-900 font-medium">
+                {{ state.data?.landArea || 'N/A' }}
+              </div>
+            </div>
+            <div>
+              <div class="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-1">
+                Built-Up Area
+              </div>
+              <div class="text-gray-900 font-medium">
+                {{ state.data?.builtUpArea || 'N/A' }}
+              </div>
+            </div>
+            <div>
+              <div class="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-1">
+                Height
+              </div>
+              <div class="text-gray-900 font-medium">
+                {{ state.data?.height || 'N/A' }}
+              </div>
+            </div>
+            <div>
+              <div class="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-1">
+                Parking
+              </div>
+              <div class="text-gray-900 font-medium">
+                {{ state.data?.numberOfParking || 'N/A' }}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-gray-100">
+          <h3 class="text-xl font-bold text-gray-900">Amenities</h3>
+          <div class="bg-[#f0f2f4] rounded-xl p-6">
+            <div
+              class="grid grid-cols-2 md:grid-cols-3 gap-4"
+              *ngIf="state.list?.length; else amenitiesPlaceholder"
+            >
+              <div
+                class="flex items-center gap-3"
+                *ngFor="let item of state.list"
+              >
+                <span
+                  class="size-10 rounded-full bg-white flex items-center justify-center shadow-sm"
+                >
+                  <img
+                    *ngIf="item.icon"
+                    [src]="baseUrl + '/api/attachment/get/' + item.icon"
+                    [alt]="item.title"
+                    class="size-5"
+                    (error)="onImageError($event)"
+                  />
+                  <span
+                    *ngIf="!item.icon"
+                    class="material-symbols-outlined text-[#197fe6]"
+                  >
+                    apartment
+                  </span>
+                </span>
+                <span class="text-gray-700 font-medium">{{ item.title }}</span>
+              </div>
+            </div>
+            <ng-template #amenitiesPlaceholder>
+              <p class="text-sm text-gray-500">
+                Amenity details are being updated. Please check back later.
+              </p>
+            </ng-template>
+          </div>
+        </section>
+
+        <section class="space-y-4 pt-4 border-t border-gray-100">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-bold text-gray-900">Location</h3>
+            <a
+              class="text-sm font-medium text-[#197fe6] hover:underline"
+              [href]="state.data?.mapLink || '#location'"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View on Google Maps
+            </a>
+          </div>
+          <div
+            class="relative w-full h-[300px] rounded-xl overflow-hidden bg-gray-200 group"
+          >
+            <ng-container *ngIf="state.data?.mapLink; else mapPlaceholder">
+              <iframe
+                class="w-full h-full"
+                [src]="(state.data?.mapLink || '') | safeUrl"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </ng-container>
+            <ng-template #mapPlaceholder>
+              <div
+                class="absolute inset-0 flex items-center justify-center text-gray-500"
+              >
+                Map location coming soon.
+              </div>
+            </ng-template>
+          </div>
+          <p class="text-sm text-gray-500">
+            {{ state.data?.address || 'Project address will be shared soon.' }}
+          </p>
+        </section>
+      </div>
+
+      <div class="lg:w-[360px] flex-shrink-0">
+        <div class="sticky top-24 space-y-6">
+          <div
+            class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/50 p-6"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="size-16 rounded-full overflow-hidden border-2 border-white shadow-sm"
+              >
+                <img
+                  alt="Real estate agent"
+                  class="w-full h-full object-cover"
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&w=128&q=80"
+                />
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-900 text-lg">Project Consultant</h4>
+                <p class="text-sm text-[#197fe6] font-medium">Ashaven Team</p>
+                <div class="flex items-center gap-1 mt-1 text-xs text-gray-500">
+                  <span
+                    class="material-symbols-outlined text-yellow-400 text-sm"
+                    style="font-variation-settings: 'FILL' 1"
+                  >
+                    star
+                  </span>
+                  <span>4.9 (120 reviews)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-6">
+              <button
+                class="flex flex-col items-center justify-center gap-1 p-3 rounded-lg border border-[#197fe6]/20 bg-[#197fe6]/5 hover:bg-[#197fe6]/10 transition-colors text-[#197fe6]"
+                type="button"
+              >
+                <span class="material-symbols-outlined">calendar_today</span>
+                <span class="text-sm font-semibold">Tour</span>
+              </button>
+              <button
+                class="flex flex-col items-center justify-center gap-1 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-gray-700"
+                type="button"
+              >
+                <span class="material-symbols-outlined">info</span>
+                <span class="text-sm font-semibold">Info</span>
+              </button>
+            </div>
+
+            <form
+              class="space-y-3"
+              (submit)="onFormSubmit(); $event.preventDefault()"
+            >
+              <input type="hidden" id="subject" [value]="state.data?.name || 'Project Inquiry'" />
+              <input
+                id="name"
+                class="w-full rounded-lg border-gray-200 bg-gray-50 text-sm focus:ring-[#197fe6] focus:border-[#197fe6]"
+                placeholder="Name"
+                type="text"
+              />
+              <input
+                id="email"
+                class="w-full rounded-lg border-gray-200 bg-gray-50 text-sm focus:ring-[#197fe6] focus:border-[#197fe6]"
+                placeholder="Email"
+                type="email"
+              />
+              <input
+                id="phone"
+                class="w-full rounded-lg border-gray-200 bg-gray-50 text-sm focus:ring-[#197fe6] focus:border-[#197fe6]"
+                placeholder="Phone"
+                type="tel"
+              />
+              <textarea
+                id="message"
+                class="w-full rounded-lg border-gray-200 bg-gray-50 text-sm focus:ring-[#197fe6] focus:border-[#197fe6] resize-none"
+                placeholder="I am interested in this project..."
+                rows="3"
+              ></textarea>
+              <button
+                class="w-full bg-[#197fe6] hover:bg-blue-600 text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                type="submit"
+              >
+                Request Information
+              </button>
+            </form>
+            <div class="mt-4 text-center">
+              <a class="text-xs text-gray-400 hover:text-[#197fe6] underline" href="#">
+                View agent profile
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="mt-16 bg-white border-t border-gray-100 py-12">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-2xl font-bold text-gray-900">Similar Projects</h3>
+        <div class="flex gap-2">
+          <button
+            class="size-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50"
+          >
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+          </button>
+          <button
+            class="size-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50"
+          >
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a
+          class="group block"
+          *ngFor="let item of state.projects | slice: 0 : 4"
+          [routerLink]="['/projectdetails', item.id]"
+        >
+          <div
+            class="relative aspect-[4/3] rounded-lg overflow-hidden mb-3 bg-gray-200"
+          >
+            <img
+              [alt]="item.name"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              [src]="baseUrl + '/api/attachment/get/' + item.thumbnail"
+              (error)="onImageError($event)"
+            />
+            <div
+              class="absolute top-2 left-2 bg-black/60 text-white text-xs font-bold px-2 py-1 rounded"
+            >
+              {{ item.category || 'Featured' }}
+            </div>
+            <button
+              class="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 hover:bg-white text-gray-600 hover:text-red-500 transition-colors"
+              type="button"
+            >
+              <span
+                class="material-symbols-outlined text-lg"
+                style="font-variation-settings: 'FILL' 0"
+              >
+                favorite
+              </span>
+            </button>
+          </div>
+          <div
+            class="text-sm text-gray-500 mb-1 flex items-center gap-2"
+          >
+            <span class="font-medium text-gray-700">{{ item.type || 'Project' }}</span>
+            <span class="w-px h-3 bg-gray-300"></span>
+            <span class="font-medium text-gray-700">{{ item.category || 'Residential' }}</span>
+          </div>
+          <p class="text-sm text-gray-500 truncate">{{ item.name }}</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
