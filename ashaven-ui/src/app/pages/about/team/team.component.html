@@ -14,66 +14,61 @@
     <article
       *ngFor="let teamitem of teams"
       (click)="onToggle(teamitem)"
-      class="group flex cursor-pointer flex-col rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+      class="group flex cursor-pointer flex-col rounded-xl border border-[#dce0e5] bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
     >
       <div class="flex flex-col items-center">
         <div class="relative mb-4">
-          <img
-            [src]="teamitem.image"
-            [alt]="teamitem.name"
-            class="size-28 rounded-full border-4 border-white object-cover shadow-md"
-            loading="lazy"
-          />
-          <span
+          <div
+            class="size-32 rounded-full border-4 border-white bg-cover bg-center shadow-md"
+            [style.background-image]="'url(' + teamitem.image + ')'"
+            [attr.aria-label]="teamitem.name"
+          ></div>
+          <div
             class="absolute bottom-1 right-1 flex size-6 items-center justify-center rounded-full bg-emerald-500 text-white ring-2 ring-white"
             title="Verified team member"
           >
             <i class="ri-check-line text-sm"></i>
-          </span>
+          </div>
         </div>
-        <h3 class="text-xl font-bold text-slate-900">{{ teamitem.name }}</h3>
-        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
-          {{ teamitem.designation }}
-        </p>
-        <p class="mt-2 text-sm text-slate-600">
+        <h3 class="text-2xl font-bold leading-tight text-[#111418]">{{ teamitem.name }}</h3>
+        <p class="mt-1 text-primary font-medium">{{ teamitem.designation }}</p>
+        <p class="mt-1 text-sm text-[#637588]">Ashaven Advisory Team</p>
+        <div class="mt-2 flex items-center gap-1 text-sm text-[#637588]">
+          <span class="material-symbols-outlined text-[18px]">location_on</span>
+          <span>Greater Metro Area</span>
+        </div>
+        <p class="mt-4 text-sm text-[#111418]">
           {{ teamitem.description }}
         </p>
       </div>
 
-      <div class="mt-6 flex items-center justify-center gap-3">
-        <a
-          *ngIf="teamitem.linkthen"
-          [href]="teamitem.linkthen"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div class="mt-6 flex flex-col gap-3">
+        <button
+          class="h-12 w-full rounded-lg bg-primary font-bold text-white shadow-sm transition-all hover:bg-blue-600 hover:shadow-md"
           (click)="$event.stopPropagation()"
-          class="flex size-10 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200"
-          aria-label="LinkedIn"
+          type="button"
         >
-          <i class="ri-linkedin-fill"></i>
-        </a>
-        <a
-          *ngIf="teamitem.facebook"
-          [href]="teamitem.facebook"
-          target="_blank"
-          rel="noopener noreferrer"
-          (click)="$event.stopPropagation()"
-          class="flex size-10 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200"
-          aria-label="Facebook"
-        >
-          <i class="ri-facebook-fill"></i>
-        </a>
-        <a
-          *ngIf="teamitem.twiter"
-          [href]="teamitem.twiter"
-          target="_blank"
-          rel="noopener noreferrer"
-          (click)="$event.stopPropagation()"
-          class="flex size-10 items-center justify-center rounded-full border border-slate-200 bg-white text-blue-700 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200"
-          aria-label="Twitter"
-        >
-          <i class="ri-twitter-fill"></i>
-        </a>
+          <span class="material-symbols-outlined align-middle text-[18px]">call</span>
+          <span class="ml-2 align-middle">Call Agent</span>
+        </button>
+        <div class="flex gap-3">
+          <button
+            class="flex-1 h-12 rounded-lg border border-[#dce0e5] bg-white font-bold text-[#111418] transition-colors hover:bg-gray-50"
+            (click)="$event.stopPropagation()"
+            type="button"
+          >
+            <span class="material-symbols-outlined align-middle text-[18px]">mail</span>
+            <span class="ml-2 align-middle">Email</span>
+          </button>
+          <button
+            class="flex-1 h-12 rounded-lg border border-[#dce0e5] bg-white font-bold text-[#111418] transition-colors hover:bg-gray-50"
+            (click)="$event.stopPropagation()"
+            type="button"
+          >
+            <span class="material-symbols-outlined align-middle text-[18px]">calendar_today</span>
+            <span class="ml-2 align-middle">Visit</span>
+          </button>
+        </div>
       </div>
     </article>
   </div>
