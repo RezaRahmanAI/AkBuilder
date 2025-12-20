@@ -79,17 +79,6 @@
     </div>
   </section>
 
-  <app-owner-speech
-    [title]="'Chairman'"
-    [ownerName]="state.about.ownerName"
-    [ownerDesignation]="state.about.ownerDesignation"
-    [ownerSpeech]="state.about.ownerSpeech"
-    [ownerImage]="state.about.ownerImage"
-    [linkedIn]="state.about.linkedIn"
-    [twitter]="state.about.twitter"
-    [facebook]="state.about.facebook"
-    (imageError)="onImageError($event)"
-  />
 
   <app-team [teams]="state.teams" (toggle)="onToggle($event)"></app-team>
   <app-team-modal

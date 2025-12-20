@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HeroSectionComponent } from './hero-section/hero-section.component';
 import { HistoryComponent } from './history/history.component';
-import { OwnerSpeechComponent } from './owner-speech/owner-speech.component';
 import { MissionVisionComponent } from './mission-vision/mission-vision.component';
 import { TeamModalComponent } from './team-modal/team-modal.component';
 import { AboutPageData, AboutUs, ProjectStats, Team } from '../../models/model';
@@ -11,8 +10,6 @@ import { TeamComponent } from './team/team.component';
 import { environment } from '../../environments/environment';
 import { AboutUsService } from '../../services/about-us.service';
 import { AnimationService } from '../../services/animation.service';
-
-
 
 @Component({
   selector: 'app-about',
@@ -22,7 +19,6 @@ import { AnimationService } from '../../services/animation.service';
     RouterModule,
     HeroSectionComponent,
     HistoryComponent,
-    OwnerSpeechComponent,
     MissionVisionComponent,
     TeamComponent,
     TeamModalComponent,
