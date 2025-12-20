@@ -32,14 +32,6 @@
         </div>
         <h3 class="text-2xl font-bold leading-tight text-[#111418]">{{ teamitem.name }}</h3>
         <p class="mt-1 text-primary font-medium">{{ teamitem.designation }}</p>
-        <p class="mt-1 text-sm text-[#637588]">Ashaven Advisory Team</p>
-        <div class="mt-2 flex items-center gap-1 text-sm text-[#637588]">
-          <span class="material-symbols-outlined text-[18px]">location_on</span>
-          <span>Greater Metro Area</span>
-        </div>
-        <p class="mt-4 text-sm text-[#111418]">
-          {{ teamitem.description }}
-        </p>
       </div>
 
       <div class="mt-6 flex flex-col gap-3">
@@ -50,25 +42,7 @@
         >
           <span class="material-symbols-outlined align-middle text-[18px]">call</span>
           <span class="ml-2 align-middle">Call Agent</span>
-        </button>
-        <div class="flex gap-3">
-          <button
-            class="flex-1 h-12 rounded-lg border border-[#dce0e5] bg-white font-bold text-[#111418] transition-colors hover:bg-gray-50"
-            (click)="$event.stopPropagation()"
-            type="button"
-          >
-            <span class="material-symbols-outlined align-middle text-[18px]">mail</span>
-            <span class="ml-2 align-middle">Email</span>
-          </button>
-          <button
-            class="flex-1 h-12 rounded-lg border border-[#dce0e5] bg-white font-bold text-[#111418] transition-colors hover:bg-gray-50"
-            (click)="$event.stopPropagation()"
-            type="button"
-          >
-            <span class="material-symbols-outlined align-middle text-[18px]">calendar_today</span>
-            <span class="ml-2 align-middle">Visit</span>
-          </button>
-        </div>
+        </button>        
       </div>
     </article>
   </div>
