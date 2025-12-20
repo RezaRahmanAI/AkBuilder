@@ -31,29 +31,27 @@ export const routes: Routes = [
     path: '',
     component: HomeComponent,
     data: {
-      title:
-        'Ashaven Developers Ltd | Trusted Real Estate in Rajshahi, Bangladesh',
+      title: 'AK Builders Ltd | Trusted Real Estate in Rajshahi, Bangladesh',
       description:
-        'Ashaven Developers Ltd is a premier real estate developer in Rajshahi, Bangladesh, offering quality residential, commercial and mixed-use projects. Discover your dream home with us.',
+        'AK Builders Ltd is a premier real estate developer in Rajshahi, Bangladesh, offering quality residential, commercial and mixed-use projects. Discover your dream home with us.',
     },
   },
   {
     path: 'home',
     component: HomeComponent,
     data: {
-      title:
-        'Ashaven Developers Ltd | Trusted Real Estate in Rajshahi, Bangladesh',
+      title: 'AK Builders Ltd | Trusted Real Estate in Rajshahi, Bangladesh',
       description:
-        'Ashaven Developers Ltd is a premier real estate developer in Rajshahi, Bangladesh, offering quality residential, commercial and mixed-use projects. Discover your dream home with us.',
+        'AK Builders Ltd is a premier real estate developer in Rajshahi, Bangladesh, offering quality residential, commercial and mixed-use projects. Discover your dream home with us.',
     },
   },
   {
     path: 'about',
     component: AboutComponent,
     data: {
-      title: 'About Ashaven Developers Ltd | Real Estate Company in Rajshahi',
+      title: 'About AK Builders Ltd | Real Estate Company in Rajshahi',
       description:
-        'Learn about Ashaven Developers Ltd — our vision, mission, team and commitment to quality construction in Rajshahi. Building sustainable & trusted real estate since',
+        'Learn about AK Builders Ltd — our vision, mission, team and commitment to quality construction in Rajshahi. Building sustainable & trusted real estate since',
     },
   },
   {
@@ -61,9 +59,9 @@ export const routes: Routes = [
     component: GalleryPageComponent,
     data: {
       title:
-        'Project Gallery | Ashaven Developers Ltd — Real Estate Projects in Rajshahi',
+        'Project Gallery | AK Builders Ltd — Real Estate Projects in Rajshahi',
       description:
-        'Explore Ashaven Developers’ photo gallery featuring our latest residential and commercial projects in Rajshahi. See interiors, exteriors, and on-site progress.',
+        'Explore AK Builders’ photo gallery featuring our latest residential and commercial projects in Rajshahi. See interiors, exteriors, and on-site progress.',
     },
   },
   {
@@ -71,45 +69,45 @@ export const routes: Routes = [
     component: BlogComponent,
     data: {
       title:
-        'Ashaven Developers Blog | Real Estate Tips & Property Insights in Bangladesh',
+        'AK Builders Blog | Real Estate Tips & Property Insights in Bangladesh',
       description:
-        'Stay updated with Ashaven Developers’ latest real estate tips, property investment guides, housing trends, and construction news in Rajshahi and across Bangladesh.',
+        'Stay updated with AK Builders’ latest real estate tips, property investment guides, housing trends, and construction news in Rajshahi and across Bangladesh.',
     },
   },
   {
     path: 'blogs/:id',
     component: BlogDetailsComponent,
     data: {
-      title: 'Blog Details | Ashaven Developers Ltd',
+      title: 'Blog Details | AK Builders Ltd',
       description:
-        'Read detailed insights on real estate, property investment, and construction trends from Ashaven Developers in Rajshahi and Bangladesh.',
+        'Read detailed insights on real estate, property investment, and construction trends from AK Builders in Rajshahi and Bangladesh.',
     },
   },
   {
     path: 'projects',
     component: ProjectsComponent,
     data: {
-      title: 'Our Projects | Ashaven Developers Ltd — Rajshahi Properties',
+      title: 'Our Projects | AK Builders Ltd — Rajshahi Properties',
       description:
-        'Explore the latest residential, commercial, and mixed-use projects by Ashaven Developers in Rajshahi. View galleries, project features, floor plans & pricing.',
+        'Explore the latest residential, commercial, and mixed-use projects by AK Builders in Rajshahi. View galleries, project features, floor plans & pricing.',
     },
   },
   {
     path: 'projectdetails/:id',
     component: ProjectDetailsComponent,
     data: {
-      title: 'Project Details | Ashaven Developers Ltd',
+      title: 'Project Details | AK Builders Ltd',
       description:
-        'Discover detailed information, features, floor plans, and pricing of Ashaven Developers’ real estate projects in Rajshahi.',
+        'Discover detailed information, features, floor plans, and pricing of AK Builders’ real estate projects in Rajshahi.',
     },
   },
   {
     path: 'contact',
     component: ContactComponent,
     data: {
-      title: 'Contact Ashaven Developers Ltd | Get in Touch — Rajshahi, BD',
+      title: 'Contact AK Builders Ltd | Get in Touch — Rajshahi, BD',
       description:
-        'Need more info or want to visit a property? Contact Ashaven Developers Ltd in Rajshahi. Call us, email us or visit our office to discuss your real estate needs.',
+        'Need more info or want to visit a property? Contact AK Builders Ltd in Rajshahi. Call us, email us or visit our office to discuss your real estate needs.',
     },
   },
   { path: 'login', component: LoginComponent },

@@ -62,7 +62,7 @@ export class SeoService {
           config.keywords ||
           'real estate, Rajshahi, Bangladesh, property, developers',
       },
-      { name: 'author', content: 'Ashaven Developers Ltd' },
+      { name: 'author', content: 'AK Builders Ltd' },
 
       // Open Graph tags for social sharing
       { property: 'og:title', content: config.title },
@@ -73,7 +73,7 @@ export class SeoService {
         property: 'og:image',
         content: config.image || '/assets/images/ashaven-og-image.jpg',
       },
-      { property: 'og:site_name', content: 'Ashaven Developers Ltd' },
+      { property: 'og:site_name', content: 'AK Builders Ltd' },
 
       // Twitter Card tags
       { name: 'twitter:card', content: 'summary_large_image' },
