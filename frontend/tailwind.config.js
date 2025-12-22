@@ -1,20 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
-  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        primary: "#197fe6",
-        "background-light": "#f6f7f8",
-        "background-dark": "#111921",
-        "surface-light": "#ffffff",
-        "surface-dark": "#1a222c",
-        brand: "#197fe6",
-        mist: "#f6f7f8",
-        accent: "#ff771b",
-        ink: "#111418",
-        pure: "#ffffff",
+        brand: "#3c75ba", // Deep forest green
+        mist: "#f1fbec", // Soft mint accent background
+        accent: "#ff771b", // Vibrant orange for calls to action
+        ink: "#000000", // Rich black for text and contrast
+        pure: "#ffffff", // Clean white surfaces
       },
       fontFamily: {
         sans: [
@@ -26,7 +20,6 @@ module.exports = {
           "sans-serif",
         ],
         serif: ["Playfair Display", "serif"],
-        display: ["Inter", "sans-serif"],
       },
       boxShadow: {
         "luxe-glow": "0 30px 80px rgba(32, 71, 38, 0.25)",

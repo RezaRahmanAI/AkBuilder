@@ -13,7 +13,7 @@
 }
 
 .article-content blockquote {
-  @apply border-l-4 border-primary pl-6 italic text-2xl font-medium leading-snug text-slate-900 dark:text-white;
+  @apply border-l-4  pl-6 italic text-2xl font-medium leading-snug text-slate-900 dark:text-white;
 }
 
 .article-content h3 {
