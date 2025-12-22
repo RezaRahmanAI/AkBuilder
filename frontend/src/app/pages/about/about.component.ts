@@ -5,11 +5,12 @@ import { HeroSectionComponent } from './hero-section/hero-section.component';
 import { HistoryComponent } from './history/history.component';
 import { MissionVisionComponent } from './mission-vision/mission-vision.component';
 import { TeamModalComponent } from './team-modal/team-modal.component';
-import { AboutPageData, AboutUs, ProjectStats, Team } from '../../models/model';
+import { ProjectStats, Team } from '../../models/model';
 import { TeamComponent } from './team/team.component';
 import { environment } from '../../environments/environment';
-import { AboutUsService } from '../../services/about-us.service';
 import { AnimationService } from '../../services/animation.service';
+import { TeamService } from '../../services/team.service';
+import { ABOUT_PAGE_DATA } from '../../data/about-page.data';
 
 @Component({
   selector: 'app-about',
@@ -101,10 +102,7 @@ export class AboutComponent implements OnInit, AfterViewInit {
 
   isModalVisible = false;
 
-  constructor(
-    private aboutUsService: AboutUsService,
-    private anim: AnimationService
-  ) {}
+  constructor(private teamService: TeamService, private anim: AnimationService) {}
 
   ngAfterViewInit() {
     this.anim.animateOnScroll('.fade-up');
@@ -112,34 +110,33 @@ export class AboutComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.fetchAboutData();
+    this.setAboutData();
+    this.fetchTeams();
   }
 
-  fetchAboutData(): void {
-    this.aboutUsService.getAboutPageData().subscribe({
-      next: (data: AboutPageData) => {
-        const about = data.about || this.state.about;
-        this.state.about = {
-          history: about.history || '',
-          ownerName: about.ownerName || '',
-          ownerDesignation: about.ownerDesignation || '',
-          ownerSpeech: about.ownerSpeech || '',
-          twitter: about.twitter || '',
-          facebook: about.facebook || '',
-          linkedIn: about.linkedIn || '',
-          ownerImage: about.ownerImage
-            ? `${this.baseUrl}/api/attachment/get/${about.ownerImage}`
-            : '/images/fallback.png',
-          mission: about.mission || '',
-          missionImage: about.missionImage
-            ? `${this.baseUrl}/api/attachment/get/${about.missionImage}`
-            : '/images/fallback.png',
-          vision: about.vision || '',
-          visionImage: about.visionImage
-            ? `${this.baseUrl}/api/attachment/get/${about.visionImage}`
-            : '/images/fallback.png',
-        };
-        this.state.teams = (data.teams || []).map<Team>((member) => ({
+  setAboutData(): void {
+    const { about, stats } = ABOUT_PAGE_DATA;
+    this.state.about = {
+      history: about.history || '',
+      ownerName: about.ownerName || '',
+      ownerDesignation: about.ownerDesignation || '',
+      ownerSpeech: about.ownerSpeech || '',
+      twitter: about.twitter || '',
+      facebook: about.facebook || '',
+      linkedIn: about.linkedIn || '',
+      ownerImage: about.ownerImage || '/images/fallback.png',
+      mission: about.mission || '',
+      missionImage: about.missionImage || '/images/fallback.png',
+      vision: about.vision || '',
+      visionImage: about.visionImage || '/images/fallback.png',
+    };
+    this.state.stats = stats || this.state.stats;
+  }
+
+  fetchTeams(): void {
+    this.teamService.getActiveTeams().subscribe({
+      next: (data: Team[]) => {
+        this.state.teams = (data || []).map<Team>((member) => ({
           id: String(member.id),
           name: member.name,
           designation: member.designation,
@@ -153,14 +150,12 @@ export class AboutComponent implements OnInit, AfterViewInit {
           isActive: member.isActive,
           order: member.order ?? 0,
         }));
-
-        this.state.stats = data.stats || this.state.stats;
       },
       error: (error) => {
-        this.aboutUsService.showError(
-          `Failed to fetch About Page data: ${error.message || 'Unknown error'}`
+        this.teamService.showError(
+          `Failed to fetch team data: ${error.message || 'Unknown error'}`
         );
-        console.error('Error fetching About Page data:', error);
+        console.error('Error fetching team data:', error);
       },
     });
   }
