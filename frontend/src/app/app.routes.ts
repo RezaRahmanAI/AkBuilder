@@ -23,7 +23,6 @@ import { BlogsIndexComponent } from './features/blogs/blogs-index/blogs-index.co
 import { OffersIndexComponent } from './features/offers/offers-index/offers-index.component';
 import { AboutUsIndexComponent } from './features/about-us/about-us-index/about-us-index.component';
 import { FaqComponent } from './features/faq/faq.component';
-import { GalleryComponent } from './features/gallery/gallery.component';
 import { TestimonialsIndexComponent } from './features/testimonials/testimonials-index/testimonials-index.component';
 
 export const routes: Routes = [
@@ -124,7 +123,6 @@ export const routes: Routes = [
       { path: 'offers', component: OffersIndexComponent },
       { path: 'about-us', component: AboutUsIndexComponent },
       { path: 'faq', component: FaqComponent },
-      { path: 'gallery', component: GalleryComponent },
       {
         path: 'projects',
         children: [
