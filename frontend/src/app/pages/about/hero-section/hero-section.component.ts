@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Input,
   NgZone,
   OnDestroy,
 } from '@angular/core';
@@ -9,6 +10,7 @@ import { RouterLink } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ScrollService } from '../../../services/scroll.service';
+import { ProjectStats } from '../../../models/model';
 
 @Component({
   selector: 'app-hero-section',
@@ -19,6 +21,11 @@ import { ScrollService } from '../../../services/scroll.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroSectionComponent implements OnDestroy {
+  @Input() stats: ProjectStats = {
+    ongoing: 0,
+    upcoming: 0,
+    completed: 0,
+  };
   scrollTransform = 'translateY(-60px)';
   private destroy$ = new Subject<void>();
 
