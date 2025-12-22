@@ -86,10 +86,16 @@ export interface ProjectStats {
   completed: number;
 }
 
+export interface AboutPageStat {
+  label: string;
+  value: string;
+  icon: string;
+}
+
 export interface AboutPageData {
   about: AboutUs | null;
   teams: Team[];
-  stats: ProjectStats;
+  stats: AboutPageStat[];
 }
 
 export interface Contactus {
