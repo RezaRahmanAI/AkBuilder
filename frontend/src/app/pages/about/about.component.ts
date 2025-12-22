@@ -1,142 +1,114 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HeroSectionComponent } from './hero-section/hero-section.component';
-import { HistoryComponent } from './history/history.component';
-import { MissionVisionComponent } from './mission-vision/mission-vision.component';
-import { TeamModalComponent } from './team-modal/team-modal.component';
-import { ProjectStats, Team } from '../../models/model';
-import { TeamComponent } from './team/team.component';
+import { AboutPageStat, AboutUs, Team } from '../../models/model';
 import { environment } from '../../environments/environment';
-import { AnimationService } from '../../services/animation.service';
-import { TeamService } from '../../services/team.service';
-import { ABOUT_PAGE_DATA } from '../../data/about-page.data';
+import { AboutUsService } from '../../services/about-us.service';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    HeroSectionComponent,
-    HistoryComponent,
-    MissionVisionComponent,
-    TeamComponent,
-    TeamModalComponent,
-  ],
+  imports: [CommonModule, RouterModule],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css'],
 })
-export class AboutComponent implements OnInit, AfterViewInit {
+export class AboutComponent implements OnInit {
   baseUrl = environment.baseUrl;
+  fallbackHeroImage =
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuD2UxjLiDNblHUR0KUkEinNEFGsaMh55ZLgjEfuklocfEDX22-EEK05FjkokFqatHrIrHsEmskZEE4Rgqr8VgtFRBaG1ZB5O4m1ALKPf7V06Jqd94AJZxVt3LP3WPZ-PzeCb--Y0mPAeQfcf0WK-CQDNoygHH01wxa5LwzEoHrCMJifUk2OW_B0ScC1ZvVrcKm2-CYafD9cCePvLYJ-WtSQDdzBC6VNV5S3mlOVfWLB5fFC9OwpfjmONJa8UgC1MFEMLrden2P_Jw';
+  fallbackHistoryImage =
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuB68PP69_rC7h2ZO-k1a1Z3CDxJ4R6VXhKcWOvKrNmiv5pXZ1zbwDD7PkaJZA1xZ9NBB2JHwOrvNWRkVZFco9d_9sfEH3QTtmm8H9EY4K-TUux15vfVVGC07I5HyMNfWt0N0_eXSdWQUtJ4kd9HB7ar0nl9vNcC1WQkwBBE-6ub8YrKAIG6rd3bHDt4UDYr14fWukcCKwRqyiUd9vGb4Qa9nJrU67cAnO6omYCmomKKH-vxRCtwrxFkT5136miczn0_NEUAzmueFQ';
+  fallbackHistoryImageAlt =
+    'https://lh3.googleusercontent.com/aida-public/AB6AXuCQzVIg2ya8ynG-cRBGe8avlm9kUp4n1hxBNv6LU3zyKfwOP_uYk52-Ez23Zf1dp7t11nH-75T8x0SMedP3AQtz10Yj8ddKGz3VbL-Jnufqh0FEo_upALKMb_F0GM5EqI-JYpazmXf8h8dUdfT5wDbyKtIQD2AK3BxuY10AYWwPbWYMIv5vwqJdv_nug484Im6nBw277XgsxG6jMJe_R77Ohi3zaItVH6ch4UgtJfR5kGNOVE3qpBNJMS-R7JbBTDqlwiCnwcUB2w';
 
   coreValues = [
     {
       title: 'Integrity',
       description:
         'Transparent communication and accountability keep every promise we make to residents and partners.',
-      icon: 'ri-verified-badge-line',
+      icon: 'verified',
     },
     {
       title: 'Expertise',
       description:
         'Seasoned teams blend local insight with global standards to guide confident real estate decisions.',
-      icon: 'ri-lightbulb-flash-line',
+      icon: 'lightbulb',
     },
     {
       title: 'Community',
       description:
         'We create vibrant neighborhoods with shared amenities, thoughtful design, and long-term stewardship.',
-      icon: 'ri-team-line',
+      icon: 'groups',
     },
   ];
 
   state: {
-    about: {
-      history?: string;
-      ownerName?: string;
-      ownerDesignation?: string;
-      ownerSpeech?: string;
-      ownerImage?: string;
-      mission?: string;
-      missionImage?: string;
-      vision?: string;
-      visionImage?: string;
-      facebook?: string;
-      linkedIn?: string;
-      twitter?: string;
-    };
+    about: AboutUs;
     teams: Team[];
-    selectedTeamMember: Team | null;
-    stats: ProjectStats;
+    stats: AboutPageStat[];
   } = {
     about: {
+      id: '',
       history: '',
+      vision: '',
+      visionImage: '',
+      mission: '',
+      missionImage: '',
       ownerName: '',
       ownerDesignation: '',
       ownerSpeech: '',
       ownerImage: '',
-      mission: '',
-      missionImage: '',
-      vision: '',
-      visionImage: '',
       twitter: '',
       linkedIn: '',
       facebook: '',
     },
     teams: [],
-    selectedTeamMember: null,
-    stats: {
-      ongoing: 0,
-      upcoming: 0,
-      completed: 0,
-    },
+    stats: [],
   };
-
-  expandedSections: { [key: string]: boolean } = {
-    history: true, 
-    missionVision: false,
-    ownerSpeech: false,
-    team: false,
-  };
-
-  isModalVisible = false;
-
-  constructor(private teamService: TeamService, private anim: AnimationService) {}
-
-  ngAfterViewInit() {
-    this.anim.animateOnScroll('.fade-up');
-    this.anim.animateOnScroll('.zoom-in');
-  }
+  
+  constructor(private aboutUsService: AboutUsService) {}
 
   ngOnInit(): void {
-    this.setAboutData();
-    this.fetchTeams();
+    this.fetchAboutPage();
   }
 
-  setAboutData(): void {
-    const { about, stats } = ABOUT_PAGE_DATA;
-    this.state.about = {
-      history: about.history || '',
-      ownerName: about.ownerName || '',
-      ownerDesignation: about.ownerDesignation || '',
-      ownerSpeech: about.ownerSpeech || '',
-      twitter: about.twitter || '',
-      facebook: about.facebook || '',
-      linkedIn: about.linkedIn || '',
-      ownerImage: about.ownerImage || '/images/fallback.png',
-      mission: about.mission || '',
-      missionImage: about.missionImage || '/images/fallback.png',
-      vision: about.vision || '',
-      visionImage: about.visionImage || '/images/fallback.png',
-    };
-    this.state.stats = stats || this.state.stats;
+  get heroBackground(): string {
+    return (
+      this.state.about?.missionImage ||
+      this.state.about?.visionImage ||
+      this.fallbackHeroImage
+    );
   }
 
-  fetchTeams(): void {
-    this.teamService.getActiveTeams().subscribe({
-      next: (data: Team[]) => {
-        this.state.teams = (data || []).map<Team>((member) => ({
+  get historyPrimaryImage(): string {
+    return this.state.about?.missionImage || this.fallbackHistoryImage;
+  }
+
+  get historySecondaryImage(): string {
+    return this.state.about?.visionImage || this.fallbackHistoryImageAlt;
+  }
+
+  private fetchAboutPage(): void {
+    this.aboutUsService.getAboutPageData().subscribe({
+      next: (data) => {
+        const about = data?.about;
+        this.state.about = {
+          id: about?.id ?? '',
+          history: about?.history ?? '',
+          vision: about?.vision ?? '',
+          visionImage: this.getImageUrl(about?.visionImage),
+          mission: about?.mission ?? '',
+          missionImage: this.getImageUrl(about?.missionImage),
+          ownerName: about?.ownerName ?? '',
+          ownerDesignation: about?.ownerDesignation ?? '',
+          ownerSpeech: about?.ownerSpeech ?? '',
+          ownerImage: this.getImageUrl(about?.ownerImage),
+          twitter: about?.twitter ?? '',
+          linkedIn: about?.linkedIn ?? '',
+          facebook: about?.facebook ?? '',
+        };
+        this.state.stats = data?.stats ?? [];
+        this.state.teams = (data?.teams || []).map<Team>((member) => ({
           id: String(member.id),
           name: member.name,
           designation: member.designation,
@@ -152,27 +124,21 @@ export class AboutComponent implements OnInit, AfterViewInit {
         }));
       },
       error: (error) => {
-        this.teamService.showError(
-          `Failed to fetch team data: ${error.message || 'Unknown error'}`
+        this.aboutUsService.showError(
+          `Failed to fetch About page data: ${error.message || 'Unknown error'}`
         );
-        console.error('Error fetching team data:', error);
+        console.error('Error fetching About page data:', error);
       },
     });
   }
 
-  toggleSection(section: string): void {
-    this.expandedSections[section] = !this.expandedSections[section];
-  }
-
-  onToggle(member: Team | null = null): void {
-    this.state.selectedTeamMember = member ? { ...member } : null;
-    this.isModalVisible = !this.isModalVisible;
-  }
-
-  onImageError(event: Event, fallback = '/images/fallback.png'): void {
-    const img = event.target as HTMLImageElement;
-    if (img && img.src !== fallback) {
-      img.src = fallback;
+  private getImageUrl(imagePath?: string | null): string {
+    if (!imagePath) {
+      return '';
     }
+    if (imagePath.startsWith('http')) {
+      return imagePath;
+    }
+    return `${this.baseUrl}/api/attachment/get/${imagePath}`;
   }
 }

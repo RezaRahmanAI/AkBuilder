@@ -90,20 +90,15 @@ namespace Real_Estate.server.api.Controllers
                 .Where(e => e.IsActive == true)
                 .OrderBy(e => e.Order)
                 .ToListAsync();
-            var projects = await context.Projects.Where(p => p.IsActive).ToListAsync();
 
-            int CountByCategory(string category) => projects.Count(
-                p => string.Equals(p.Category, category, StringComparison.OrdinalIgnoreCase)
-            );
-
-            var stats = new
+            var aboutStats = new[]
             {
-                Ongoing = CountByCategory("Ongoing"),
-                Upcoming = CountByCategory("Upcoming"),
-                Completed = CountByCategory("Completed"),
+                new { Label = "Homes Sold", Value = "5,000+", Icon = "home" },
+                new { Label = "Sales Volume", Value = "$2B+", Icon = "payments" },
+                new { Label = "Client Satisfaction", Value = "98%", Icon = "sentiment_satisfied" },
             };
 
-            return Ok(new { about, teams, stats });
+            return Ok(new { about, teams, stats = aboutStats });
         }
 
         [HttpGet]
