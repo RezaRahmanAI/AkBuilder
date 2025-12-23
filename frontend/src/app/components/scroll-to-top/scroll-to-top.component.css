@@ -6,7 +6,7 @@
   height: 50px;
   border: none;
   border-radius: 50%;
-  background-color: var(--luxe-amber);
+  background-color: #ff771b;
   color: white;
   font-size: 24px;
   cursor: pointer;
@@ -24,7 +24,7 @@
 
 .scroll-to-top:hover,
 .scroll-to-top:focus-visible {
-  background-color: var(--luxe-amber-soft);
+  background-color: color-mix(in srgb, #ff771b 70%, #ffffff);
   transform: translateY(-4px);
   box-shadow: 0 25px 55px rgba(255, 119, 27, 0.4);
 }
