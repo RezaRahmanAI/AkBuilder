@@ -8,19 +8,19 @@
   font-size: 0.75rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #ff771b;
+  color: #F2B705;
 }
 
 .neo-section__title {
   font-size: clamp(1.9rem, 4vw, 2.6rem);
   line-height: 1.1;
   font-weight: 700;
-  color: #3c75ba;
+  color: #C4161C;
 }
 
 .neo-section__subtitle {
   max-width: 68ch;
-  color: rgba(60, 117, 186, 0.72);
+  color: rgba(196, 22, 28, 0.72);
   line-height: 1.7;
 }
 
@@ -28,11 +28,11 @@
   position: relative;
   border-radius: clamp(1.75rem, 4.5vw, 3.25rem);
   padding: clamp(2.2rem, 5vw, 3rem) clamp(1.4rem, 3vw, 2.25rem);
-  background: radial-gradient(circle at 10% 20%, rgba(255, 119, 27, 0.1), transparent 45%),
-    radial-gradient(circle at 90% 10%, rgba(60, 117, 186, 0.12), transparent 45%),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(241, 251, 236, 0.92));
-  border: 1px solid rgba(60, 117, 186, 0.12);
-  box-shadow: 0 45px 120px rgba(60, 117, 186, 0.2);
+  background: radial-gradient(circle at 10% 20%, rgba(242, 183, 5, 0.1), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(196, 22, 28, 0.12), transparent 45%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(250, 250, 250, 0.92));
+  border: 1px solid rgba(196, 22, 28, 0.12);
+  box-shadow: 0 45px 120px rgba(196, 22, 28, 0.2);
   overflow: hidden;
 }
 
@@ -41,7 +41,7 @@
   position: absolute;
   inset: -50% -25% auto -25%;
   height: 60%;
-  background: radial-gradient(circle, rgba(255, 119, 27, 0.14), transparent 70%);
+  background: radial-gradient(circle, rgba(242, 183, 5, 0.14), transparent 70%);
   opacity: 0.6;
   filter: blur(20px);
   pointer-events: none;
@@ -59,15 +59,15 @@
   border-radius: 1.75rem;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 24px 48px rgba(60, 117, 186, 0.16);
-  border: 1px solid rgba(60, 117, 186, 0.12);
+  box-shadow: 0 24px 48px rgba(196, 22, 28, 0.16);
+  border: 1px solid rgba(196, 22, 28, 0.12);
   transition: transform 220ms ease, box-shadow 220ms ease;
   height: 100%;
 }
 
 .project-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 32px 64px rgba(60, 117, 186, 0.22);
+  box-shadow: 0 32px 64px rgba(196, 22, 28, 0.22);
 }
 
 .project-card__link {
@@ -98,7 +98,7 @@
 .project-card__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(60, 117, 186, 0.05) 0%, rgba(60, 117, 186, 0.6) 100%);
+  background: linear-gradient(180deg, rgba(196, 22, 28, 0.05) 0%, rgba(196, 22, 28, 0.6) 100%);
   opacity: 0.85;
 }
 
@@ -119,11 +119,11 @@
   gap: 0.35rem;
   padding: 0.4rem 0.75rem;
   border-radius: 999px;
-  background: rgba(241, 251, 236, 0.92);
+  background: rgba(250, 250, 250, 0.92);
   font-size: 0.8rem;
   font-weight: 600;
-  color: color-mix(in srgb, #3c75ba 85%, #000000);
-  box-shadow: 0 12px 24px rgba(60, 117, 186, 0.15);
+  color: color-mix(in srgb, #C4161C 85%, #000000);
+  box-shadow: 0 12px 24px rgba(196, 22, 28, 0.15);
 }
 
 .project-card__body {
@@ -143,16 +143,16 @@
 .project-card__body h3 {
   font-size: 1.35rem;
   font-weight: 700;
-  color: #3c75ba;
+  color: #C4161C;
 }
 
 .project-card__tag {
-  color: rgba(60, 117, 186, 0.6);
+  color: rgba(196, 22, 28, 0.6);
   font-size: 0.9rem;
 }
 
 .project-card__body p {
-  color: rgba(60, 117, 186, 0.65);
+  color: rgba(196, 22, 28, 0.65);
   line-height: 1.5;
 }
 
@@ -161,7 +161,7 @@
   align-items: center;
   gap: 0.35rem;
   font-weight: 600;
-  color: #ff771b;
+  color: #F2B705;
   transition: transform 200ms ease;
 }
 
@@ -177,15 +177,15 @@
 .neo-slider__pagination .swiper-pagination-bullet {
   width: 10px;
   height: 10px;
-  background: rgba(60, 117, 186, 0.25);
+  background: rgba(196, 22, 28, 0.25);
   opacity: 1;
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .neo-slider__pagination .swiper-pagination-bullet-active {
   transform: scale(1.4);
-  background: linear-gradient(120deg, #ff771b, color-mix(in srgb, #ff771b 70%, #ffffff));
-  box-shadow: 0 0 15px rgba(255, 119, 27, 0.35);
+  background: linear-gradient(120deg, #F2B705, color-mix(in srgb, #F2B705 70%, #ffffff));
+  box-shadow: 0 0 15px rgba(242, 183, 5, 0.35);
 }
 
 .neo-slider__controls {
@@ -201,9 +201,9 @@
   width: 44px;
   height: 44px;
   border-radius: 14px;
-  border: 1px solid rgba(60, 117, 186, 0.2);
+  border: 1px solid rgba(196, 22, 28, 0.2);
   background: rgba(255, 255, 255, 0.85);
-  color: #3c75ba;
+  color: #C4161C;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -215,7 +215,7 @@
 .neo-slider__control:hover,
 .neo-slider__control:focus-visible {
   transform: translateY(-3px);
-  border-color: rgba(60, 117, 186, 0.45);
+  border-color: rgba(196, 22, 28, 0.45);
   background: rgba(255, 255, 255, 0.95);
 }
 

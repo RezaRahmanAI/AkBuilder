@@ -31,11 +31,11 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-      linear-gradient(180deg, rgba(241, 251, 236, 0.8) 0%, rgba(255, 255, 255, 0.9) 40%, #f1fbec 100%),
-      radial-gradient(circle at top right, rgba(255, 119, 27, 0.12), transparent 55%),
-      radial-gradient(circle at 12% 24%, rgba(60, 117, 186, 0.16), transparent 62%);
+      linear-gradient(180deg, rgba(250, 250, 250, 0.92) 0%, rgba(250, 250, 250, 0.86) 45%, #fafafa 100%),
+      radial-gradient(circle at top right, rgba(242, 183, 5, 0.18), transparent 55%),
+      radial-gradient(circle at 12% 24%, rgba(196, 22, 28, 0.12), transparent 62%);
   background-attachment: fixed;
-  color: #000000;
+  color: #0b0b0b;
   font-family: inherit;
   -webkit-font-smoothing: antialiased;
 }
@@ -48,7 +48,7 @@ a {
 
 a:hover,
 a:focus-visible {
-  color: #3c75ba;
+  color: #D99A00;
 }
 
 img {
@@ -58,10 +58,10 @@ img {
 
 .neo-surface {
   position: relative;
-  background: linear-gradient(155deg, rgba(255, 255, 255, 0.92), rgba(241, 251, 236, 0.78));
-  border: 1px solid rgba(60, 117, 186, 0.12);
+  background: linear-gradient(155deg, rgba(250, 250, 250, 0.95), rgba(250, 250, 250, 0.82));
+  border: 1px solid rgba(196, 22, 28, 0.12);
   border-radius: clamp(1.75rem, 4.5vw, 3.25rem);
-  box-shadow: 0 18px 50px rgba(60, 117, 186, 0.18);
+  box-shadow: 0 18px 50px rgba(196, 22, 28, 0.18);
   backdrop-filter: blur(24px);
 }
 
@@ -88,8 +88,8 @@ img {
   position: absolute;
   inset: 0;  
   border-radius: calc(clamp(1.75rem, 4.5vw, 3.25rem) * 1.15);
-  background: radial-gradient(circle at top, rgba(255, 119, 27, 0.08), transparent 70%),
-    radial-gradient(circle at bottom left, rgba(60, 117, 186, 0.12), transparent 65%);
+  background: radial-gradient(circle at top, rgba(242, 183, 5, 0.08), transparent 70%),
+    radial-gradient(circle at bottom left, rgba(196, 22, 28, 0.12), transparent 65%);
   filter: blur(80px);
   opacity: 0.6;
   z-index: -1;
@@ -109,21 +109,21 @@ img {
   font-size: 0.78rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: #ff771b;
+  color: #F2B705;
 }
 
 .neo-section__title {
   font-size: clamp(2.4rem, 4vw, 3.5rem);
   font-family: 'Playfair Display', serif;
   font-weight: 600;
-  color: #3c75ba;
+  color: #C4161C;
   line-height: 1.05;
 }
 
 .neo-section__subtitle {
   max-width: 56ch;
   line-height: 1.7;
-  color: rgba(0, 0, 0, 0.68);
+  color: #8a8a8a;
   font-size: clamp(1rem, 1.8vw, 1.18rem);
 }
 
@@ -142,18 +142,18 @@ img {
   gap: 0.55rem;
   padding: 0.85rem 1.8rem;
   border-radius: 999px;
-  background: linear-gradient(120deg, #ff771b, color-mix(in srgb, #ff771b 70%, #ffffff));
-  border: 1px solid rgba(255, 119, 27, 0.4);
-  color: #000000;
+  background: linear-gradient(120deg, #F2B705, color-mix(in srgb, #F2B705 70%, #FAFAFA));
+  border: 1px solid rgba(242, 183, 5, 0.45);
+  color: #0b0b0b;
   font-weight: 600;
-  box-shadow: 0 22px 60px rgba(255, 119, 27, 0.28);
+  box-shadow: 0 22px 60px rgba(242, 183, 5, 0.28);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .neo-button:hover,
 .neo-button:focus-visible {
   transform: translateY(-4px);
-  box-shadow: 0 30px 70px rgba(255, 119, 27, 0.35);
+  box-shadow: 0 30px 70px rgba(242, 183, 5, 0.35);
 }
 
 .neo-outline-button {
@@ -162,8 +162,8 @@ img {
   gap: 0.5rem;
   padding: 0.8rem 1.6rem;
   border-radius: 999px;
-  border: 1px solid rgba(60, 117, 186, 0.35);
-  color: #3c75ba;
+  border: 1px solid rgba(196, 22, 28, 0.35);
+  color: #C4161C;
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(12px);
   transition: border-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
@@ -171,15 +171,15 @@ img {
 
 .neo-outline-button:hover,
 .neo-outline-button:focus-visible {
-  border-color: rgba(60, 117, 186, 0.65);
-  color: #3c75ba;
+  border-color: rgba(196, 22, 28, 0.65);
+  color: #C4161C;
   transform: translateY(-3px);
 }
 
 .neo-divider {
   height: 1px;
   width: 100%;
-  background: linear-gradient(90deg, transparent, rgba(60, 117, 186, 0.22), transparent);
+  background: linear-gradient(90deg, transparent, rgba(196, 22, 28, 0.22), transparent);
 }
 
 .fade-up {

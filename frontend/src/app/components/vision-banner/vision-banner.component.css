@@ -41,7 +41,7 @@
 .neo-vision__glow--one {
   top: -20%;
   left: -10%;
-  background: radial-gradient(circle, rgba(255, 119, 27, 0.45), transparent 70%);
+  background: radial-gradient(circle, rgba(242, 183, 5, 0.45), transparent 70%);
 }
 
 .neo-vision__glow--two {
@@ -90,10 +90,10 @@
   padding: 0.75rem 1.6rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  background: linear-gradient(120deg, #ff771b, color-mix(in srgb, #ff771b 70%, #ffffff));
+  background: linear-gradient(120deg, #F2B705, color-mix(in srgb, #F2B705 70%, #ffffff));
   color: #000000;
   font-weight: 600;
-  box-shadow: 0 25px 60px rgba(255, 119, 27, 0.32);
+  box-shadow: 0 25px 60px rgba(242, 183, 5, 0.32);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   justify-self: start;
 }
@@ -101,5 +101,5 @@
 .neo-vision__cta:hover,
 .neo-vision__cta:focus-visible {
   transform: translateY(-3px);
-  box-shadow: 0 35px 75px rgba(255, 119, 27, 0.38);
+  box-shadow: 0 35px 75px rgba(242, 183, 5, 0.38);
 }
