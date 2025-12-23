@@ -5,8 +5,6 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Real_Estate.server.api.Data;
 using Real_Estate.server.api.Models;
-using Real_Estate.server.api.services.Implementations;
-using Real_Estate.server.api.services.Interfaces;
 using Serilog;
 using System.Text;
 
@@ -79,7 +77,6 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-builder.Services.AddScoped<IFaqServices, FaqRepository>();
 
 builder.Services.AddAuthentication(options =>
 {
