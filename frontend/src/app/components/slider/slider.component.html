@@ -1,63 +1,77 @@
-<section class="neo-section neo-slider">
-  <div class="neo-section__header">
-    <span class="neo-section__tag">Featured anthology</span>
-    <h2 class="neo-section__title">Signature properties orbit</h2>
-    <p class="neo-section__subtitle">
-      A rotating gallery of homes, rooftops, and districts that blend architecture, landscape, and hospitality into one
-      seamless story.
-    </p>
-  </div>
+<section class="px-4 py-10 md:px-10 lg:px-40">
+  <div class="mx-auto max-w-[1200px]">
+    <div class="flex flex-col gap-3 px-2 pb-6 pt-2">
+      <span class="text-accent text-xs font-semibold uppercase tracking-[0.28em]">Featured anthology</span>
+      <h2 class="text-carbon text-[22px] font-bold leading-tight tracking-[-0.015em] md:text-[28px]">
+        Signature properties orbit
+      </h2>
+      <p class="text-sm text-steel md:text-base">
+        A rotating gallery of homes, rooftops, and districts that blend architecture, landscape, and hospitality into one
+        seamless story.
+      </p>
+    </div>
 
-  <div class="neo-slider__surface">
-    <swiper-container #swiper init="false" class="neo-slider__container" aria-label="Signature properties slider">
-      <swiper-slide *ngFor="let slide of slides" class="neo-slider__slide">
-        <article class="project-card">
-          <a [routerLink]="['/projectdetails', slide.id]" class="project-card__link">
-            <div class="project-card__image">
+    <div class="relative">
+      <swiper-container #swiper init="false" class="w-full" aria-label="Signature properties slider">
+        <swiper-slide *ngFor="let slide of slides" class="p-2">
+          <article
+            class="group flex h-full cursor-pointer flex-col gap-3 overflow-hidden rounded-luxe-sm border border-steel/20 bg-pure shadow-sm transition-all hover:shadow-industrial-soft"
+          >
+            <div class="relative aspect-[4/3] w-full overflow-hidden">
               <img
+                class="h-full w-full bg-center bg-no-repeat object-cover transition-transform duration-500 group-hover:scale-105"
                 [src]="slide.image"
                 [attr.alt]="slide.name || 'Project image'"
                 loading="lazy"
                 (error)="onImageError($event)"
               />
-              <div class="project-card__overlay"></div>
-              <div class="project-card__meta">
-                <span class="project-chip">
-                  <i class="ri-time-line"></i>
-                  {{ slide.category || 'In development' }}
-                </span>
-                <span class="project-chip">
-                  <i class="ri-building-4-line"></i>
-                  {{ slide.type || 'Mixed use' }}
-                </span>
+              <div class="absolute bottom-3 right-3 text-pure">
+                <span class="material-symbols-outlined drop-shadow-md">favorite</span>
               </div>
             </div>
 
-            <div class="project-card__body">
-              <div class="project-card__heading">
-                <h3>{{ slide.name }}</h3>
-                <span class="project-card__tag">{{ slide.address || 'Address forthcoming' }}</span>
+            <div class="p-4 pt-1">
+              <div class="mb-1 flex items-baseline justify-between">
+                <p class="text-carbon text-xl font-bold leading-normal">{{ slide.name }}</p>
               </div>
-              <p>{{ slide.description }}</p>
-              <span class="project-card__cta">
-                View details
-                <i class="ri-arrow-right-line"></i>
-              </span>
+              <p class="text-xs uppercase tracking-wider text-steel">{{ slide.address || 'Address forthcoming' }}</p>
+              <div class="mt-3 flex flex-wrap gap-3 text-sm text-steel">
+                <span class="flex items-center gap-1">
+                  <span class="text-carbon font-bold">{{ slide.category || 'Unknown' }}</span>
+                  category
+                </span>
+                <span class="h-4 w-px self-center bg-steel/40"></span>
+                <span class="flex items-center gap-1">
+                  <span class="text-carbon font-bold">{{ slide.type || '—' }}</span>
+                  type
+                </span>
+              </div>
+              <p class="mt-3 text-sm text-steel">
+                {{ slide.description }}
+              </p>
             </div>
-          </a>
-        </article>
-      </swiper-slide>
+          </article>
+        </swiper-slide>
 
-      <div class="swiper-pagination neo-slider__pagination"></div>
-    </swiper-container>
+        <div class="swiper-pagination mt-4"></div>
+      </swiper-container>
 
-    <div class="neo-slider__controls" role="group" aria-label="Slider navigation">
-      <button type="button" aria-label="Previous slide" class="neo-slider__control neo-slider__control--prev">
-        <span>&larr;</span>
-      </button>
-      <button type="button" aria-label="Next slide" class="neo-slider__control neo-slider__control--next">
-        <span>&rarr;</span>
-      </button>
+      <div class="absolute right-4 top-4 flex gap-3" role="group" aria-label="Slider navigation">
+        <button
+          type="button"
+          aria-label="Previous slide"
+          class="neo-slider__control neo-slider__control--prev flex h-10 w-10 items-center justify-center rounded-full border border-steel/40 bg-pure text-carbon shadow-sm transition hover:border-accent hover:text-accent"
+        >
+          <span>&larr;</span>
+        </button>
+        <button
+          type="button"
+          aria-label="Next slide"
+          class="neo-slider__control neo-slider__control--next flex h-10 w-10 items-center justify-center rounded-full border border-steel/40 bg-pure text-carbon shadow-sm transition hover:border-accent hover:text-accent"
+        >
+          <span>&rarr;</span>
+        </button>
+      </div>
     </div>
   </div>
 </section>
