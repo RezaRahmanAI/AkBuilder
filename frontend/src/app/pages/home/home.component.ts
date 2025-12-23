@@ -4,24 +4,26 @@ import { TestimonialCarouselComponent } from '../../components/testimonial/testi
 import { HeroSlideComponent } from '../../components/hero-slide/hero-slide.component';
 import { SliderComponent } from '../../components/slider/slider.component';
 import { ProjectExploreComponent } from '../../components/project-explore/project-explore.components';
+import { BlogSlideComponent } from '../../components/blog-slide/blog-slide.component';
 import { AnimationService } from '../../services/animation.service';
 import { Offer } from '../../models/model';
 import { OfferService } from '../../services/offer.service';
 import { CommonModule } from '@angular/common';
-import { FollowUpdateComponent } from '../../components/follow-update/follow-update.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     ProjectExploreComponent,
+    BlogSlideComponent,
     VisionBannerComponent,
     TestimonialCarouselComponent,
     SliderComponent,
     HeroSlideComponent,
-    FollowUpdateComponent
-],
+  ],
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements AfterViewInit {
