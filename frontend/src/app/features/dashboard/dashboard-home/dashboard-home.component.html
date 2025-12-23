@@ -1,74 +1,127 @@
 <section class="grid gap-8 md:gap-10">
-  <!-- HERO -->
   <header
-    class="flex flex-wrap items-center justify-between gap-6 md:gap-10 rounded-xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm"
+    class="flex flex-wrap items-center justify-between gap-6 md:gap-10 rounded-2xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm"
   >
     <div class="max-w-2xl">
-      <span class="uppercase tracking-wider text-xs text-slate-500">Portfolio Intelligence</span>
-      <h1 class="font-serif text-[1.8rem] md:text-4xl leading-tight mt-2 mb-4">
-        Your luxury real estate command centre
+      <span class="uppercase tracking-wider text-xs text-slate-500">Portfolio overview</span>
+      <h1 class="font-serif text-[1.9rem] md:text-4xl leading-tight mt-2 mb-2">
+        Curate every project with a polished, modern view
       </h1>
+      <p class="text-slate-500 text-sm md:text-base">
+        Monitor inventory, highlights, and customer interest without leaving the dashboard.
+      </p>
     </div>
   </header>
 
-  <!-- MAIN GRID: Left = Active portfolio, Right = Metrics stacked -->
-  <div class="grid gap-6 lg:grid-cols-2">
-    <!-- Left: Active portfolio -->
-    <section class="grid gap-5 rounded-xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm">
-      <header class="flex items-start justify-between gap-4">
-        <h2 class="font-serif text-xl">Active portfolio</h2>
-        <a routerLink="/dashboard/projects" class="text-brand hover:opacity-80 underline underline-offset-4">
+  <div class="grid gap-6 xl:grid-cols-3">
+    <section class="grid gap-5 rounded-2xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm xl:col-span-2">
+      <header class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif text-xl text-slate-900">Latest projects</h2>
+          <p class="text-sm text-slate-500">Quick access to the newest listings and their status.</p>
+        </div>
+        <a
+          routerLink="/dashboard/projects"
+          class="text-brand hover:opacity-80 underline underline-offset-4"
+        >
           View all listings
         </a>
       </header>
 
-      <div class="overflow-x-auto rounded-lg border border-slate-200">
-        <table class="w-full min-w-[520px] border-collapse text-left">
-          <thead class="bg-slate-100 uppercase tracking-wider text-[0.72rem] text-slate-600">
-            <tr>
-              <th class="py-3 px-4">Residence</th>
-              <th class="py-3 px-4">Location</th>
-              <th class="py-3 px-4">Status</th>
-              <th class="py-3 px-4">Published</th>
-            </tr>
-          </thead>
-          <tbody class="[&_tr:nth-child(even)]:bg-slate-50">
-            <tr *ngFor="let project of projects | slice:0:6">
-              <td class="py-3 px-4">{{ project.name }}</td>
-              <td class="py-3 px-4">{{ project.address || '—' }}</td>
-              <td class="py-3 px-4">{{ project.category || '—' }}</td>
-              <td class="py-3 px-4">{{ project.createDate | date: 'yyyy-MM-dd' }}</td>
-            </tr>
-            <tr *ngIf="projects.length === 0 && !projectsError">
-              <td colspan="4" class="py-3 px-4">No listings available yet. Add your first residence.</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <a
+          *ngFor="let project of projects"
+          class="group flex flex-col overflow-hidden rounded-xl border border-slate-100 bg-white shadow-sm hover:shadow-lg transition-all"
+          [routerLink]="['/dashboard/projects', project.id, 'edit']"
+        >
+          <div class="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+            <img
+              class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+              [src]="baseUrl + '/api/attachment/get/' + project.thumbnail"
+              [alt]="project.name"
+              (error)="onImageError($event)"
+            />
+            <span
+              class="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold"
+              [ngClass]="statusBadgeClass(project.category)"
+            >
+              <span class="h-2 w-2 rounded-full" [ngClass]="statusDotClass(project.category)"></span>
+              {{ project.category || 'Status' }}
+            </span>
+          </div>
+          <div class="flex flex-col gap-2 p-4">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="text-lg font-semibold text-slate-900">{{ project.name }}</h3>
+              <span class="text-xs font-medium text-slate-500">{{ project.type || 'Mixed use' }}</span>
+            </div>
+            <p class="text-sm text-slate-500 truncate">
+              {{ project.address || 'Address forthcoming' }}
+            </p>
+            <div class="flex items-center gap-3 text-xs text-slate-400">
+              <span>{{ project.landArea || 'N/A' }} land</span>
+              <span class="h-3 w-px bg-slate-200"></span>
+              <span>{{ project.numberOfApartments || 0 }} apartments</span>
+            </div>
+          </div>
+        </a>
+
+        <div
+          *ngIf="projects.length === 0 && !projectsError"
+          class="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-6 text-center text-slate-500"
+        >
+          No listings available yet. Add your first residence.
+        </div>
       </div>
+      <p *ngIf="projectsError" class="text-sm text-rose-500">{{ projectsError }}</p>
     </section>
 
-    <!-- Right: Metrics stacked (top/bottom) -->
     <div class="grid gap-6">
-      <!-- Managed listings (TOP) -->
-      <article class="grid gap-2 rounded-lg border border-slate-200 bg-white p-7 shadow-sm">
-        <span class="uppercase tracking-[0.2em] text-[0.72rem] text-slate-500">Managed listings</span>
-        <strong class="font-serif text-4xl md:text-[2.6rem] text-slate-900">{{ projects.length }}</strong>
-        <small *ngIf="projectsError" class="text-rose-500">{{ projectsError }}</small>
+      <article class="grid gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="uppercase tracking-[0.2em] text-[0.7rem] text-slate-500">Project insights</span>
+            <p class="text-sm text-slate-500 mt-1">Active inventory split by category.</p>
+          </div>
+          <strong class="text-3xl font-serif text-slate-900">
+            {{ projectSummary?.active || 0 }}
+          </strong>
+        </div>
 
-        <div class="grid gap-2 text-slate-600 text-sm">
-          <span class="relative block h-10 rounded-xl overflow-hidden bg-slate-100">
-            <span
-              class="absolute inset-y-0 left-0 rounded-xl bg-gradient-to-r from-brand to-accent"
-              [style.width.%]="(projects.length % 12) / 12 * 100"
-            ></span>
-          </span>
+        <div class="grid gap-3 text-sm text-slate-600">
+          <div class="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
+            <span class="inline-flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+              Ongoing
+            </span>
+            <span class="font-semibold text-slate-900">{{ projectSummary?.ongoing || 0 }}</span>
+          </div>
+          <div class="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
+            <span class="inline-flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+              Upcoming
+            </span>
+            <span class="font-semibold text-slate-900">{{ projectSummary?.upcoming || 0 }}</span>
+          </div>
+          <div class="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
+            <span class="inline-flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+              Completed
+            </span>
+            <span class="font-semibold text-slate-900">{{ projectSummary?.completed || 0 }}</span>
+          </div>
+          <div class="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
+            <span class="inline-flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-slate-400"></span>
+              Total projects
+            </span>
+            <span class="font-semibold text-slate-900">{{ projectSummary?.total || 0 }}</span>
+          </div>
         </div>
       </article>
 
-      <!-- Client inquiries (BOTTOM) -->
-      <article class="grid gap-2 rounded-lg border border-slate-200 bg-white p-7 shadow-sm">
-        <span class="uppercase tracking-[0.2em] text-[0.72rem] text-slate-500">Client inquiries</span>
-        <strong class="font-serif text-4xl md:text-[2.6rem] text-slate-900">{{ totalInquiries }}</strong>
+      <article class="grid gap-2 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <span class="uppercase tracking-[0.2em] text-[0.7rem] text-slate-500">Client inquiries</span>
+        <strong class="font-serif text-4xl text-slate-900">{{ totalInquiries }}</strong>
         <small *ngIf="inquiriesError" class="text-rose-500">{{ inquiriesError }}</small>
 
         <div class="grid gap-2 text-slate-600 text-sm">

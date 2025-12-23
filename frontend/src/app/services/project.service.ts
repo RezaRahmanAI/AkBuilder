@@ -3,7 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../environments/environment';
-import { Project, ProjectFeature, ProjectGallery } from '../models/model';
+import {
+  Project,
+  ProjectDashboardSummary,
+  ProjectFeature,
+  ProjectGallery,
+} from '../models/model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +21,12 @@ export class ProjectService {
   // Project APIs
   getProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(`${this.apiBaseUrl}/api/project`);
+  }
+
+  getDashboardSummary(): Observable<ProjectDashboardSummary> {
+    return this.http.get<ProjectDashboardSummary>(
+      `${this.apiBaseUrl}/api/project/dashboard-summary`
+    );
   }
 
   getActiveProjects(): Observable<Project[]> {
