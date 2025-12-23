@@ -26,11 +26,6 @@ interface Slide {
   title: string;
   topic: string;
   des: string;
-  address?: string;
-  landArea?: string;
-  builtUpArea?: string;
-  numberOfApartments?: number;
-  numberOfParking?: number;
   thumbnailTitle: string;
   thumbnailDescription: string;
 }
@@ -86,11 +81,6 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
           des: `Explore our ${project.name || 'latest project'} in ${
             project.category || 'diverse'
           } settings and experience future-ready living today.`,
-          address: project.address,
-          landArea: project.landArea,
-          builtUpArea: project.builtUpArea,
-          numberOfApartments: project.numberOfApartments,
-          numberOfParking: project.numberOfParking,
           thumbnailTitle: project.name || 'Untitled',
           thumbnailDescription: project.category || 'Category',
         }));
