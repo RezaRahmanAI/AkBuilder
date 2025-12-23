@@ -1,34 +1,47 @@
-<div class="py-12 px-4 md:px-8 rounded-2xl">
-  <div class="mx-auto w-[85%]">
-    <p class="text-accent text-2xl lg:text-2xl text-center md:text-left">
-      News & Article
-    </p>
-    <div class="flex flex-col items-center md:flex-row md:justify-between">
-      <h1
-        class="text-2xl lg:text-6xl text-dark font-semibold fade-up mb-2 text-center md:text-left"
+<section
+  class="border-t border-steel/20 bg-pure px-4 py-16 md:px-10 lg:px-24"
+>
+  <div class="mx-auto max-w-[1200px]">
+    <div class="mb-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <h2 class="text-2xl font-semibold text-carbon md:text-[28px]">
+        Latest News &amp; Updates
+      </h2>
+      <a
+        class="text-sm font-semibold text-accent transition hover:underline"
+        routerLink="/blogs"
       >
-        <span class="mb-5">Stay Updated</span><br /><span class="md:ms-16"
-          >With AS Haven</span
-        >
-      </h1>
+        View all news
+      </a>
+    </div>
+    <app-blog-slide />
+  </div>
+</section>
 
-      <div class="nav flex items-center gap-4 fade-up md:mr-10 md:pr-10">
+<section class="bg-carbon px-4 py-16 md:px-10 lg:px-24">
+  <div
+    class="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-10 md:flex-row"
+  >
+    <div class="max-w-[600px] text-center md:text-left">
+      <h2 class="text-3xl font-semibold text-pure">
+        Get market updates in your inbox
+      </h2>
+      <p class="mt-3 text-lg text-pure/80">
+        Sign up for our newsletter to get the latest real estate news and new listings first.
+      </p>
+    </div>
+    <div class="w-full max-w-[480px]">
+      <div class="flex flex-col gap-3 sm:flex-row">
+        <input
+          class="flex-1 rounded-lg border border-transparent bg-pure px-4 py-3 text-carbon focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/40"
+          placeholder="Your email address"
+          type="email"
+        />
         <button
-          (click)="prev()"
-          class="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center bg-accent text-light rounded-full ring-offset-2 ring ring-accent hover:bg-accent-light transition duration-500 ease-in-out text-lg font-semibold"
+          class="whitespace-nowrap rounded-lg bg-brand px-6 py-3 font-semibold text-carbon transition hover:bg-accent"
         >
-          ←
-        </button>
-        <button
-          (click)="next()"
-          class="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center bg-accent text-light rounded-full ring-offset-2 ring ring-accent hover:bg-accent-light transition duration-500 ease-in-out text-lg font-semibold"
-        >
-          →
+          Subscribe
         </button>
       </div>
     </div>
   </div>
-
-  <app-blog-slide (scrollContainer)="scrollContainer = $event" />
-
-</div>
+</section>
