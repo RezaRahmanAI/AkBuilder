@@ -1,16 +1,16 @@
 <section id="connect" class="relative overflow-hidden bg-gradient-to-br py-16">
   <!-- background decoration (unchanged) -->
   <div
-    class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,119,27,0.28),transparent_60%),radial-gradient(circle_at_bottom_left,rgba(47,118,68,0.28),transparent_55%)] pointer-events-none"
+    class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(242,183,5,0.28),transparent_60%),radial-gradient(circle_at_bottom_left,rgba(196,22,28,0.22),transparent_55%)] pointer-events-none"
   ></div>
   <div
-    class="absolute -top-36 -left-20 w-[420px] h-[420px] bg-[rgba(47,118,68,0.45)] rounded-full blur-[80px] opacity-60 mix-blend-screen"
+    class="absolute -top-36 -left-20 w-[420px] h-[420px] bg-[rgba(26,26,26,0.45)] rounded-full blur-[80px] opacity-60 mix-blend-screen"
   ></div>
   <div
-    class="absolute -bottom-36 -right-16 w-[360px] h-[360px] bg-[rgba(255,119,27,0.35)] rounded-full blur-[80px] opacity-60 mix-blend-screen"
+    class="absolute -bottom-36 -right-16 w-[360px] h-[360px] bg-[rgba(242,183,5,0.35)] rounded-full blur-[80px] opacity-60 mix-blend-screen"
   ></div>
   <div
-    class="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(241,251,236,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(241,251,236,0.12)_1px,transparent_1px)] bg-[size:160px_160px] [mask-image:radial-gradient(circle_at_center,rgba(0,0,0,0.8)_40%,transparent_90%)] pointer-events-none"
+    class="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(250,250,250,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(250,250,250,0.12)_1px,transparent_1px)] bg-[size:160px_160px] [mask-image:radial-gradient(circle_at_center,rgba(0,0,0,0.8)_40%,transparent_90%)] pointer-events-none"
   ></div>
 
   <div class="relative w-[min(1180px,92%)] md:w-[80%] mx-auto py-16 md:py-24">
@@ -18,7 +18,7 @@
     <div class="flex flex-col items-start gap-12 lg:gap-16">
       <div class="space-y-6 lg:w-2/3">
         <span
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ff771b]/20 border border-[#ff9952]/35 text-xs uppercase tracking-wider"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F2B705]/20 border border-[#D99A00]/35 text-xs uppercase tracking-wider"
           >TELL US ABOUT YOUR VISION</span
         >
         <h2 class="text-3xl md:text-4xl font-semibold leading-snug">
@@ -76,7 +76,7 @@
               id="message"
               formControlName="message"
               rows="4"
-              class="w-full rounded-2xl border border-white/18 bg-[rgba(142,187,163,0.7)] text-black p-3 text-sm placeholder-white/40 focus:outline-none focus:border-[#ff771b]/65 focus:ring-4 focus:ring-[#ff771b]/18 resize-y min-h-[160px]"
+              class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-[#F2B705]/65 focus:ring-4 focus:ring-[#F2B705]/18 resize-y min-h-[160px]"
               placeholder="Share location preferences, budget, timelines, or inspirations."
             ></textarea>
             <p *ngIf="isFieldInvalid('message')" class="text-xs text-accent">
@@ -96,7 +96,7 @@
                 id="name"
                 type="text"
                 formControlName="name"
-                class="w-full rounded-2xl border border-white/18 bg-[rgba(142,187,163,0.7)] text-black p-3 text-sm placeholder-white/40 focus:outline-none focus:border-[#ff771b]/65 focus:ring-4 focus:ring-[#ff771b]/18"
+                class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-[#F2B705]/65 focus:ring-4 focus:ring-[#F2B705]/18"
                 placeholder="Enter your full name"
               />
               <p *ngIf="isFieldInvalid('name')" class="text-xs text-accent">
@@ -114,7 +114,7 @@
                 id="phone"
                 type="tel"
                 formControlName="phone"
-                class="w-full rounded-2xl border border-white/18 bg-[rgba(142,187,163,0.7)] text-black p-3 text-sm placeholder-white/40 focus:outline-none focus:border-[#ff771b]/65 focus:ring-4 focus:ring-[#ff771b]/18"
+                class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-[#F2B705]/65 focus:ring-4 focus:ring-[#F2B705]/18"
                 placeholder="e.g. +8801X-XXXXXXX"
               />
             </div>
@@ -129,7 +129,7 @@
                 id="email"
                 type="email"
                 formControlName="email"
-                class="w-full rounded-2xl border border-white/18 bg-[rgba(142,187,163,0.7)] text-black p-3 text-sm placeholder-white/40 focus:outline-none focus:border-[#ff771b]/65 focus:ring-4 focus:ring-[#ff771b]/18"
+                class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-[#F2B705]/65 focus:ring-4 focus:ring-[#F2B705]/18"
                 placeholder="you@example.com"
               />
               <p *ngIf="isFieldInvalid('email')" class="text-xs text-accent">
@@ -147,7 +147,7 @@
                 id="subject"
                 type="text"
                 formControlName="subject"
-                class="w-full rounded-2xl border border-white/18 bg-[rgba(142,187,163,0.7)] text-black p-3 text-sm placeholder-white/40 focus:outline-none focus:border-[#ff771b]/65 focus:ring-4 focus:ring-[#ff771b]/18"
+                class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-[#F2B705]/65 focus:ring-4 focus:ring-[#F2B705]/18"
                 placeholder="How can we help?"
               />
               <p *ngIf="isFieldInvalid('subject')" class="text-xs text-accent">
@@ -160,7 +160,7 @@
             <button
               type="submit"
               [disabled]="isSubmitting"
-              class="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#ff771b] to-[#d65f13] text-white font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition disabled:opacity-60 disabled:cursor-not-allowed"
+              class="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#F2B705] to-[#C4161C] text-white font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {{ isSubmitting ? "Sending..." : "Submit enquiry" }}
             </button>
@@ -173,8 +173,8 @@
             *ngIf="submitMessage"
             class="p-3 rounded-xl text-sm font-semibold text-center"
             [ngClass]="{
-              'bg-[#ff771b]/16 text-accent': !submitMessage.includes('Error'),
-              'bg-red-600/16 text-accent': submitMessage.includes('Error')
+              'bg-[#F2B705]/16 text-accent': !submitMessage.includes('Error'),
+              'bg-[#C4161C]/16 text-accent': submitMessage.includes('Error')
             }"
           >
             {{ submitMessage }}
@@ -189,7 +189,7 @@
         >
           <div>
             <span
-              class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#ff771b]/20 border border-[#ff9952]/35 text-xs uppercase tracking-wider"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F2B705]/20 border border-[#D99A00]/35 text-xs uppercase tracking-wider"
               >Showroom & Experience Centre</span
             >
             <p class="mt-2">
@@ -199,10 +199,10 @@
           </div>
 
           <div
-            class="relative rounded-2xl border border-[#ff9952]/25 flex-1 min-h-[320px] overflow-hidden"
+            class="relative rounded-2xl border border-[#D99A00]/25 flex-1 min-h-[320px] overflow-hidden"
           >
             <div
-              class="absolute inset-0 bg-gradient-to-br from-[rgba(47,118,68,0.25)] to-[rgba(255,119,27,0.25)] flex items-center justify-center animate-[shimmer_1.2s_ease-in-out_infinite] z-10"
+              class="absolute inset-0 bg-gradient-to-br from-[rgba(26,26,26,0.25)] to-[rgba(242,183,5,0.25)] flex items-center justify-center animate-[shimmer_1.2s_ease-in-out_infinite] z-10"
               [class.hidden]="isMapLoaded"
             ></div>
             <iframe
@@ -255,7 +255,7 @@
     class="fixed inset-0 flex items-center justify-center z-50 p-6"
   >
     <div
-      class="relative w-full max-w-sm rounded-3xl p-8 bg-gradient-to-br from-[rgba(11,40,24,0.95)] to-[rgba(14,48,28,0.92)] border border-[#ff9952]/30 shadow-2xl text-center text-white/95"
+      class="relative w-full max-w-sm rounded-3xl p-8 bg-gradient-to-br from-[rgba(11,11,11,0.95)] to-[rgba(26,26,26,0.92)] border border-[#D99A00]/30 shadow-2xl text-center text-white/95"
     >
       <button
         class="absolute top-4 right-4 bg-transparent border-none text-white/75 text-lg cursor-pointer"
@@ -271,7 +271,7 @@
         shortly.
       </p>
       <button
-        class="mt-6 w-full md:w-auto px-6 py-3 rounded-full bg-gradient-to-r from-[#ff771b] to-[#d65f13] text-white font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition"
+        class="mt-6 w-full md:w-auto px-6 py-3 rounded-full bg-gradient-to-r from-[#F2B705] to-[#C4161C] text-white font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition"
         (click)="closePopup()"
       >
         Close

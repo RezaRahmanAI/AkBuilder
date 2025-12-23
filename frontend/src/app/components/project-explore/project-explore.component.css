@@ -25,8 +25,8 @@
   gap: 0.5rem;
   padding: 0.55rem 0.95rem;
   border-radius: 999px;
-  background: rgba(60, 117, 186, 0.08);
-  color: #294f80;
+  background: rgba(196, 22, 28, 0.08);
+  color: #0b0b0b;
   letter-spacing: 0.2em;
   font-weight: 700;
   text-transform: uppercase;
@@ -35,13 +35,13 @@
 .neo-discover__header h2 {
   font-size: clamp(2rem, 3.4vw, 2.8rem);
   margin: 0.65rem 0;
-  color: #0e1c24;
+  color: #0b0b0b;
 }
 
 .neo-discover__header p {
   max-width: 620px;
   line-height: 1.7;
-  color: rgba(14, 28, 36, 0.78);
+  color: #8a8a8a;
   font-size: 1.05rem;
 }
 
@@ -51,17 +51,17 @@
   gap: 0.75rem;
   padding: 0.9rem 1.1rem;
   border-radius: 1rem;
-  background: linear-gradient(120deg, rgba(255, 119, 27, 0.12), rgba(60, 117, 186, 0.08));
-  color: #294f80;
-  border: 1px solid rgba(60, 117, 186, 0.2);
+  background: linear-gradient(120deg, rgba(242, 183, 5, 0.12), rgba(196, 22, 28, 0.08));
+  color: #1a1a1a;
+  border: 1px solid rgba(196, 22, 28, 0.2);
 }
 
 .hint-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: linear-gradient(120deg, #ff771b, #4fc3a1);
-  box-shadow: 0 0 0 10px rgba(255, 119, 27, 0.1);
+  background: linear-gradient(120deg, #F2B705, #C4161C);
+  box-shadow: 0 0 0 10px rgba(242, 183, 5, 0.1);
 }
 
 .neo-discover__grid {
@@ -79,9 +79,9 @@
   height: 100%;
   padding: 1.4rem;
   border-radius: 1.4rem;
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.95), rgba(241, 251, 236, 0.92));
-  border: 1px solid rgba(32, 71, 38, 0.12);
-  box-shadow: 0 30px 70px rgba(19, 53, 31, 0.18);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.95), rgba(250, 250, 250, 0.92));
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  box-shadow: 0 30px 70px rgba(11, 11, 11, 0.18);
   transform-style: preserve-3d;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease;
   overflow: hidden;
@@ -89,15 +89,15 @@
 
 .discover-card:hover .discover-card__inner,
 .discover-card:focus-within .discover-card__inner {
-  box-shadow: 0 38px 90px rgba(19, 53, 31, 0.25);
-  border-color: rgba(32, 71, 38, 0.35);
+  box-shadow: 0 38px 90px rgba(11, 11, 11, 0.25);
+  border-color: rgba(26, 26, 26, 0.35);
 }
 
 .discover-card__halo {
   position: absolute;
   inset: -40% -20% auto -20%;
   height: 68%;
-  background: radial-gradient(circle, rgba(255, 119, 27, 0.22), transparent 70%);
+  background: radial-gradient(circle, rgba(242, 183, 5, 0.22), transparent 70%);
   filter: blur(28px);
   opacity: 0.55;
   pointer-events: none;
@@ -115,9 +115,9 @@
   border-radius: 1.4rem;
   display: grid;
   place-items: center;
-  background: rgba(255, 119, 27, 0.1);
-  border: 1px solid rgba(255, 119, 27, 0.25);
-  box-shadow: inset 0 0 22px rgba(255, 119, 27, 0.18);
+  background: rgba(242, 183, 5, 0.1);
+  border: 1px solid rgba(242, 183, 5, 0.25);
+  box-shadow: inset 0 0 22px rgba(242, 183, 5, 0.18);
 }
 
 .discover-card__icon img {
@@ -130,8 +130,8 @@
   width: 12px;
   height: 12px;
   border-radius: 999px;
-  background: linear-gradient(120deg, #ff771b, #ffb36b);
-  box-shadow: 0 0 0 0 rgba(255, 119, 27, 0.4);
+  background: linear-gradient(120deg, #F2B705, #D99A00);
+  box-shadow: 0 0 0 0 rgba(242, 183, 5, 0.4);
   animation: pulse 2.8s infinite;
 }
 
@@ -144,18 +144,18 @@
 .discover-card__eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: rgba(14, 28, 36, 0.58);
+  color: #8a8a8a;
   font-weight: 700;
   font-size: 0.78rem;
 }
 
 .discover-card h3 {
   font-size: 1.4rem;
-  color: #1b2d38;
+  color: #1a1a1a;
 }
 
 .discover-card__copy {
-  color: rgba(14, 28, 36, 0.68);
+  color: #8a8a8a;
   line-height: 1.6;
 }
 
@@ -163,7 +163,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: #ff771b;
+  color: #F2B705;
   font-weight: 700;
   letter-spacing: 0.05em;
 }

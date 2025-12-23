@@ -31,7 +31,7 @@
 .app-atmosphere__glow--two {
   top: 35%;
   right: -15%;
-  background: radial-gradient(circle, rgba(255, 119, 27, 0.35), transparent 65%);
+  background: radial-gradient(circle, rgba(242, 183, 5, 0.35), transparent 65%);
   animation-duration: 32s;
 }
 

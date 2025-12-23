@@ -1,9 +1,9 @@
 <main class="bg-[#f6f7f8] text-[#111418] min-h-screen">
   <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <nav class="flex flex-wrap items-center text-sm text-gray-500 gap-y-1">
-      <a class="hover:text-[#197fe6] hover:underline" routerLink="/">Home</a>
+      <a class="hover:text-[#C4161C] hover:underline" routerLink="/">Home</a>
       <span class="mx-2 text-gray-300">/</span>
-      <a class="hover:text-[#197fe6] hover:underline" routerLink="/project">Projects</a>
+      <a class="hover:text-[#C4161C] hover:underline" routerLink="/project">Projects</a>
       <span class="mx-2 text-gray-300">/</span>
       <span class="text-gray-900 font-medium">
         {{ state.data?.name || 'Project details' }}
@@ -87,7 +87,7 @@
             </div>
             <div class="flex flex-col items-end gap-3">
               <button
-                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-bold rounded-lg shadow-sm text-white bg-[#197fe6] hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#197fe6] transition-all"
+                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-bold rounded-lg shadow-sm text-white bg-[#C4161C] hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#C4161C] transition-all"
                 (click)="scrollToContactForm()"
                 type="button"
               >
@@ -233,7 +233,7 @@
                   />
                   <span
                     *ngIf="!item.icon"
-                    class="material-symbols-outlined text-[#197fe6]"
+                    class="material-symbols-outlined text-[#C4161C]"
                   >
                     apartment
                   </span>
@@ -253,7 +253,7 @@
           <div class="flex items-center justify-between">
             <h3 class="text-xl font-bold text-gray-900">Location</h3>
             <a
-              class="text-sm font-medium text-[#197fe6] hover:underline"
+              class="text-sm font-medium text-[#C4161C] hover:underline"
               [href]="state.data?.mapLink || '#location'"
               target="_blank"
               rel="noopener noreferrer"
@@ -303,7 +303,7 @@
               </div>
               <div>
                 <h4 class="font-bold text-gray-900 text-lg">Project Consultant</h4>
-                <p class="text-sm text-[#197fe6] font-medium">Ashaven Team</p>
+                <p class="text-sm text-[#C4161C] font-medium">Ashaven Team</p>
                 <div class="flex items-center gap-1 mt-1 text-xs text-gray-500">
                   <span
                     class="material-symbols-outlined text-yellow-400 text-sm"
@@ -318,7 +318,7 @@
 
             <div class="grid grid-cols-2 gap-3 mb-6">
               <button
-                class="flex flex-col items-center justify-center gap-1 p-3 rounded-lg border border-[#197fe6]/20 bg-[#197fe6]/5 hover:bg-[#197fe6]/10 transition-colors text-[#197fe6]"
+                class="flex flex-col items-center justify-center gap-1 p-3 rounded-lg border border-[#C4161C]/20 bg-[#C4161C]/5 hover:bg-[#C4161C]/10 transition-colors text-[#C4161C]"
                 type="button"
               >
                 <span class="material-symbols-outlined">calendar_today</span>
@@ -340,37 +340,37 @@
               <input type="hidden" id="subject" [value]="state.data?.name || 'Project Inquiry'" />
               <input
                 id="name"
-                class="w-full rounded-lg border-gray-200 bg-gray-50 text-sm focus:ring-[#197fe6] focus:border-[#197fe6]"
+                class="w-full rounded-lg border-gray-200 bg-gray-50 text-sm focus:ring-[#C4161C] focus:border-[#C4161C]"
                 placeholder="Name"
                 type="text"
               />
               <input
                 id="email"
-                class="w-full rounded-lg border-gray-200 bg-gray-50 text-sm focus:ring-[#197fe6] focus:border-[#197fe6]"
+                class="w-full rounded-lg border-gray-200 bg-gray-50 text-sm focus:ring-[#C4161C] focus:border-[#C4161C]"
                 placeholder="Email"
                 type="email"
               />
               <input
                 id="phone"
-                class="w-full rounded-lg border-gray-200 bg-gray-50 text-sm focus:ring-[#197fe6] focus:border-[#197fe6]"
+                class="w-full rounded-lg border-gray-200 bg-gray-50 text-sm focus:ring-[#C4161C] focus:border-[#C4161C]"
                 placeholder="Phone"
                 type="tel"
               />
               <textarea
                 id="message"
-                class="w-full rounded-lg border-gray-200 bg-gray-50 text-sm focus:ring-[#197fe6] focus:border-[#197fe6] resize-none"
+                class="w-full rounded-lg border-gray-200 bg-gray-50 text-sm focus:ring-[#C4161C] focus:border-[#C4161C] resize-none"
                 placeholder="I am interested in this project..."
                 rows="3"
               ></textarea>
               <button
-                class="w-full bg-[#197fe6] hover:bg-blue-600 text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                class="w-full bg-[#C4161C] hover:bg-blue-600 text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
                 type="submit"
               >
                 Request Information
               </button>
             </form>
             <div class="mt-4 text-center">
-              <a class="text-xs text-gray-400 hover:text-[#197fe6] underline" href="#">
+              <a class="text-xs text-gray-400 hover:text-[#C4161C] underline" href="#">
                 View agent profile
               </a>
             </div>
