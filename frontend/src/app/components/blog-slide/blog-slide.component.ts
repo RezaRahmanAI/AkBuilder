@@ -1,14 +1,9 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ElementRef,
-  EventEmitter,
   OnDestroy,
   OnInit,
-  Output,
-  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -26,12 +21,7 @@ import { environment } from '../../environments/environment';
   styleUrl: './blog-slide.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlogSlideComponent
-  implements OnInit, AfterViewInit, OnDestroy
-{
-  @ViewChild('scrollWrapper') scrollWrapper?: ElementRef<HTMLDivElement>;
-  @Output() scrollContainer = new EventEmitter<HTMLElement | null>();
-
+export class BlogSlideComponent implements OnInit, OnDestroy {
   readonly blogs$ = new BehaviorSubject<BlogSummary[]>([]);
   readonly isLoading$ = new BehaviorSubject<boolean>(false);
   readonly loadError$ = new BehaviorSubject<boolean>(false);
@@ -46,12 +36,6 @@ export class BlogSlideComponent
 
   ngOnInit(): void {
     this.loadBlogs();
-  }
-
-  ngAfterViewInit(): void {
-    Promise.resolve().then(() => {
-      this.scrollContainer.emit(this.scrollWrapper?.nativeElement ?? null);
-    });
   }
 
   loadBlogs(): void {

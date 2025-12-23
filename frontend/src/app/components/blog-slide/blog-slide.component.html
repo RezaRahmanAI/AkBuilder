@@ -1,67 +1,62 @@
-<div class="relative mt-8">
+<div>
   @let isLoading = isLoading$ | async;
   @let loadError = loadError$ | async;
   @let blogs = blogs$ | async;
 
   @if (loadError) {
-    <div class="mx-auto max-w-xl rounded-3xl border border-dashed border-accent/40 bg-white/90 p-6 text-center text-slate-600">
-      <h3 class="text-lg font-semibold text-slate-900">Fresh stories are on pause.</h3>
+    <div class="mx-auto max-w-xl rounded-3xl border border-dashed border-accent/40 bg-pure/90 p-6 text-center text-steel">
+      <h3 class="text-lg font-semibold text-carbon">Fresh stories are on pause.</h3>
       <p class="mt-2 text-sm">Please refresh to try again—the latest updates will return shortly.</p>
       <button
         type="button"
         (click)="loadBlogs()"
-        class="mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-brand/90"
+        class="mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-carbon shadow-sm transition hover:-translate-y-0.5 hover:bg-accent"
       >
         <i class="ri-refresh-line" aria-hidden="true"></i>
         Retry
       </button>
     </div>
   } @else {
-    <div
-      #scrollWrapper
-      class="flex gap-6 overflow-x-auto pb-4"
-      role="list"
-      aria-live="polite"
-    >
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3" role="list" aria-live="polite">
       @if (isLoading) {
-        <div class="grid min-w-full grid-cols-[repeat(auto-fit,minmax(18rem,1fr))] gap-6">
-          <div class="h-72 min-w-[18rem] animate-pulse rounded-3xl bg-white" *ngFor="let _ of [1,2,3,4]"></div>
-        </div>
+        <div class="h-80 animate-pulse rounded-2xl bg-steel/15" *ngFor="let _ of [1,2,3]"></div>
       } @else if (blogs?.length) {
         <article
-          *ngFor="let blog of blogs; trackBy: trackById"
+          *ngFor="let blog of (blogs | slice: 0 : 3); trackBy: trackById"
           role="listitem"
-          class="group relative min-w-[19rem] max-w-sm flex-1 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(15,23,42,0.12)]"
+          class="group flex flex-col gap-4"
         >
-          <a [routerLink]="['/blogs', blog.id]" class="flex h-full flex-col">
-            <div class="relative overflow-hidden">
+          <a [routerLink]="['/blogs', blog.id]" class="flex h-full flex-col gap-4">
+            <div class="h-52 w-full overflow-hidden rounded-2xl bg-steel/10">
               <img
                 [src]="imageUrl(blog.image)"
                 [alt]="blog.title || 'Blog card'"
                 loading="lazy"
-                class="h-40 w-full object-cover transition duration-700 group-hover:scale-105"
+                class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
               />
-              <span class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-brand">
-                {{ blog.postedDate | date: 'MMM d' || 'New' }}
-              </span>
             </div>
-            <div class="flex flex-1 flex-col gap-3 px-5 py-4">
-              <h3 class="font-serif text-lg font-semibold text-brand line-clamp-2">
+            <div class="flex flex-1 flex-col gap-2">
+              <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-steel">
+                <span>{{ blog.name || 'Updates' }}</span>
+                <span class="h-1 w-1 rounded-full bg-steel/60"></span>
+                <span>{{ blog.postedDate | date: 'MMM d, y' }}</span>
+              </div>
+              <h3 class="text-xl font-semibold leading-tight text-carbon transition-colors group-hover:text-accent line-clamp-2">
                 {{ blog.title }}
               </h3>
-              <p class="text-sm text-slate-600 line-clamp-3">
+              <p class="text-sm leading-relaxed text-steel line-clamp-3">
                 {{ blog.description }}
               </p>
-              <span class="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-brand">
-                Read more
-                <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+              <span class="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-accent transition-all group-hover:gap-2">
+                Read article
+                <i class="ri-arrow-right-line" aria-hidden="true"></i>
               </span>
             </div>
           </a>
         </article>
       } @else {
-        <div class="w-full rounded-3xl border border-dashed border-slate-200 bg-white/90 p-8 text-center text-slate-600">
-          <span class="text-xs font-semibold uppercase tracking-[0.32em] text-brand/60">Journal in progress</span>
+        <div class="w-full rounded-3xl border border-dashed border-steel/30 bg-pure/90 p-8 text-center text-steel md:col-span-2 lg:col-span-3">
+          <span class="text-xs font-semibold uppercase tracking-[0.32em] text-accent/70">Journal in progress</span>
           <p class="mt-3 text-sm">We're curating the first stories—check back soon.</p>
         </div>
       }
