@@ -67,6 +67,11 @@ namespace Real_Estate.server.api.Data
             }
 
         }
+
+        public Task SeedProjects()
+        {
+            return Task.CompletedTask;
+        }
        
     }
 
@@ -75,6 +80,6 @@ namespace Real_Estate.server.api.Data
         Task InitializeDB();
         Task InitializeRoles();
         Task InitializeUsers();
-        //Task SeedProjects();
+        Task SeedProjects();
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Real_Estate.server.api.Data;
 using Real_Estate.server.api.Models;
+using System;
 
 namespace Real_Estate.server.api.Controllers
 {
@@ -23,6 +24,35 @@ namespace Real_Estate.server.api.Controllers
         {
             var projects = await context.Projects.OrderBy(e => e.Order).ToListAsync();
             return Ok(projects);
+        }
+
+        [HttpGet]
+        [Route("dashboard-summary")]
+        public async Task<IActionResult> GetDashboardSummary()
+        {
+            var activeProjects = await context.Projects.AsNoTracking()
+                .Where(p => p.IsActive)
+                .ToListAsync();
+
+            int CountCategory(string category) => activeProjects.Count(
+                p => string.Equals(p.Category, category, StringComparison.OrdinalIgnoreCase));
+
+            var recentProjects = await context.Projects.AsNoTracking()
+                .OrderByDescending(p => p.CreateDate)
+                .Take(6)
+                .ToListAsync();
+
+            var summary = new
+            {
+                total = await context.Projects.CountAsync(),
+                active = activeProjects.Count,
+                ongoing = CountCategory("Ongoing"),
+                upcoming = CountCategory("Upcoming"),
+                completed = CountCategory("Completed"),
+                recentProjects
+            };
+
+            return Ok(summary);
         }
 
 

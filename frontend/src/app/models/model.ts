@@ -86,6 +86,15 @@ export interface ProjectStats {
   completed: number;
 }
 
+export interface ProjectDashboardSummary {
+  total: number;
+  active: number;
+  ongoing: number;
+  upcoming: number;
+  completed: number;
+  recentProjects: Project[];
+}
+
 export interface AboutPageData {
   about: AboutUs | null;
   teams: Team[];
