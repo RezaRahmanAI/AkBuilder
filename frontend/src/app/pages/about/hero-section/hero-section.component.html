@@ -4,12 +4,10 @@
 >
   <div
     class="absolute inset-0 bg-cover bg-center"
-    style="
-      background-image: linear-gradient(
-          rgba(0, 0, 0, 0.35),
-          rgba(0, 0, 0, 0.75)
-        ),
-        url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2UxjLiDNblHUR0KUkEinNEFGsaMh55ZLgjEfuklocfEDX22-EEK05FjkokFqatHrIrHsEmskZEE4Rgqr8VgtFRBaG1ZB5O4m1ALKPf7V06Jqd94AJZxVt3LP3WPZ-PzeCb--Y0mPAeQfcf0WK-CQDNoygHH01wxa5LwzEoHrCMJifUk2OW_B0ScC1ZvVrcKm2-CYafD9cCePvLYJ-WtSQDdzBC6VNV5S3mlOVfWLB5fFC9OwpfjmONJa8UgC1MFEMLrden2P_Jw');
+    [style.background-image]="
+      'linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.75)), url(' +
+      heroContent.backgroundImage +
+      ')'
     "
   ></div>
   <div
@@ -23,32 +21,31 @@
         class="inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.45em] text-pure/70"
       >
         <span class="h-2 w-2 rounded-full bg-brand"></span>
-        Since 2005
+        {{ heroContent.eyebrow }}
       </p>
       <h1
         id="aboutHeroTitle"
         class="text-4xl font-black leading-tight sm:text-5xl lg:text-6xl"
       >
-        Redefining Real Estate since 2005
+        {{ heroContent.title }}
       </h1>
       <p class="text-lg leading-relaxed text-pure/80 sm:text-xl">
-        We empower families to find not just a house, but a home where memories
-        are made.
+        {{ heroContent.description }}
       </p>
       </div>
 
     <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
       <a
-        routerLink="/projects"
+        [routerLink]="heroContent.primaryCtaLink"
         class="inline-flex h-12 min-w-[160px] items-center justify-center rounded-lg bg-brand px-6 text-base font-semibold text-carbon shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-accent hover:shadow-xl"
       >
-        View Our Listings
+        {{ heroContent.primaryCtaLabel }}
       </a>
       <a
-        routerLink="/contact"
+        [routerLink]="heroContent.secondaryCtaLink"
         class="inline-flex h-12 min-w-[160px] items-center justify-center rounded-lg border border-white/30 bg-white/10 px-6 text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
       >
-        Meet Our Team
+        {{ heroContent.secondaryCtaLabel }}
       </a>
     </div>
 
@@ -60,7 +57,7 @@
           class="text-steel text-base font-medium leading-normal flex items-center gap-2"
         >
           <i class="ri-home-6-line text-accent text-xl"></i>
-          Ongoing Projects
+          {{ statsLabels.ongoing }}
         </p>
         <p
           class="text-carbon tracking-light text-3xl font-bold leading-tight"
@@ -75,7 +72,7 @@
           class="text-steel text-base font-medium leading-normal flex items-center gap-2"
         >
           <i class="ri-hand-coin-line text-accent text-xl"></i>
-          Upcoming Projects
+          {{ statsLabels.upcoming }}
         </p>
         <p
           class="text-carbon tracking-light text-3xl font-bold leading-tight"
@@ -90,7 +87,7 @@
           class="text-steel text-base font-medium leading-normal flex items-center gap-2"
         >
           <i class="ri-emotion-happy-line text-accent text-xl"></i>
-          Completed Projects
+          {{ statsLabels.completed }}
         </p>
         <p
           class="text-carbon tracking-light text-3xl font-bold leading-tight"

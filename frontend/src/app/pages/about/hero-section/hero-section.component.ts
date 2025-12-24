@@ -26,6 +26,34 @@ export class HeroSectionComponent implements OnDestroy {
     upcoming: 0,
     completed: 0,
   };
+  @Input() heroContent: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    backgroundImage: string;
+    primaryCtaLabel: string;
+    primaryCtaLink: string;
+    secondaryCtaLabel: string;
+    secondaryCtaLink: string;
+  } = {
+    eyebrow: '',
+    title: '',
+    description: '',
+    backgroundImage: '',
+    primaryCtaLabel: '',
+    primaryCtaLink: '',
+    secondaryCtaLabel: '',
+    secondaryCtaLink: '',
+  };
+  @Input() statsLabels: {
+    ongoing: string;
+    upcoming: string;
+    completed: string;
+  } = {
+    ongoing: 'Ongoing Projects',
+    upcoming: 'Upcoming Projects',
+    completed: 'Completed Projects',
+  };
   scrollTransform = 'translateY(-60px)';
   private destroy$ = new Subject<void>();
 

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AppStore } from '../../store/app.store';
 
 @Component({
   selector: 'app-floating-social',
@@ -11,6 +12,8 @@ import { CommonModule } from '@angular/common';
 export class FloatingSocialComponent {
   isOpen = false;
   isSpinning = false;
+  private readonly store = inject(AppStore);
+  readonly settings = this.store.settings;
 
   toggleSocialIcons(): void {
     this.isSpinning = true;
