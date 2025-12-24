@@ -1,9 +1,9 @@
 <article
-  class="group flex flex-col md:flex-row gap-6 md:gap-10 items-start rounded-2xl border border-slate-200 bg-white p-4 md:p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+  class="group flex flex-col md:flex-row gap-6 md:gap-10 items-start rounded-2xl border border-steel/20 bg-pure p-4 md:p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
 >
   <a
     [routerLink]="['/blogs', blog.id]"
-    class="w-full md:w-[45%] shrink-0 aspect-[16/10] md:aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative border border-slate-100"
+    class="w-full md:w-[45%] shrink-0 aspect-[16/10] md:aspect-[4/3] rounded-xl overflow-hidden bg-pure/80 relative border border-steel/20"
   >
     <img
       [src]="imageUrl(blog.image)"
@@ -15,28 +15,28 @@
 
   <div class="flex-1 flex flex-col h-full">
     <div class="flex mb-3">
-      <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+      <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-brand/10 text-accent text-xs font-bold uppercase tracking-wider">
         Insights
       </span>
     </div>
     <h2 class="text-2xl md:text-3xl font-bold leading-tight mb-3 font-serif">
-      <a [routerLink]="['/blogs', blog.id]" class="text-slate-900 group-hover:text-primary transition-colors">{{ blog.title }}</a>
+      <a [routerLink]="['/blogs', blog.id]" class="text-carbon group-hover:text-accent transition-colors">{{ blog.title }}</a>
     </h2>
-    <p class="text-slate-600 leading-relaxed mb-6 font-serif text-lg line-clamp-3">
+    <p class="text-steel leading-relaxed mb-6 font-serif text-lg line-clamp-3">
       {{ blog.description }}
     </p>
     <div class="mt-auto flex items-center gap-3">
       <div
-        class="w-10 h-10 rounded-full bg-slate-200 bg-cover bg-center ring-1 ring-white"
+        class="w-10 h-10 rounded-full bg-steel/20 bg-cover bg-center ring-1 ring-pure"
         [ngStyle]="{ backgroundImage: authorPhoto(blog.picture) }"
       >
-        <span class="flex h-full w-full items-center justify-center text-xs font-bold text-slate-700" *ngIf="!blog.picture">
+        <span class="flex h-full w-full items-center justify-center text-xs font-bold text-carbon" *ngIf="!blog.picture">
           {{ initials(blog.name) }}
         </span>
       </div>
       <div class="flex flex-col">
-        <span class="text-slate-900 font-bold text-sm">{{ blog.name || 'Ashaven Team' }}</span>
-        <span class="text-slate-500 text-xs">
+        <span class="text-carbon font-bold text-sm">{{ blog.name || 'Ashaven Team' }}</span>
+        <span class="text-steel text-xs">
           {{ blog.postedDate ? (blog.postedDate | date: 'MMM d, y') : 'New' }} • {{ readingTime(blog.description) }}
         </span>
       </div>
