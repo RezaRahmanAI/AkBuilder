@@ -1,15 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  NgZone,
-  OnDestroy,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { ScrollService } from '../../../services/scroll.service';
 import { ProjectStats } from '../../../models/model';
 
 @Component({
@@ -20,7 +11,7 @@ import { ProjectStats } from '../../../models/model';
   styleUrl: './hero-section.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeroSectionComponent implements OnDestroy {
+export class HeroSectionComponent {
   @Input() stats: ProjectStats = {
     ongoing: 0,
     upcoming: 0,
@@ -54,26 +45,4 @@ export class HeroSectionComponent implements OnDestroy {
     upcoming: 'Upcoming Projects',
     completed: 'Completed Projects',
   };
-  scrollTransform = 'translateY(-60px)';
-  private destroy$ = new Subject<void>();
-
-  constructor(private scrollService: ScrollService, private zone: NgZone) {
-    this.zone.runOutsideAngular(() => {
-      this.scrollService.scrollY$
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((scrollY) => {
-          const transform = `translateY(${scrollY * 0.3 - 60}px)`;
-          if (transform !== this.scrollTransform) {
-            this.zone.run(() => {
-              this.scrollTransform = transform;
-            });
-          }
-        });
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
 }

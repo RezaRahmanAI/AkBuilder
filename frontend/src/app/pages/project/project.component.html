@@ -1,27 +1,36 @@
 <div class="shape-accent bg-pure">
-  <main
-    class="site-container flex-1 flex flex-col py-6 text-carbon"
-  >
-    <div class="flex flex-col gap-4 mb-6">
-      <div class="flex flex-wrap items-center gap-2 text-sm text-steel">
-        <a class="hover:underline hover:text-accent" routerLink="/">Home</a>
-        <span>/</span>
-        <span class="text-carbon font-medium">Projects</span>
-      </div>
-      <div class="flex flex-wrap justify-between items-end gap-4">
+  <main class="site-container flex-1 flex flex-col py-10 md:py-16 text-carbon">
+    <nav class="flex flex-wrap gap-2 py-4 mb-6 items-center text-sm text-steel">
+      <a
+        class="font-medium hover:text-accent transition-colors"
+        routerLink="/"
+        >Home</a
+      >
+      <span class="text-steel/60">/</span>
+      <span class="text-carbon font-medium">Projects</span>
+    </nav>
+
+    <div class="mb-10 border-b border-steel/20 pb-8">
+      <div class="flex flex-wrap items-end justify-between gap-6">
         <div class="flex flex-col gap-2">
+          <p
+            class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.45em] text-steel"
+          >
+            <span class="h-2 w-2 rounded-full bg-accent"></span>
+            Property listings
+          </p>
           <h1
-            class="text-carbon text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]"
+            class="text-4xl md:text-5xl font-black tracking-tight text-carbon font-serif mb-2"
           >
             Real Estate &amp; Projects
           </h1>
-          <p class="text-steel text-base">
+          <p class="text-xl md:text-2xl text-steel font-serif italic">
             {{ state.list.length || 0 }} listings found
           </p>
         </div>
         <div class="flex gap-2">
           <button
-            class="flex md:hidden items-center justify-center gap-2 rounded-lg h-10 px-4 bg-pure text-carbon text-sm font-bold shadow-sm hover:bg-pure/70 transition-colors"
+            class="flex md:hidden items-center justify-center gap-2 rounded-full px-5 py-2 bg-brand text-carbon text-sm font-bold shadow-sm transition-all hover:bg-accent"
             type="button"
           >
             <i class="ri-map-pin-2-line text-lg"></i>
