@@ -7,22 +7,9 @@ import { ToastrService } from 'ngx-toastr';
 import { LenisService } from '../../services/lenis.service';
 import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
 import { environment } from '../../environments/environment';
-import { Project } from '../../models/model';
+import { Project, ProjectFeature } from '../../models/model';
+import { ProjectService } from '../../services/project.service';
 
-
-interface Feature {
-  id: number | string;
-  title: string;
-  icon: string;
-}
-
-interface RelatedProject {
-  id: string;
-  name: string;
-  category: string;
-  type: string;
-  thumbnail: string;
-}
 
 @Component({
   selector: 'app-project-details',
@@ -38,8 +25,8 @@ interface RelatedProject {
 export class ProjectDetailsComponent implements OnInit, OnDestroy {
   baseUrl = environment.baseUrl;
   state = {
-    list: [] as Feature[],
-    projects: [] as RelatedProject[],
+    list: [] as ProjectFeature[],
+    projects: [] as Project[],
     data: null as Project | null,
     timer: {
       days: '00',
@@ -57,7 +44,8 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     private http: HttpClient,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-    private lenisService: LenisService
+    private lenisService: LenisService,
+    private projectService: ProjectService
   ) {}
 
   ngOnInit(): void {
@@ -131,50 +119,40 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
       this.toastr.error('Invalid project ID.', 'Error');
       return;
     }
-    this.http
-      .get<Project>(
-        `${this.baseUrl}/api/website/getsingleproject?projectId=${this.projectId}`
-      )
-      .subscribe({
-        next: (data) => {
-          this.state.data = data;
-          this.startOfferTimer();
-        },
-        error: (err) => {
-          console.error('Error fetching project:', err);
-          this.toastr.error('Failed to load project details.', 'Error');
-        },
-      });
+    this.projectService.getProject(this.projectId).subscribe({
+      next: (data) => {
+        this.state.data = data;
+        this.startOfferTimer();
+      },
+      error: (err) => {
+        console.error('Error fetching project:', err);
+        this.toastr.error('Failed to load project details.', 'Error');
+      },
+    });
   }
 
   getFeatures(): void {
     if (!this.projectId) return;
-    this.http
-      .get<Feature[]>(
-        `${this.baseUrl}/api/website/getprojectfeatures?projectId=${this.projectId}`
-      )
-      .subscribe({
-        next: (data) => (this.state.list = data),
-        error: (err) => {
-          console.error('Error fetching features:', err);
-          this.toastr.error('Failed to load project features.', 'Error');
-        },
-      });
+    this.projectService.getFeatures(this.projectId).subscribe({
+      next: (data) => (this.state.list = data),
+      error: (err) => {
+        console.error('Error fetching features:', err);
+        this.toastr.error('Failed to load project features.', 'Error');
+      },
+    });
   }
 
   getProjects(): void {
-    this.http
-      .get<RelatedProject[]>(`${this.baseUrl}/api/website/getprojects`)
-      .subscribe({
-        next: (data) => {
-          this.state.projects = data;
-          console.log('Related projects fetched:', this.state.projects);
-        },
-        error: (err) => {
-          console.error('Error fetching projects:', err);
-          this.toastr.error('Failed to load related projects.', 'Error');
-        },
-      });
+    this.projectService.getActiveProjects().subscribe({
+      next: (data) => {
+        this.state.projects = data;
+        console.log('Related projects fetched:', this.state.projects);
+      },
+      error: (err) => {
+        console.error('Error fetching projects:', err);
+        this.toastr.error('Failed to load related projects.', 'Error');
+      },
+    });
   }
 
   onFormSubmit(): void {
