@@ -62,7 +62,7 @@
         "
       >
         <i class="fas fa-user-tie"></i>
-        <span>Client registry</span>
+        <span>Contact submissions</span>
       </a>
       <a
         routerLink="/dashboard/teams"
@@ -92,6 +92,20 @@
       >
         <i class="fas fa-circle-info text-lg"></i>
         <span>About Us</span>
+      </a>
+      <a
+        routerLink="/dashboard/about-content"
+        routerLinkActive
+        #aboutContentRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-pure"
+        [ngClass]="
+          aboutContentRla.isActive
+            ? 'bg-brand text-charcoal shadow-industrial-soft'
+            : 'text-steel hover:bg-brand/10 hover:text-charcoal'
+        "
+      >
+        <i class="fas fa-pen-nib"></i>
+        <span>About content</span>
       </a>
 
       <!-- <a
@@ -151,6 +165,20 @@
       >
         <i class="fas fa-question-circle"></i>
         <span>FAQ</span>
+      </a>
+      <a
+        routerLink="/dashboard/settings"
+        routerLinkActive
+        #settingsRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-pure"
+        [ngClass]="
+          settingsRla.isActive
+            ? 'bg-brand text-charcoal shadow-industrial-soft'
+            : 'text-steel hover:bg-brand/10 hover:text-charcoal'
+        "
+      >
+        <i class="fas fa-gear"></i>
+        <span>Settings</span>
       </a>
 
       <button
@@ -229,7 +257,7 @@
           "
         >
           <i class="fas fa-user-tie"></i>
-          <span>Client registry</span>
+          <span>Contact submissions</span>
         </a>
         <a
           routerLink="/dashboard/teams"
@@ -245,6 +273,36 @@
         >
           <i class="fas fa-users"></i>
           <span>Advisory team</span>
+        </a>
+        <a
+          routerLink="/dashboard/about-us"
+          routerLinkActive
+          #mobileAbout="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-pure"
+          [ngClass]="
+            mobileAbout.isActive
+              ? 'bg-brand text-charcoal'
+              : 'text-steel hover:bg-brand/10 hover:text-charcoal'
+          "
+        >
+          <i class="fas fa-circle-info text-lg"></i>
+          <span>About Us</span>
+        </a>
+        <a
+          routerLink="/dashboard/about-content"
+          routerLinkActive
+          #mobileAboutContent="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-pure"
+          [ngClass]="
+            mobileAboutContent.isActive
+              ? 'bg-brand text-charcoal'
+              : 'text-steel hover:bg-brand/10 hover:text-charcoal'
+          "
+        >
+          <i class="fas fa-pen-nib"></i>
+          <span>About content</span>
         </a>
         <a
           routerLink="/dashboard/testimonials"
@@ -290,6 +348,21 @@
         >
           <i class="fas fa-question-circle"></i>
           <span>FAQ</span>
+        </a>
+        <a
+          routerLink="/dashboard/settings"
+          routerLinkActive
+          #mobileSettings="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-pure"
+          [ngClass]="
+            mobileSettings.isActive
+              ? 'bg-brand text-charcoal'
+              : 'text-steel hover:bg-brand/10 hover:text-charcoal'
+          "
+        >
+          <i class="fas fa-gear"></i>
+          <span>Settings</span>
         </a>
         <button
           type="button"
