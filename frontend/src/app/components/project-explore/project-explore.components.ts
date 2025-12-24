@@ -36,12 +36,7 @@ export class ProjectExploreComponent {
       route: '/projects',
       image: 'images/icons/architect.png',
     },
-    {
-      id: 4,
-      title: 'Entire Portfolio',
-      route: '/projects',
-      image: 'images/icons/architect.png',
-    },
+    
   ];
 
   private findCard(event: MouseEvent): HTMLElement | null {
