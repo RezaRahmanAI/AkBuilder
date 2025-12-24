@@ -1,218 +1,220 @@
-<main
-  class="flex-1 flex flex-col w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-40 py-6 text-carbon"
->
-  <div class="flex flex-col gap-4 mb-6">
-    <div class="flex flex-wrap items-center gap-2 text-sm text-steel">
-      <a class="hover:underline hover:text-accent" routerLink="/">Home</a>
-      <span>/</span>
-      <span class="text-carbon font-medium">Projects</span>
-    </div>
-    <div class="flex flex-wrap justify-between items-end gap-4">
-      <div class="flex flex-col gap-2">
-        <h1
-          class="text-carbon text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]"
-        >
-          Real Estate &amp; Projects
-        </h1>
-        <p class="text-steel text-base">
-          {{ state.list.length || 0 }} listings found
-        </p>
-      </div>
-      <div class="flex gap-2">
-        <button
-          class="flex md:hidden items-center justify-center gap-2 rounded-lg h-10 px-4 bg-pure text-carbon text-sm font-bold shadow-sm hover:bg-pure/70 transition-colors"
-          type="button"
-        >
-          <i class="ri-map-pin-2-line text-lg"></i>
-          <span class="truncate">Map View</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div
-    class="sticky top-[65px] z-40 bg-pure pt-2 pb-4 -mx-4 px-4 md:-mx-10 md:px-10 lg:-mx-40 lg:px-40 border-b border-steel/20 m-6 transition-all duration-300"
+<div class="shape-accent bg-pure">
+  <main
+    class="flex-1 flex flex-col w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-40 py-6 text-carbon"
   >
+    <div class="flex flex-col gap-4 mb-6">
+      <div class="flex flex-wrap items-center gap-2 text-sm text-steel">
+        <a class="hover:underline hover:text-accent" routerLink="/">Home</a>
+        <span>/</span>
+        <span class="text-carbon font-medium">Projects</span>
+      </div>
+      <div class="flex flex-wrap justify-between items-end gap-4">
+        <div class="flex flex-col gap-2">
+          <h1
+            class="text-carbon text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]"
+          >
+            Real Estate &amp; Projects
+          </h1>
+          <p class="text-steel text-base">
+            {{ state.list.length || 0 }} listings found
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <button
+            class="flex md:hidden items-center justify-center gap-2 rounded-lg h-10 px-4 bg-pure text-carbon text-sm font-bold shadow-sm hover:bg-pure/70 transition-colors"
+            type="button"
+          >
+            <i class="ri-map-pin-2-line text-lg"></i>
+            <span class="truncate">Map View</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div
-      class="flex flex-col lg:flex-row gap-4 lg:items-center justify-between"
+      class="sticky top-[65px] z-40 bg-pure pt-2 pb-4 -mx-4 px-4 md:-mx-10 md:px-10 lg:-mx-40 lg:px-40 border-b border-steel/20 m-6 transition-all duration-300"
     >
-      <div class="w-full lg:max-w-md">
-        <label class="flex flex-col w-full h-11 relative group">
-          <div
-          class="flex w-full items-stretch rounded-lg h-full border border-transparent focus-within:border-accent transition-colors bg-pure shadow-sm"
-        >
-            <div class="text-steel flex items-center justify-center pl-3">
-              <i class="ri-search-2-line"></i>
+      <div
+        class="flex flex-col lg:flex-row gap-4 lg:items-center justify-between"
+      >
+        <div class="w-full lg:max-w-md">
+          <label class="flex flex-col w-full h-11 relative group">
+            <div
+            class="flex w-full items-stretch rounded-lg h-full border border-transparent focus-within:border-accent transition-colors bg-pure shadow-sm"
+          >
+              <div class="text-steel flex items-center justify-center pl-3">
+                <i class="ri-search-2-line"></i>
+              </div>
+              <input
+                class="flex w-full bg-transparent border-none focus:ring-0 text-carbon placeholder:text-steel px-3 text-sm"
+                placeholder="City, Neighborhood, ZIP, Address"
+                type="search"
+                aria-label="Search projects"
+              />
             </div>
-            <input
-              class="flex w-full bg-transparent border-none focus:ring-0 text-carbon placeholder:text-steel px-3 text-sm"
-              placeholder="City, Neighborhood, ZIP, Address"
-              type="search"
-              aria-label="Search projects"
+          </label>
+        </div>
+
+        <div class="flex flex-1 overflow-x-auto pb-2 lg:pb-0 gap-3 items-center">
+          <div class="flex items-center gap-2 mr-2 shrink-0">
+            <span
+              class="text-xs font-bold text-steel uppercase tracking-wider hidden xl:block mr-1"
+              >Status:</span
+            >
+            <button
+              type="button"
+              class="category-toggle"
+              [ngClass]="categoryButtonClass('Ongoing')"
+              (click)="setCategory('Ongoing')"
+              [attr.aria-pressed]="selectedCategory === 'Ongoing'"
+            >
+              <span
+                class="w-2 h-2 rounded-full"
+                [ngClass]="statusDotClass('Ongoing')"
+              ></span>
+              <p class="text-sm font-medium">Ongoing</p>
+            </button>
+            <button
+              type="button"
+              class="category-toggle"
+              [ngClass]="categoryButtonClass('Upcoming')"
+              (click)="setCategory('Upcoming')"
+              [attr.aria-pressed]="selectedCategory === 'Upcoming'"
+            >
+              <span
+                class="w-2 h-2 rounded-full"
+                [ngClass]="statusDotClass('Upcoming')"
+              ></span>
+              <p class="text-sm font-medium">Upcoming</p>
+            </button>
+            <button
+              type="button"
+              class="category-toggle"
+              [ngClass]="categoryButtonClass('Completed')"
+              (click)="setCategory('Completed')"
+              [attr.aria-pressed]="selectedCategory === 'Completed'"
+            >
+              <span
+                class="w-2 h-2 rounded-full"
+                [ngClass]="statusDotClass('Completed')"
+              ></span>
+              <p class="text-sm font-medium">Completed</p>
+            </button>
+          </div>
+
+          <div class="h-8 w-px bg-steel/40 mx-1 hidden sm:block"></div>
+
+          <div class="flex items-center gap-2 shrink-0">
+            <label class="sr-only" for="typeSelect">Project type</label>
+            <select
+              #typeSelectRef
+              id="typeSelect"
+              class="h-10 rounded-full border border-steel/40 bg-pure hover:border-accent px-4 text-sm font-medium text-carbon shadow-sm"
+              [value]="selectedType"
+              (change)="updateType(typeSelectRef.value)"
+            >
+              <option value="all">All Types</option>
+              <option value="Residential">Residential</option>
+              <option value="Commercial">Commercial</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-2 shrink-0">
+            <button
+              class="h-10 shrink-0 items-center justify-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 text-sm font-semibold text-accent hover:border-accent hover:bg-accent/20 hidden sm:inline-flex"
+              type="button"
+              (click)="resetFilters()"
+            >
+              Reset filters
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <article
+        *ngFor="let item of state.list"
+        class="group flex flex-col bg-pure rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-steel/20 cursor-pointer"
+      >
+        <a
+          [routerLink]="['/projectdetails', item.id]"
+          class="flex flex-col h-full"
+        >
+          <div class="relative w-full aspect-[4/3] overflow-hidden">
+            <div
+              class="absolute top-3 left-3 z-10"
+              [ngClass]="statusBadgeClass(item.category)"
+            >
+              <span
+                class="w-1.5 h-1.5 rounded-full"
+                [ngClass]="statusDotClass(item.category)"
+              ></span>
+              {{ statusLabel(item.category) }}
+            </div>
+            <button
+              type="button"
+              class="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-carbon/20 hover:bg-carbon/40 text-pure backdrop-blur-sm transition-colors"
+            >
+              <i class="ri-heart-3-line text-lg"></i>
+            </button>
+            <img
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              [attr.alt]="item.name || 'Project image'"
+              [src]="baseUrl + '/api/attachment/get/' + item.thumbnail"
+              loading="lazy"
+              (error)="onImageError($event)"
             />
           </div>
-        </label>
-      </div>
 
-      <div class="flex flex-1 overflow-x-auto pb-2 lg:pb-0 gap-3 items-center">
-        <div class="flex items-center gap-2 mr-2 shrink-0">
-          <span
-            class="text-xs font-bold text-steel uppercase tracking-wider hidden xl:block mr-1"
-            >Status:</span
-          >
-          <button
-            type="button"
-            class="category-toggle"
-            [ngClass]="categoryButtonClass('Ongoing')"
-            (click)="setCategory('Ongoing')"
-            [attr.aria-pressed]="selectedCategory === 'Ongoing'"
-          >
-            <span
-              class="w-2 h-2 rounded-full"
-              [ngClass]="statusDotClass('Ongoing')"
-            ></span>
-            <p class="text-sm font-medium">Ongoing</p>
-          </button>
-          <button
-            type="button"
-            class="category-toggle"
-            [ngClass]="categoryButtonClass('Upcoming')"
-            (click)="setCategory('Upcoming')"
-            [attr.aria-pressed]="selectedCategory === 'Upcoming'"
-          >
-            <span
-              class="w-2 h-2 rounded-full"
-              [ngClass]="statusDotClass('Upcoming')"
-            ></span>
-            <p class="text-sm font-medium">Upcoming</p>
-          </button>
-          <button
-            type="button"
-            class="category-toggle"
-            [ngClass]="categoryButtonClass('Completed')"
-            (click)="setCategory('Completed')"
-            [attr.aria-pressed]="selectedCategory === 'Completed'"
-          >
-            <span
-              class="w-2 h-2 rounded-full"
-              [ngClass]="statusDotClass('Completed')"
-            ></span>
-            <p class="text-sm font-medium">Completed</p>
-          </button>
-        </div>
-
-        <div class="h-8 w-px bg-steel/40 mx-1 hidden sm:block"></div>
-
-        <div class="flex items-center gap-2 shrink-0">
-          <label class="sr-only" for="typeSelect">Project type</label>
-          <select
-            #typeSelectRef
-            id="typeSelect"
-            class="h-10 rounded-full border border-steel/40 bg-pure hover:border-accent px-4 text-sm font-medium text-carbon shadow-sm"
-            [value]="selectedType"
-            (change)="updateType(typeSelectRef.value)"
-          >
-            <option value="all">All Types</option>
-            <option value="Residential">Residential</option>
-            <option value="Commercial">Commercial</option>
-          </select>
-        </div>
-
-        <div class="flex items-center gap-2 shrink-0">
-          <button
-            class="h-10 shrink-0 items-center justify-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 text-sm font-semibold text-accent hover:border-accent hover:bg-accent/20 hidden sm:inline-flex"
-            type="button"
-            (click)="resetFilters()"
-          >
-            Reset filters
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-    <article
-      *ngFor="let item of state.list"
-      class="group flex flex-col bg-pure rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-steel/20 cursor-pointer"
-    >
-      <a
-        [routerLink]="['/projectdetails', item.id]"
-        class="flex flex-col h-full"
-      >
-        <div class="relative w-full aspect-[4/3] overflow-hidden">
-          <div
-            class="absolute top-3 left-3 z-10"
-            [ngClass]="statusBadgeClass(item.category)"
-          >
-            <span
-              class="w-1.5 h-1.5 rounded-full"
-              [ngClass]="statusDotClass(item.category)"
-            ></span>
-            {{ statusLabel(item.category) }}
-          </div>
-          <button
-            type="button"
-            class="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-carbon/20 hover:bg-carbon/40 text-pure backdrop-blur-sm transition-colors"
-          >
-            <i class="ri-heart-3-line text-lg"></i>
-          </button>
-          <img
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            [attr.alt]="item.name || 'Project image'"
-            [src]="baseUrl + '/api/attachment/get/' + item.thumbnail"
-            loading="lazy"
-            (error)="onImageError($event)"
-          />
-        </div>
-
-        <div class="p-4 flex flex-col gap-3 flex-1">
-          <div class="flex justify-between items-start gap-2">
-            <h3 class="text-xl font-bold text-carbon">{{ item.name }}</h3>
-          </div>
-          <div class="flex items-center gap-4 text-carbon/90 mt-1">
-            <div class="flex items-center gap-1.5">
-              <i class="ri-building-4-line text-steel text-lg"></i>
-              <span class="text-sm font-semibold">{{
-                item.type || "Mixed use"
-              }}</span>
+          <div class="p-4 flex flex-col gap-3 flex-1">
+            <div class="flex justify-between items-start gap-2">
+              <h3 class="text-xl font-bold text-carbon">{{ item.name }}</h3>
             </div>
-            <div class="w-px h-4 bg-steel/40"></div>
-            <div class="flex items-center gap-1.5">
-              <i class="ri-time-line text-steel text-lg"></i>
-              <span class="text-sm font-semibold">{{
-                item.category || "In development"
-              }}</span>
+            <div class="flex items-center gap-4 text-carbon/90 mt-1">
+              <div class="flex items-center gap-1.5">
+                <i class="ri-building-4-line text-steel text-lg"></i>
+                <span class="text-sm font-semibold">{{
+                  item.type || "Mixed use"
+                }}</span>
+              </div>
+              <div class="w-px h-4 bg-steel/40"></div>
+              <div class="flex items-center gap-1.5">
+                <i class="ri-time-line text-steel text-lg"></i>
+                <span class="text-sm font-semibold">{{
+                  item.category || "In development"
+                }}</span>
+              </div>
             </div>
-          </div>
-          <p
-            class="text-carbon/80 text-sm font-medium truncate"
-            title="{{ item.address || 'Address forthcoming' }}"
-          >
-            {{ item.address || "Address forthcoming" }}
-          </p>
-          <div
-            class="mt-2 pt-3 border-t border-steel/20 flex justify-between items-center"
-          >
-            <span class="text-xs text-steel">{{
-              item.canSchedule ? "Scheduling available" : "View project details"
-            }}</span>
-            <span
-              class="text-accent text-sm font-semibold inline-flex items-center gap-1"
+            <p
+              class="text-carbon/80 text-sm font-medium truncate"
+              title="{{ item.address || 'Address forthcoming' }}"
             >
-              View details
-              <i class="ri-arrow-right-line"></i>
-            </span>
+              {{ item.address || "Address forthcoming" }}
+            </p>
+            <div
+              class="mt-2 pt-3 border-t border-steel/20 flex justify-between items-center"
+            >
+              <span class="text-xs text-steel">{{
+                item.canSchedule ? "Scheduling available" : "View project details"
+              }}</span>
+              <span
+                class="text-accent text-sm font-semibold inline-flex items-center gap-1"
+              >
+                View details
+                <i class="ri-arrow-right-line"></i>
+              </span>
+            </div>
           </div>
-        </div>
-      </a>
-    </article>
+        </a>
+      </article>
 
-    <div
-      *ngIf="!state.list.length"
-      class="col-span-full rounded-xl border border-dashed border-steel/40 bg-pure p-10 text-center text-steel"
-    >
-      No projects match your filters. Try adjusting criteria.
+      <div
+        *ngIf="!state.list.length"
+        class="col-span-full rounded-xl border border-dashed border-steel/40 bg-pure p-10 text-center text-steel"
+      >
+        No projects match your filters. Try adjusting criteria.
+      </div>
     </div>
-  </div>
-</main>
+  </main>
+</div>
