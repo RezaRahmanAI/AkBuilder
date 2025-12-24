@@ -1,16 +1,7 @@
 <div class="bg-pure shape-accent">
-  <app-hero-section
-    [stats]="state.stats"
-    [eyebrow]="aboutHero().eyebrow"
-    [title]="aboutHero().title"
-    [description]="aboutHero().description"
-    [backgroundImage]="aboutHero().backgroundImage"
-    [primaryCtaLabel]="aboutHero().primaryCtaLabel"
-    [primaryCtaLink]="aboutHero().primaryCtaLink"
-    [secondaryCtaLabel]="aboutHero().secondaryCtaLabel"
-    [secondaryCtaLink]="aboutHero().secondaryCtaLink"
-    [statsLabels]="aboutHero().statsLabels"
-  />
+  <app-hero-section [stats]="state.stats" />
+
+
 
   <app-history
     [history]="state.about.history"
@@ -28,22 +19,18 @@
   <section class="w-full py-16">
     <div class="site-container space-y-8">
       <div class="flex flex-col items-center gap-3 text-center">
-        <p
-          class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.45em] text-accent"
-        >
+        <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.45em] text-accent">
           <span class="h-2 w-2 rounded-full bg-brand"></span>
-          {{ coreValuesSection().eyebrow }}
+          Our Core Values
         </p>
-        <h2 class="text-3xl font-bold leading-tight text-carbon md:text-4xl">
-          {{ coreValuesSection().title }}
-        </h2>
+        <h2 class="text-3xl font-bold leading-tight text-carbon md:text-4xl">Principles that shape every promise</h2>
         <p class="max-w-2xl text-lg text-steel">
-          {{ coreValuesSection().description }}
+          From transparency to community focus, these commitments guide how we plan, build, and care for every resident.
         </p>
       </div>
       <div class="grid gap-6 md:grid-cols-3">
         <div
-          *ngFor="let value of coreValues()"
+          *ngFor="let value of coreValues"
           class="flex flex-col gap-3 rounded-xl border border-steel/20 bg-pure p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
         >
           <div class="flex size-12 items-center justify-center rounded-full bg-brand/10 text-accent">
@@ -51,14 +38,13 @@
           </div>
           <div class="space-y-2">
             <h3 class="text-xl font-semibold text-carbon">{{ value.title }}</h3>
-            <p class="text-sm leading-relaxed text-steel">
-              {{ value.description }}
-            </p>
+            <p class="text-sm leading-relaxed text-steel">{{ value.description }}</p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 
   <app-team [teams]="state.teams" (toggle)="onToggle($event)"></app-team>
   <app-team-modal
@@ -70,38 +56,28 @@
 
   <section class="w-full py-20">
     <div class="site-container">
-      <div
-        class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-power to-brand px-8 py-12 shadow-2xl sm:px-12 md:px-16"
-      >
-        <div
-          class="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-pure/25 blur-3xl"
-        ></div>
-        <div
-          class="absolute -left-8 -bottom-12 h-32 w-32 rounded-full bg-carbon/10 blur-2xl"
-        ></div>
-        <div
-          class="relative flex flex-col gap-6 text-center sm:text-left sm:flex-row sm:items-center sm:justify-between"
-        >
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-power to-brand px-8 py-12 shadow-2xl sm:px-12 md:px-16">
+        <div class="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-pure/25 blur-3xl"></div>
+        <div class="absolute -left-8 -bottom-12 h-32 w-32 rounded-full bg-carbon/10 blur-2xl"></div>
+        <div class="relative flex flex-col gap-6 text-center sm:text-left sm:flex-row sm:items-center sm:justify-between">
           <div class="space-y-3 text-pure">
-            <h2 class="text-3xl font-black leading-tight text-pure sm:text-4xl">
-              {{ aboutCta().title }}
-            </h2>
+            <h2 class="text-3xl font-black leading-tight text-pure sm:text-4xl">Ready to find your dream home?</h2>
             <p class="max-w-2xl text-lg font-medium text-pure/80">
-              {{ aboutCta().description }}
+              Join the families who discovered their perfect address with us. Let’s talk about the neighborhood that fits your life.
             </p>
           </div>
           <div class="flex flex-col gap-3 sm:flex-row">
             <a
-              [routerLink]="aboutCta().primaryCtaLink"
+              routerLink="/projects"
               class="inline-flex h-12 min-w-[160px] items-center justify-center rounded-lg bg-pure px-6 text-base font-semibold text-carbon shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
             >
-              {{ aboutCta().primaryCtaLabel }}
+              Browse Listings
             </a>
             <a
-              [routerLink]="aboutCta().secondaryCtaLink"
+              routerLink="/contact"
               class="inline-flex h-12 min-w-[160px] items-center justify-center rounded-lg border border-pure/40 bg-pure/10 px-6 text-base font-semibold text-pure backdrop-blur-sm transition hover:bg-pure/20"
             >
-              {{ aboutCta().secondaryCtaLabel }}
+              Contact Agent
             </a>
           </div>
         </div>
