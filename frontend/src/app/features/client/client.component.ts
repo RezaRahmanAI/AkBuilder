@@ -17,6 +17,7 @@ export class ClientComponent implements OnInit {
   pageSize = 10;
   totalItems = 0; // To be updated if API provides total count
   errorMessage: string | null = null;
+  selectedContact: Contactus | null = null;
 
   constructor(private contactusService: ContactusService) {}
 
@@ -44,5 +45,25 @@ export class ClientComponent implements OnInit {
       this.currentPage = newPage;
       this.loadContacts();
     }
+  }
+
+  viewContact(contact: Contactus): void {
+    this.selectedContact = { ...contact };
+  }
+
+  closeDetails(): void {
+    this.selectedContact = null;
+  }
+
+  deleteContact(contact: Contactus): void {
+    if (!contact.id) return;
+    this.contactusService.delete(contact.id).subscribe({
+      next: () => {
+        if (this.selectedContact?.id === contact.id) {
+          this.selectedContact = null;
+        }
+        this.loadContacts();
+      },
+    });
   }
 }

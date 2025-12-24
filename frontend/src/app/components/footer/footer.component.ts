@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AppStore } from '../../store/app.store';
 
 @Component({
   selector: 'app-footer',
@@ -11,4 +12,6 @@ import { RouterLink } from '@angular/router';
 })
 export class FooterComponent {
   readonly currentYear: number = new Date().getFullYear();
+  private readonly store = inject(AppStore);
+  readonly settings = this.store.settings;
 }

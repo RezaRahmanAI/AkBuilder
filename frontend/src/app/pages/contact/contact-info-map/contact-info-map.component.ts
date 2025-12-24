@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
@@ -6,8 +6,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ContactusService } from '../../../services/contactus.service';
 import { Contactus } from '../../../models/model';
+import { AppStore } from '../../../store/app.store';
 
 
 @Component({
@@ -22,10 +24,13 @@ export class ContactInfoMapComponent implements OnInit {
   submitMessage: string | null = null;
   isSubmitting = false;
   showPopup = false;
+  mapUrl: SafeResourceUrl;
+  private readonly store = inject(AppStore);
 
   constructor(
     private fb: FormBuilder,
-    private contactusService: ContactusService
+    private contactusService: ContactusService,
+    private sanitizer: DomSanitizer
   ) {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
@@ -34,9 +39,19 @@ export class ContactInfoMapComponent implements OnInit {
       subject: ['', [Validators.required, Validators.minLength(3)]],
       message: ['', [Validators.required, Validators.minLength(10)]],
     });
+    this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+      this.store.contactPage().infoMap.mapIframeUrl
+    );
+    effect(() => {
+      this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+        this.store.contactPage().infoMap.mapIframeUrl
+      );
+    });
   }
 
   ngOnInit(): void {}
+
+  readonly contactPage = this.store.contactPage;
 
   onMapLoad(): void {
     this.isMapLoaded = true;

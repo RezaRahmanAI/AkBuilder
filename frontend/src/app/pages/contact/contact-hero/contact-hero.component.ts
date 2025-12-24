@@ -4,11 +4,13 @@ import {
   Component,
   NgZone,
   OnDestroy,
+  inject,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ScrollService } from '../../../services/scroll.service';
+import { AppStore } from '../../../store/app.store';
 
 @Component({
   selector: 'app-contact-hero',
@@ -21,8 +23,13 @@ import { ScrollService } from '../../../services/scroll.service';
 export class ContactHeroComponent implements OnDestroy {
   scrollTransform = 'translateY(-60px)';
   private destroy$ = new Subject<void>();
+  private readonly store = inject(AppStore);
+  readonly contactPage = this.store.contactPage;
 
-  constructor(private scrollService: ScrollService, private zone: NgZone) {
+  constructor(
+    private scrollService: ScrollService,
+    private zone: NgZone
+  ) {
     this.zone.runOutsideAngular(() => {
       this.scrollService.scrollY$
         .pipe(takeUntil(this.destroy$))

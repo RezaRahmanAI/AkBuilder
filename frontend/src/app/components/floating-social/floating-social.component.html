@@ -14,15 +14,16 @@
 
   <!-- Social Icons -->
   <div *ngIf="isOpen" class="flex flex-col-reverse gap-2 mt-2">
-    
     <a
-      href="https://www.facebook.com/HavenDeveloperLtd"
+      *ngFor="let link of settings().floatingLinks; let i = index"
+      [href]="link.url"
       target="_blank"
-      aria-label="Facebook"
-      class="social-btn bg-[#1877F2]"
-      [ngStyle]="{ 'animation-delay': '0.1s' }"
+      [attr.aria-label]="link.label"
+      class="social-btn"
+      [ngClass]="link.colorClass"
+      [ngStyle]="{ 'animation-delay': (i + 1) * 0.1 + 's' }"
     >
-      <i class="ri-facebook-fill text-xl"></i>
+      <i [class]="link.iconClass + ' text-xl'"></i>
     </a>
   </div>
 </div>

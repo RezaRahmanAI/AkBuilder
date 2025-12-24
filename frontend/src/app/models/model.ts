@@ -86,6 +86,48 @@ export interface ProjectStats {
   completed: number;
 }
 
+export interface AboutCoreValue {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface AboutCoreValuesSection {
+  eyebrow: string;
+  title: string;
+  description: string;
+  values: AboutCoreValue[];
+}
+
+export interface AboutPageContent {
+  aboutEntries: AboutUs[];
+  stats: ProjectStats;
+  coreValuesSection: AboutCoreValuesSection;
+  hero: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    backgroundImage: string;
+    primaryCtaLabel: string;
+    primaryCtaLink: string;
+    secondaryCtaLabel: string;
+    secondaryCtaLink: string;
+  };
+  statsLabels: {
+    ongoing: string;
+    upcoming: string;
+    completed: string;
+  };
+  cta: {
+    title: string;
+    description: string;
+    primaryLabel: string;
+    primaryLink: string;
+    secondaryLabel: string;
+    secondaryLink: string;
+  };
+}
+
 export interface ProjectDashboardSummary {
   total: number;
   active: number;
@@ -109,6 +151,81 @@ export interface Contactus {
   subject: string;
   message: string;
   date?: Date;
+}
+
+export interface SocialLink {
+  id: string;
+  label: string;
+  url: string;
+  iconClass: string;
+  colorClass?: string;
+}
+
+export interface Settings {
+  companyName: string;
+  footerDescription: string;
+  address: string;
+  phones: string[];
+  email: string;
+  socialLinks: SocialLink[];
+  floatingLinks: SocialLink[];
+}
+
+export interface ContactMetaItem {
+  label: string;
+  value: string;
+  url?: string;
+}
+
+export interface ContactCard {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  meta: ContactMetaItem[];
+  ctaLabel: string;
+  ctaUrl: string;
+  ctaExternal?: boolean;
+}
+
+export interface ContactHeroContent {
+  title: string;
+  eyebrow: string;
+  breadcrumbLabel: string;
+  backgroundImage: string;
+  highlight: string;
+}
+
+export interface ContactInfoMapContent {
+  eyebrow: string;
+  title: string;
+  description: string;
+  stats: { label: string; value: string }[];
+  formTitle: string;
+  formDescription: string;
+  submitLabel: string;
+  privacyNote: string;
+  mapBadge: string;
+  mapDescription: string;
+  mapIframeUrl: string;
+  highlights: { label: string; value: string }[];
+}
+
+export interface ContactPageContent {
+  hero: ContactHeroContent;
+  getInTouch: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    cards: ContactCard[];
+    banner: {
+      eyebrow: string;
+      title: string;
+      ctaLabel: string;
+      ctaUrl: string;
+    };
+  };
+  infoMap: ContactInfoMapContent;
 }
 
 export interface Faq {

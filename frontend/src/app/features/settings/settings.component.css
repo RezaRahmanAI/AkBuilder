@@ -1,0 +1,4 @@
+.settings-grid input:focus,
+.settings-grid textarea:focus {
+  outline: none;
+}

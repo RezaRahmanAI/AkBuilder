@@ -19,28 +19,18 @@
       <div class="space-y-6 lg:w-2/3">
         <span
           class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F2B705]/20 border border-[#D99A00]/35 text-xs uppercase tracking-wider"
-          >TELL US ABOUT YOUR VISION</span
+          >{{ contactPage().infoMap.eyebrow }}</span
         >
         <h2 class="text-3xl md:text-4xl font-semibold leading-snug">
-          We orchestrate every detail—simply share your aspirations.
+          {{ contactPage().infoMap.title }}
         </h2>
         <p class="text-base md:text-lg">
-          Complete the form and our concierge will design a bespoke plan with
-          curated residences, floor plans, and financial guidance tailored to
-          you.
+          {{ contactPage().infoMap.description }}
         </p>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-          <div>
-            <p class="text-3xl font-bold">450+</p>
-            <p class="text-sm uppercase tracking-wide">Families guided home</p>
-          </div>
-          <div>
-            <p class="text-3xl font-bold">98%</p>
-            <p class="text-sm uppercase tracking-wide">Client satisfaction</p>
-          </div>
-          <div>
-            <p class="text-3xl font-bold">24h</p>
-            <p class="text-sm uppercase tracking-wide">Average response time</p>
+          <div *ngFor="let stat of contactPage().infoMap.stats">
+            <p class="text-3xl font-bold">{{ stat.value }}</p>
+            <p class="text-sm uppercase tracking-wide">{{ stat.label }}</p>
           </div>
         </div>
       </div>
@@ -53,10 +43,9 @@
         class="relative rounded-3xl p-6 border border-white/16 shadow-2xl backdrop-blur-md"
       >
         <div class="mb-6">
-          <h3 class="text-xl font-semibold text-accent">Your details</h3>
+          <h3 class="text-xl font-semibold text-accent">{{ contactPage().infoMap.formTitle }}</h3>
           <p class="mt-2 text-black">
-            We keep your information private and only use it to coordinate your
-            experience.
+            {{ contactPage().infoMap.formDescription }}
           </p>
         </div>
 
@@ -162,10 +151,10 @@
               [disabled]="isSubmitting"
               class="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#F2B705] to-[#C4161C] text-white font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {{ isSubmitting ? "Sending..." : "Submit enquiry" }}
+              {{ isSubmitting ? "Sending..." : contactPage().infoMap.submitLabel }}
             </button>
             <p class="text-xs text-accent">
-              By submitting, you agree to our friendly privacy policy.
+              {{ contactPage().infoMap.privacyNote }}
             </p>
           </div>
 
@@ -190,11 +179,10 @@
           <div>
             <span
               class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F2B705]/20 border border-[#D99A00]/35 text-xs uppercase tracking-wider"
-              >Showroom & Experience Centre</span
+              >{{ contactPage().infoMap.mapBadge }}</span
             >
             <p class="mt-2">
-              Tour our model residences, material library, and immersive
-              planning studio.
+              {{ contactPage().infoMap.mapDescription }}
             </p>
           </div>
 
@@ -207,7 +195,7 @@
             ></div>
             <iframe
               title="Office location on map"
-              src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1816.9133006603704!2d88.60534652694886!3d24.387334802924492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sas%20haven%20developer%20rajshahi!5e0!3m2!1sen!2sbd!4v1760330603927!5m2!1sen!2sbd"
+              [src]="mapUrl"
               class="absolute inset-0 w-full h-full border-0 z-0"
               allowfullscreen
               loading="lazy"
@@ -217,28 +205,12 @@
           </div>
 
           <ul class="grid gap-4 list-none p-0">
-            <li class="space-y-1">
+            <li class="space-y-1" *ngFor="let highlight of contactPage().infoMap.highlights">
               <span class="block text-xs uppercase tracking-wider text-accent"
-                >Parking</span
+                >{{ highlight.label }}</span
               >
               <span class="block text-white/88"
-                >Complimentary valet on arrival</span
-              >
-            </li>
-            <li class="space-y-1">
-              <span class="block text-xs uppercase tracking-wider text-accent"
-                >Weekend Hours</span
-              >
-              <span class="block text-white/88"
-                >Friday visits by appointment only</span
-              >
-            </li>
-            <li class="space-y-1">
-              <span class="block text-xs uppercase tracking-wider text-accent"
-                >Virtual Access</span
-              >
-              <span class="block text-white/88"
-                >Live video tours available globally</span
+                >{{ highlight.value }}</span
               >
             </li>
           </ul>

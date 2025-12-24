@@ -172,9 +172,10 @@
         <input
           id="image"
           name="image"
-          type="file"
-          (change)="onOwnerImageChange($event)"
-          class="w-full rounded-xl border border-slate-200 bg-slate-50 p-2 text-xs text-slate-700 file:mr-2 file:rounded-lg file:border-0 file:bg-brand/10 file:px-3 file:py-1.5 file:text-brand transition hover:file:bg-brand/20 sm:p-2.5 sm:text-sm"
+          type="text"
+          [(ngModel)]="_aboutUs.ownerImage"
+          class="w-full rounded-xl border border-slate-200 bg-slate-50 p-2 text-xs text-slate-700 transition focus:border-brand focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand sm:p-2.5 sm:text-sm"
+          placeholder="/images/owner.jpg"
         />
       </div>
 
@@ -185,9 +186,10 @@
         <input
           id="visionImage"
           name="visionImage"
-          type="file"
-          (change)="onVisionImageChange($event)"
-          class="w-full rounded-xl border border-slate-200 bg-slate-50 p-2 text-xs text-slate-700 file:mr-2 file:rounded-lg file:border-0 file:bg-brand/10 file:px-3 file:py-1.5 file:text-brand transition hover:file:bg-brand/20 sm:p-2.5 sm:text-sm"
+          type="text"
+          [(ngModel)]="_aboutUs.visionImage"
+          class="w-full rounded-xl border border-slate-200 bg-slate-50 p-2 text-xs text-slate-700 transition focus:border-brand focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand sm:p-2.5 sm:text-sm"
+          placeholder="/images/vision.jpg"
         />
       </div>
 
@@ -198,9 +200,10 @@
         <input
           id="missionImage"
           name="missionImage"
-          type="file"
-          (change)="onMissionImageChange($event)"
-          class="w-full rounded-xl border border-slate-200 bg-slate-50 p-2 text-xs text-slate-700 file:mr-2 file:rounded-lg file:border-0 file:bg-brand/10 file:px-3 file:py-1.5 file:text-brand transition hover:file:bg-brand/20 sm:p-2.5 sm:text-sm"
+          type="text"
+          [(ngModel)]="_aboutUs.missionImage"
+          class="w-full rounded-xl border border-slate-200 bg-slate-50 p-2 text-xs text-slate-700 transition focus:border-brand focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand sm:p-2.5 sm:text-sm"
+          placeholder="/images/mission.jpg"
         />
       </div>
 

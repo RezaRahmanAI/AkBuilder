@@ -1,40 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from '../../../environments/environment';
 import { AboutUs } from '../../../models/model';
+import { AppStore } from '../../../store/app.store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AboutUsService {
-  private apiBaseUrl = environment.baseUrl;
-
-  constructor(private http: HttpClient, private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService, private store: AppStore) {}
 
   getAboutUs(): Observable<AboutUs[]> {
-    return this.http.get<AboutUs[]>(`${this.apiBaseUrl}/api/aboutus`);
+    return of(this.store.aboutPage().aboutEntries);
   }
 
-  createAboutUs(formData: FormData): Observable<string> {
-    return this.http.post(`${this.apiBaseUrl}/api/aboutus/create`, formData, {
-      responseType: 'text',
-    });
+  createAboutUs(aboutUs: AboutUs): Observable<string> {
+    this.store.createAboutEntry(aboutUs);
+    return of('About Us created successfully');
   }
 
-  editAboutUs(formData: FormData): Observable<string> {
-    return this.http.post(`${this.apiBaseUrl}/api/aboutus/edit`, formData, {
-      responseType: 'text',
-    });
+  editAboutUs(aboutUs: AboutUs): Observable<string> {
+    this.store.updateAboutEntry(aboutUs);
+    return of('About Us updated successfully');
   }
 
   deleteAboutUs(id: string): Observable<string> {
-    return this.http.post(
-      `${this.apiBaseUrl}/api/aboutus/delete?id=${id}`,
-      {},
-      { responseType: 'text' }
-    );
+    this.store.deleteAboutEntry(id);
+    return of('About Us deleted successfully');
   }
 
   showSuccess(message: string) {

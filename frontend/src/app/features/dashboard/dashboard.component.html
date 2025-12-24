@@ -61,8 +61,8 @@
             : 'text-steel hover:bg-brand/10 hover:text-charcoal'
         "
       >
-        <i class="fas fa-user-tie"></i>
-        <span>Client registry</span>
+        <i class="fas fa-inbox"></i>
+        <span>Contact submissions</span>
       </a>
       <a
         routerLink="/dashboard/teams"
@@ -153,6 +153,21 @@
         <span>FAQ</span>
       </a>
 
+      <a
+        routerLink="/dashboard/settings"
+        routerLinkActive
+        #settingsRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-pure"
+        [ngClass]="
+          settingsRla.isActive
+            ? 'bg-brand text-charcoal shadow-industrial-soft'
+            : 'text-steel hover:bg-brand/10 hover:text-charcoal'
+        "
+      >
+        <i class="fas fa-sliders-h"></i>
+        <span>Settings</span>
+      </a>
+
       <button
         type="button"
         class="mt-auto flex items-center gap-3 rounded-2xl border border-steel/30 px-4 py-3 text-sm font-medium text-steel transition hover:-translate-y-0.5 hover:bg-brand/10 hover:text-charcoal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-pure disabled:cursor-not-allowed disabled:opacity-50"
@@ -228,8 +243,8 @@
               : 'text-steel hover:bg-brand/10 hover:text-charcoal'
           "
         >
-          <i class="fas fa-user-tie"></i>
-          <span>Client registry</span>
+          <i class="fas fa-inbox"></i>
+          <span>Contact submissions</span>
         </a>
         <a
           routerLink="/dashboard/teams"
@@ -290,6 +305,22 @@
         >
           <i class="fas fa-question-circle"></i>
           <span>FAQ</span>
+        </a>
+
+        <a
+          routerLink="/dashboard/settings"
+          routerLinkActive
+          #mobileSettings="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-pure"
+          [ngClass]="
+            mobileSettings.isActive
+              ? 'bg-brand text-charcoal'
+              : 'text-steel hover:bg-brand/10 hover:text-charcoal'
+          "
+        >
+          <i class="fas fa-sliders-h"></i>
+          <span>Settings</span>
         </a>
         <button
           type="button"
