@@ -132,8 +132,9 @@ img {
 
 .neo-section {
   position: relative;
-  padding: clamp(4rem, 8vw, 6.5rem) 0;
-  width: min(80%, 85%);
+  padding: clamp(4rem, 8vw, 6.5rem) 1rem;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -142,9 +143,17 @@ img {
   box-sizing: border-box;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 768px) {
   .neo-section {
-    width: 92%;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .neo-section {
+    padding-left: 10rem;
+    padding-right: 10rem;
   }
 }
 
