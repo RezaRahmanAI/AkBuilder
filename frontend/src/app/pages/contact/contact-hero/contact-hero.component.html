@@ -1,80 +1,42 @@
 
 
-<section
-  class="relative flex min-h-[20rem] items-center justify-center overflow-hidden py-16 sm:py-20"
-  aria-labelledby="aboutHeroTitle"
->
-  <div class="absolute inset-0">
-    <div
-      class="absolute -top-16 left-0 h-[130%] w-full bg-cover bg-center transition-transform duration-500 parallax-bg"
-      [style.background-image]="'url(' + contactPage().hero.backgroundImage + ')'"
-      [style.transform]="scrollTransform"
-    ></div>
-    <div class="absolute inset-0 from-emerald-950/85 via-emerald-900/70 to-brand/70"></div>
+<section class="site-container flex-1 w-full py-10 md:py-16 text-carbon">
+  <nav class="flex flex-wrap gap-2 py-4 mb-6 items-center text-sm text-steel">
+    <a routerLink="/" class="font-medium hover:text-accent transition-colors">Home</a>
+    <span class="text-steel/60">/</span>
+    <span class="text-carbon font-medium">{{ contactPage().hero.breadcrumbLabel }}</span>
+  </nav>
+
+  <div class="mb-10 border-b border-steel/20 pb-8">
+    <p
+      class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.45em] text-steel"
+    >
+      <span class="h-2 w-2 rounded-full bg-accent"></span>
+      {{ contactPage().hero.eyebrow }}
+    </p>
+    <h1
+      class="text-4xl md:text-5xl font-black tracking-tight text-carbon font-serif mb-4"
+      id="contactHeroTitle"
+    >
+      {{ contactPage().hero.title }}
+    </h1>
+    <p class="text-xl md:text-2xl text-steel font-serif italic max-w-2xl">
+      {{ contactPage().hero.highlight }}
+    </p>
   </div>
 
-  <div class="hero__accent hero__accent--one"></div>
-  <div class="hero__accent hero__accent--two"></div>
-
-  <div class="relative z-10 flex h-full w-full items-center">
-    <div class="site-container flex h-full flex-col justify-center py-12 md:py-16">
-      <div
-        class="grid items-center gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] h-full"
-      >
-        <div class="space-y-6 text-center lg:text-left">
-          <span
-            class="inline-flex items-center justify-center gap-2 text-[0.7rem] uppercase tracking-[0.6em] text-white/70 lg:justify-start"
-          >
-            <span class="h-2 w-2 rounded-full bg-accent"></span>
-            {{ contactPage().hero.eyebrow }}
-          </span>
-          <h1
-            class="text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl"
-            id="contactHeroTitle"
-          >
-            {{ contactPage().hero.title }}
-          </h1>
-          <nav
-            class="flex items-center justify-center gap-3 text-sm text-white/60 lg:justify-start"
-            aria-label="Breadcrumb"
-          >
-            <a
-              routerLink="/"
-              class="relative text-white/70 transition-colors duration-300 hover:text-white focus-visible:text-white"
-            >
-              Home
-            </a>
-            <span aria-hidden="true" class="text-white/40">/</span>
-            <span class="text-white">{{ contactPage().hero.breadcrumbLabel }}</span>
-          </nav>
-          <div
-            class="flex flex-col items-center gap-4 sm:flex-row lg:justify-start"
-          >
-            <div
-              class="inline-flex items-center gap-3 rounded-full bg-white/5 px-5 py-3 text-white/80 backdrop-blur-xl ring-1 ring-white/10"
-            >
-              <span
-                class="h-2.5 w-2.5 rounded-full bg-accent shadow-[0_0_15px_rgba(242,183,5,0.6)] animate-pulse"
-              ></span>
-              <span class="text-xs uppercase tracking-[0.3em]">{{ contactPage().hero.highlight }}</span>
-            </div>
-          </div>
-          <div class="flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
-            <a
-              [attr.href]="contactPage().hero.primaryCtaLink"
-              class="inline-flex h-11 min-w-[160px] items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-carbon shadow-lg transition hover:-translate-y-0.5 hover:bg-accent/80"
-            >
-              {{ contactPage().hero.primaryCtaLabel }}
-            </a>
-            <a
-              [routerLink]="contactPage().hero.secondaryCtaLink"
-              class="inline-flex h-11 min-w-[160px] items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-            >
-              {{ contactPage().hero.secondaryCtaLabel }}
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="flex flex-wrap gap-3">
+    <a
+      [attr.href]="contactPage().hero.primaryCtaLink"
+      class="px-6 py-2.5 rounded-full bg-brand text-carbon text-sm font-bold shadow-sm transition-all hover:bg-accent"
+    >
+      {{ contactPage().hero.primaryCtaLabel }}
+    </a>
+    <a
+      [routerLink]="contactPage().hero.secondaryCtaLink"
+      class="px-6 py-2.5 rounded-full bg-pure border border-steel/20 text-steel hover:border-accent hover:text-accent text-sm font-bold transition-all"
+    >
+      {{ contactPage().hero.secondaryCtaLabel }}
+    </a>
   </div>
 </section>
