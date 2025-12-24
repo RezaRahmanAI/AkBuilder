@@ -1,66 +1,93 @@
 <div class="space-y-6 rounded-3xl border border-slate-200 bg-white p-6 text-slate-700 shadow-sm">
   <div class="flex items-center justify-between gap-4">
     <h2 class="text-xl font-semibold text-slate-900">Contact submissions</h2>
-    <span class="text-sm font-medium uppercase tracking-[0.28em] text-slate-400">Inbox</span>
-  </div>
-
-  <!-- Error Message -->
-  <div
-    *ngIf="errorMessage"
-    class="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-600"
-  >
-    {{ errorMessage }}
-  </div>
-
-  <!-- Table -->
-  <div class="overflow-hidden rounded-2xl border border-slate-200">
-    <table class="w-full table-auto border-collapse bg-white text-left text-sm">
-      <thead class="bg-slate-100/80 text-xs font-semibold uppercase tracking-wide text-slate-500">
-        <tr>
-          <th class="px-5 py-3">Name</th>
-          <th class="px-5 py-3">Email</th>
-          <th class="px-5 py-3">Phone</th>
-          <th class="px-5 py-3">Subject</th>
-          <th class="px-5 py-3">Message</th>
-          <th class="px-5 py-3">Date</th>
-        </tr>
-      </thead>
-      <tbody class="divide-y divide-slate-100 text-slate-600">
-        <tr
-          *ngFor="let contact of contacts"
-          class="transition-colors duration-150 hover:bg-slate-50"
-        >
-          <td class="px-5 py-3 text-slate-900">{{ contact.name }}</td>
-          <td class="px-5 py-3">{{ contact.email }}</td>
-          <td class="px-5 py-3">{{ contact.phone || 'N/A' }}</td>
-          <td class="px-5 py-3">{{ contact.subject }}</td>
-          <td class="px-5 py-3">{{ contact.message }}</td>
-          <td class="px-5 py-3">{{ contact.date | date: 'yyyy-MM-dd' }}</td>
-        </tr>
-        <tr *ngIf="contacts.length === 0 && !errorMessage" class="text-center">
-          <td colspan="7" class="px-5 py-6 text-sm text-slate-500">No submissions found.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Pagination Controls -->
-  <div class="flex items-center justify-between gap-4">
-    <button
-      (click)="changePage(-1)"
-      [disabled]="currentPage === 1"
-      class="rounded-full bg-brand px-4 py-2 text-sm font-medium text-white transition hover:bg-brand/90 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+    <span class="text-sm font-medium uppercase tracking-[0.28em] text-slate-400"
+      >Inbox</span
     >
-      Previous
-    </button>
-    <span class="text-sm font-medium text-slate-500">Page {{ currentPage }}</span>
-    <button
-      (click)="changePage(1)"
-      [disabled]="contacts.length < pageSize"
-      class="rounded-full bg-brand px-4 py-2 text-sm font-medium text-white transition hover:bg-brand/90 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
-    >
-      Next
-    </button>
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
+    <div class="space-y-3">
+      <div
+        *ngIf="contacts().length === 0"
+        class="rounded-2xl border border-dashed border-slate-200 px-4 py-6 text-center text-sm text-slate-500"
+      >
+        No contact submissions yet.
+      </div>
+
+      <button
+        *ngFor="let contact of contacts()"
+        type="button"
+        class="w-full rounded-2xl border border-slate-200 px-4 py-4 text-left transition hover:border-brand/40 hover:bg-brand/5"
+        [class.border-brand]="contact.id === selectedId"
+        (click)="selectSubmission(contact.id)"
+      >
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-semibold text-slate-900">
+              {{ contact.name }}
+            </p>
+            <p class="text-xs text-slate-500">{{ contact.email }}</p>
+          </div>
+          <span class="text-xs text-slate-400">
+            {{ contact.date | date: 'MMM d, y' }}
+          </span>
+        </div>
+        <p class="mt-2 text-sm text-slate-600 line-clamp-2">
+          {{ contact.message }}
+        </p>
+      </button>
+    </div>
+
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <ng-container *ngIf="selectedSubmission() as selected; else emptyState">
+        <div class="space-y-3">
+          <div class="flex items-start justify-between">
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900">
+                {{ selected.name }}
+              </h3>
+              <p class="text-sm text-slate-500">{{ selected.email }}</p>
+              <p class="text-sm text-slate-500" *ngIf="selected.phone">
+                {{ selected.phone }}
+              </p>
+            </div>
+            <span class="text-xs text-slate-400">
+              {{ selected.date | date: 'MMM d, y • h:mm a' }}
+            </span>
+          </div>
+
+          <div class="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+              Interest
+            </p>
+            <p class="mt-1 text-slate-700">{{ selected.interest }}</p>
+          </div>
+
+          <div class="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+              Message
+            </p>
+            <p class="mt-2 whitespace-pre-line text-slate-700">
+              {{ selected.message }}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class="w-full rounded-full border border-rose-200 px-4 py-2 text-sm font-semibold text-rose-600 hover:bg-rose-50"
+            (click)="deleteSubmission(selected.id)"
+          >
+            Delete submission
+          </button>
+        </div>
+      </ng-container>
+
+      <ng-template #emptyState>
+        <div class="flex h-full items-center justify-center text-sm text-slate-500">
+          Select a submission to see the details.
+        </div>
+      </ng-template>
+    </div>
   </div>
 </div>
-

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Contactus } from '../../models/model';
-import { ContactusService } from '../../services/contactus.service';
-
+import { ContactSubmission } from '../../models/model';
+import { SiteStoreService } from '../../store/site-store.service';
 
 @Component({
   selector: 'app-client',
@@ -11,38 +10,26 @@ import { ContactusService } from '../../services/contactus.service';
   templateUrl: './client.component.html',
   styleUrl: './client.component.css',
 })
-export class ClientComponent implements OnInit {
-  contacts: Contactus[] = [];
-  currentPage = 1;
-  pageSize = 10;
-  totalItems = 0; // To be updated if API provides total count
-  errorMessage: string | null = null;
+export class ClientComponent {
+  private siteStore = inject(SiteStoreService);
+  readonly contacts = this.siteStore.contactSubmissions;
+  selectedId: string | null = null;
 
-  constructor(private contactusService: ContactusService) {}
-
-  ngOnInit(): void {
-    this.loadContacts();
+  selectSubmission(id: string): void {
+    this.selectedId = id;
   }
 
-  loadContacts(): void {
-    this.contactusService.getAll(this.currentPage, this.pageSize).subscribe({
-      next: (data: Contactus[]) => {
-        this.contacts = data;
-        this.errorMessage = null;        
-      },
-      error: (error: Error) => {
-        this.errorMessage = error.message;
-        this.contacts = [];
-      },
-    });
+  selectedSubmission(): ContactSubmission | undefined {
+    if (!this.selectedId) {
+      return undefined;
+    }
+    return this.siteStore.getSubmissionById(this.selectedId);
   }
 
-  changePage(delta: number): void {
-    const newPage = this.currentPage + delta;
-    if (newPage >= 1) {
-      // Prevent going below page 1
-      this.currentPage = newPage;
-      this.loadContacts();
+  deleteSubmission(id: string): void {
+    this.siteStore.deleteContactSubmission(id);
+    if (this.selectedId === id) {
+      this.selectedId = null;
     }
   }
 }

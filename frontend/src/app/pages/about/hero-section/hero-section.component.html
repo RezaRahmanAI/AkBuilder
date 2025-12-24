@@ -4,13 +4,13 @@
 >
   <div
     class="absolute inset-0 bg-cover bg-center"
-    style="
-      background-image: linear-gradient(
-          rgba(0, 0, 0, 0.35),
-          rgba(0, 0, 0, 0.75)
-        ),
-        url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2UxjLiDNblHUR0KUkEinNEFGsaMh55ZLgjEfuklocfEDX22-EEK05FjkokFqatHrIrHsEmskZEE4Rgqr8VgtFRBaG1ZB5O4m1ALKPf7V06Jqd94AJZxVt3LP3WPZ-PzeCb--Y0mPAeQfcf0WK-CQDNoygHH01wxa5LwzEoHrCMJifUk2OW_B0ScC1ZvVrcKm2-CYafD9cCePvLYJ-WtSQDdzBC6VNV5S3mlOVfWLB5fFC9OwpfjmONJa8UgC1MFEMLrden2P_Jw');
-    "
+    [ngStyle]="{
+      backgroundImage: backgroundImage
+        ? 'linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.75)), url(' +
+          backgroundImage +
+          ')'
+        : undefined
+    }"
   ></div>
   <div
     class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/45 to-black/70"
@@ -19,86 +19,85 @@
   <div class="relative z-10 site-container text-center text-pure">
     <div class="flex flex-col gap-8">
       <div class="mx-auto flex max-w-3xl flex-col gap-4">
-      <p
-        class="inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.45em] text-pure/70"
-      >
-        <span class="h-2 w-2 rounded-full bg-brand"></span>
-        Since 2005
-      </p>
-      <h1
-        id="aboutHeroTitle"
-        class="text-4xl font-black leading-tight sm:text-5xl lg:text-6xl"
-      >
-        Redefining Real Estate since 2005
-      </h1>
-      <p class="text-lg leading-relaxed text-pure/80 sm:text-xl">
-        We empower families to find not just a house, but a home where memories
-        are made.
-      </p>
+        <p
+          class="inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.45em] text-pure/70"
+        >
+          <span class="h-2 w-2 rounded-full bg-brand"></span>
+          {{ eyebrow }}
+        </p>
+        <h1
+          id="aboutHeroTitle"
+          class="text-4xl font-black leading-tight sm:text-5xl lg:text-6xl"
+        >
+          {{ title }}
+        </h1>
+        <p class="text-lg leading-relaxed text-pure/80 sm:text-xl">
+          {{ description }}
+        </p>
       </div>
 
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-      <a
-        routerLink="/projects"
-        class="inline-flex h-12 min-w-[160px] items-center justify-center rounded-lg bg-brand px-6 text-base font-semibold text-carbon shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-accent hover:shadow-xl"
-      >
-        View Our Listings
-      </a>
-      <a
-        routerLink="/contact"
-        class="inline-flex h-12 min-w-[160px] items-center justify-center rounded-lg border border-white/30 bg-white/10 px-6 text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-      >
-        Meet Our Team
-      </a>
-    </div>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a
+          [routerLink]="primaryCtaLink"
+          class="inline-flex h-12 min-w-[160px] items-center justify-center rounded-lg bg-brand px-6 text-base font-semibold text-carbon shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-accent hover:shadow-xl"
+        >
+          {{ primaryCtaLabel }}
+        </a>
+        <a
+          [routerLink]="secondaryCtaLink"
+          class="inline-flex h-12 min-w-[160px] items-center justify-center rounded-lg border border-white/30 bg-white/10 px-6 text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+        >
+          {{ secondaryCtaLabel }}
+        </a>
+      </div>
 
-    <div class="flex flex-wrap gap-4 justify-center mt-8">
-      <div
-        class="flex min-w-[200px] flex-1 flex-col gap-2 rounded-lg border border-steel/20 bg-pure p-6 shadow-sm"
-      >
-        <p
-          class="text-steel text-base font-medium leading-normal flex items-center gap-2"
+      <div class="flex flex-wrap gap-4 justify-center mt-8">
+        <div
+          class="flex min-w-[200px] flex-1 flex-col gap-2 rounded-lg border border-steel/20 bg-pure p-6 shadow-sm"
         >
-          <i class="ri-home-6-line text-accent text-xl"></i>
-          Ongoing Projects
-        </p>
-        <p
-          class="text-carbon tracking-light text-3xl font-bold leading-tight"
+          <p
+            class="text-steel text-base font-medium leading-normal flex items-center gap-2"
+          >
+            <i class="ri-home-6-line text-accent text-xl"></i>
+            {{ statsLabels.ongoing }}
+          </p>
+          <p
+            class="text-carbon tracking-light text-3xl font-bold leading-tight"
+          >
+            {{ stats.ongoing || 0 }}
+          </p>
+        </div>
+        <div
+          class="flex min-w-[200px] flex-1 flex-col gap-2 rounded-lg border border-steel/20 bg-pure p-6 shadow-sm"
         >
-          {{ stats.ongoing || 0 }}
-        </p>
+          <p
+            class="text-steel text-base font-medium leading-normal flex items-center gap-2"
+          >
+            <i class="ri-hand-coin-line text-accent text-xl"></i>
+            {{ statsLabels.upcoming }}
+          </p>
+          <p
+            class="text-carbon tracking-light text-3xl font-bold leading-tight"
+          >
+            {{ stats.upcoming || 0 }}
+          </p>
+        </div>
+        <div
+          class="flex min-w-[200px] flex-1 flex-col gap-2 rounded-lg border border-steel/20 bg-pure p-6 shadow-sm"
+        >
+          <p
+            class="text-steel text-base font-medium leading-normal flex items-center gap-2"
+          >
+            <i class="ri-emotion-happy-line text-accent text-xl"></i>
+            {{ statsLabels.completed }}
+          </p>
+          <p
+            class="text-carbon tracking-light text-3xl font-bold leading-tight"
+          >
+            {{ stats.completed || 0 }}
+          </p>
+        </div>
       </div>
-      <div
-        class="flex min-w-[200px] flex-1 flex-col gap-2 rounded-lg border border-steel/20 bg-pure p-6 shadow-sm"
-      >
-        <p
-          class="text-steel text-base font-medium leading-normal flex items-center gap-2"
-        >
-          <i class="ri-hand-coin-line text-accent text-xl"></i>
-          Upcoming Projects
-        </p>
-        <p
-          class="text-carbon tracking-light text-3xl font-bold leading-tight"
-        >
-          {{ stats.upcoming || 0 }}
-        </p>
-      </div>
-      <div
-        class="flex min-w-[200px] flex-1 flex-col gap-2 rounded-lg border border-steel/20 bg-pure p-6 shadow-sm"
-      >
-        <p
-          class="text-steel text-base font-medium leading-normal flex items-center gap-2"
-        >
-          <i class="ri-emotion-happy-line text-accent text-xl"></i>
-          Completed Projects
-        </p>
-        <p
-          class="text-carbon tracking-light text-3xl font-bold leading-tight"
-        >
-          {{ stats.completed || 0 }}
-        </p>
-      </div>
-    </div>
     </div>
   </div>
 </section>

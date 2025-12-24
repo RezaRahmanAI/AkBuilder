@@ -1,0 +1,404 @@
+<div class="space-y-6">
+  <div class="flex items-center justify-between">
+    <div>
+      <h2 class="text-2xl font-semibold text-slate-900">About page content</h2>
+      <p class="text-sm text-slate-500">
+        Update the story, hero messaging, and values shown on the About page.
+      </p>
+    </div>
+    <button
+      type="button"
+      class="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand/90"
+      (click)="saveAll()"
+    >
+      Save changes
+    </button>
+  </div>
+
+  <div
+    *ngIf="saveMessage"
+    class="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700"
+  >
+    {{ saveMessage }}
+  </div>
+
+  <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <h3 class="text-lg font-semibold text-slate-900 mb-4">Hero section</h3>
+    <div class="grid gap-4 md:grid-cols-2">
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Eyebrow
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="heroForm.eyebrow"
+          name="heroEyebrow"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Title
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="heroForm.title"
+          name="heroTitle"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600 md:col-span-2">
+        Description
+        <textarea
+          class="min-h-[96px] rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="heroForm.description"
+          name="heroDescription"
+        ></textarea>
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600 md:col-span-2">
+        Background image URL
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="heroForm.backgroundImage"
+          name="heroBackgroundImage"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Primary CTA label
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="heroForm.primaryCtaLabel"
+          name="heroPrimaryCtaLabel"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Primary CTA link
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="heroForm.primaryCtaLink"
+          name="heroPrimaryCtaLink"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Secondary CTA label
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="heroForm.secondaryCtaLabel"
+          name="heroSecondaryCtaLabel"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Secondary CTA link
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="heroForm.secondaryCtaLink"
+          name="heroSecondaryCtaLink"
+        />
+      </label>
+    </div>
+
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Ongoing label
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="heroForm.statsLabels.ongoing"
+          name="heroStatsOngoing"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Upcoming label
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="heroForm.statsLabels.upcoming"
+          name="heroStatsUpcoming"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Completed label
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="heroForm.statsLabels.completed"
+          name="heroStatsCompleted"
+        />
+      </label>
+    </div>
+  </div>
+
+  <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <h3 class="text-lg font-semibold text-slate-900 mb-4">Company story</h3>
+    <div class="grid gap-4 md:grid-cols-2">
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600 md:col-span-2">
+        History
+        <textarea
+          class="min-h-[120px] rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="aboutForm.history"
+          name="aboutHistory"
+        ></textarea>
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Mission
+        <textarea
+          class="min-h-[96px] rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="aboutForm.mission"
+          name="aboutMission"
+        ></textarea>
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Mission image
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="aboutForm.missionImage"
+          name="aboutMissionImage"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Vision
+        <textarea
+          class="min-h-[96px] rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="aboutForm.vision"
+          name="aboutVision"
+        ></textarea>
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Vision image
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="aboutForm.visionImage"
+          name="aboutVisionImage"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Owner name
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="aboutForm.ownerName"
+          name="aboutOwnerName"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Owner designation
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="aboutForm.ownerDesignation"
+          name="aboutOwnerDesignation"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600 md:col-span-2">
+        Owner speech
+        <textarea
+          class="min-h-[100px] rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="aboutForm.ownerSpeech"
+          name="aboutOwnerSpeech"
+        ></textarea>
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Owner image
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="aboutForm.ownerImage"
+          name="aboutOwnerImage"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Facebook
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="aboutForm.facebook"
+          name="aboutFacebook"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        LinkedIn
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="aboutForm.linkedIn"
+          name="aboutLinkedIn"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Twitter
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="aboutForm.twitter"
+          name="aboutTwitter"
+        />
+      </label>
+    </div>
+  </div>
+
+  <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <h3 class="text-lg font-semibold text-slate-900 mb-4">Core values</h3>
+
+    <div class="grid gap-4 md:grid-cols-3 mb-4">
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Section eyebrow
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="coreValuesSectionForm.eyebrow"
+          name="coreValuesEyebrow"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600 md:col-span-2">
+        Section title
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="coreValuesSectionForm.title"
+          name="coreValuesTitle"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600 md:col-span-3">
+        Section description
+        <textarea
+          class="min-h-[80px] rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="coreValuesSectionForm.description"
+          name="coreValuesDescription"
+        ></textarea>
+      </label>
+    </div>
+
+    <div class="space-y-3">
+      <div
+        *ngFor="let value of coreValues"
+        class="rounded-2xl border border-slate-200 p-4"
+      >
+        <div class="grid gap-3 md:grid-cols-[1fr_1fr_1fr_auto]">
+          <input
+            class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+            [(ngModel)]="value.title"
+            name="coreValueTitle-{{ value.id }}"
+          />
+          <input
+            class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+            [(ngModel)]="value.description"
+            name="coreValueDescription-{{ value.id }}"
+          />
+          <input
+            class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+            [(ngModel)]="value.icon"
+            name="coreValueIcon-{{ value.id }}"
+          />
+          <button
+            type="button"
+            class="rounded-full border border-rose-200 px-4 py-2 text-sm font-semibold text-rose-600 hover:bg-rose-50"
+            (click)="removeCoreValue(value.id)"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 rounded-2xl border border-dashed border-slate-300 p-4">
+      <p class="text-sm font-semibold text-slate-700 mb-3">Add core value</p>
+      <div class="grid gap-3 md:grid-cols-[1fr_1fr_1fr_auto]">
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="newCoreValue.title"
+          name="newCoreValueTitle"
+          placeholder="Value title"
+        />
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="newCoreValue.description"
+          name="newCoreValueDescription"
+          placeholder="Short description"
+        />
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="newCoreValue.icon"
+          name="newCoreValueIcon"
+          placeholder="Icon class"
+        />
+        <button
+          type="button"
+          class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"
+          (click)="addCoreValue()"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <h3 class="text-lg font-semibold text-slate-900 mb-4">Project stats</h3>
+    <div class="grid gap-4 md:grid-cols-3">
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Ongoing
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          type="number"
+          [(ngModel)]="statsForm.ongoing"
+          name="statsOngoing"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Upcoming
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          type="number"
+          [(ngModel)]="statsForm.upcoming"
+          name="statsUpcoming"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Completed
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          type="number"
+          [(ngModel)]="statsForm.completed"
+          name="statsCompleted"
+        />
+      </label>
+    </div>
+  </div>
+
+  <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <h3 class="text-lg font-semibold text-slate-900 mb-4">About page CTA</h3>
+    <div class="grid gap-4 md:grid-cols-2">
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600 md:col-span-2">
+        Title
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="ctaForm.title"
+          name="ctaTitle"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600 md:col-span-2">
+        Description
+        <textarea
+          class="min-h-[80px] rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="ctaForm.description"
+          name="ctaDescription"
+        ></textarea>
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Primary CTA label
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="ctaForm.primaryCtaLabel"
+          name="ctaPrimaryLabel"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Primary CTA link
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="ctaForm.primaryCtaLink"
+          name="ctaPrimaryLink"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Secondary CTA label
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="ctaForm.secondaryCtaLabel"
+          name="ctaSecondaryLabel"
+        />
+      </label>
+      <label class="flex flex-col gap-2 text-sm font-medium text-slate-600">
+        Secondary CTA link
+        <input
+          class="rounded-xl border border-slate-200 px-3 py-2 text-slate-700"
+          [(ngModel)]="ctaForm.secondaryCtaLink"
+          name="ctaSecondaryLink"
+        />
+      </label>
+    </div>
+  </div>
+</div>

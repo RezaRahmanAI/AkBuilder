@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HeroSectionComponent } from './hero-section/hero-section.component';
@@ -10,7 +10,7 @@ import { TeamComponent } from './team/team.component';
 import { environment } from '../../environments/environment';
 import { AnimationService } from '../../services/animation.service';
 import { TeamService } from '../../services/team.service';
-import { ABOUT_PAGE_DATA } from '../../data/about-page.data';
+import { SiteStoreService } from '../../store/site-store.service';
 
 @Component({
   selector: 'app-about',
@@ -28,28 +28,13 @@ import { ABOUT_PAGE_DATA } from '../../data/about-page.data';
   styleUrls: ['./about.component.css'],
 })
 export class AboutComponent implements OnInit, AfterViewInit {
+  private siteStore = inject(SiteStoreService);
   baseUrl = environment.baseUrl;
 
-  coreValues = [
-    {
-      title: 'Integrity',
-      description:
-        'Transparent communication and accountability keep every promise we make to residents and partners.',
-      icon: 'ri-verified-badge-line',
-    },
-    {
-      title: 'Expertise',
-      description:
-        'Seasoned teams blend local insight with global standards to guide confident real estate decisions.',
-      icon: 'ri-lightbulb-flash-line',
-    },
-    {
-      title: 'Community',
-      description:
-        'We create vibrant neighborhoods with shared amenities, thoughtful design, and long-term stewardship.',
-      icon: 'ri-team-line',
-    },
-  ];
+  readonly coreValues = this.siteStore.coreValues;
+  readonly coreValuesSection = this.siteStore.coreValuesSection;
+  readonly aboutHero = this.siteStore.aboutHero;
+  readonly aboutCta = this.siteStore.aboutCta;
 
   state: {
     about: {
@@ -94,7 +79,7 @@ export class AboutComponent implements OnInit, AfterViewInit {
   };
 
   expandedSections: { [key: string]: boolean } = {
-    history: true, 
+    history: true,
     missionVision: false,
     ownerSpeech: false,
     team: false,
@@ -102,7 +87,27 @@ export class AboutComponent implements OnInit, AfterViewInit {
 
   isModalVisible = false;
 
-  constructor(private teamService: TeamService, private anim: AnimationService) {}
+  constructor(private teamService: TeamService, private anim: AnimationService) {
+    effect(() => {
+      const about = this.siteStore.about();
+      const stats = this.siteStore.stats();
+      this.state.about = {
+        history: about.history || '',
+        ownerName: about.ownerName || '',
+        ownerDesignation: about.ownerDesignation || '',
+        ownerSpeech: about.ownerSpeech || '',
+        twitter: about.twitter || '',
+        facebook: about.facebook || '',
+        linkedIn: about.linkedIn || '',
+        ownerImage: about.ownerImage || '/images/fallback.png',
+        mission: about.mission || '',
+        missionImage: about.missionImage || '/images/fallback.png',
+        vision: about.vision || '',
+        visionImage: about.visionImage || '/images/fallback.png',
+      };
+      this.state.stats = stats || this.state.stats;
+    });
+  }
 
   ngAfterViewInit() {
     this.anim.animateOnScroll('.fade-up');
@@ -110,27 +115,7 @@ export class AboutComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.setAboutData();
     this.fetchTeams();
-  }
-
-  setAboutData(): void {
-    const { about, stats } = ABOUT_PAGE_DATA;
-    this.state.about = {
-      history: about.history || '',
-      ownerName: about.ownerName || '',
-      ownerDesignation: about.ownerDesignation || '',
-      ownerSpeech: about.ownerSpeech || '',
-      twitter: about.twitter || '',
-      facebook: about.facebook || '',
-      linkedIn: about.linkedIn || '',
-      ownerImage: about.ownerImage || '/images/fallback.png',
-      mission: about.mission || '',
-      missionImage: about.missionImage || '/images/fallback.png',
-      vision: about.vision || '',
-      visionImage: about.visionImage || '/images/fallback.png',
-    };
-    this.state.stats = stats || this.state.stats;
   }
 
   fetchTeams(): void {
