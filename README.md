@@ -1,6 +1,6 @@
-# AS Haven Monorepo
+# AK Builders Monorepo
 
-AS Haven is structured as a two-tier real estate platform composed of a .NET API and an Angular client. This repository is organised as a monorepo so shared workflows, tooling and documentation can evolve together.
+AK Builders is structured as a two-tier real estate platform composed of a .NET API and an Angular client. This repository is organised as a monorepo so shared workflows, tooling and documentation can evolve together.
 
 ## Repository layout
 
