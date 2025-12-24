@@ -59,6 +59,20 @@
               <span class="text-xs uppercase tracking-[0.3em]">{{ contactPage().hero.highlight }}</span>
             </div>
           </div>
+          <div class="flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
+            <a
+              [attr.href]="contactPage().hero.primaryCtaLink"
+              class="inline-flex h-11 min-w-[160px] items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-carbon shadow-lg transition hover:-translate-y-0.5 hover:bg-accent/80"
+            >
+              {{ contactPage().hero.primaryCtaLabel }}
+            </a>
+            <a
+              [routerLink]="contactPage().hero.secondaryCtaLink"
+              class="inline-flex h-11 min-w-[160px] items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+            >
+              {{ contactPage().hero.secondaryCtaLabel }}
+            </a>
+          </div>
         </div>
       </div>
     </div>
