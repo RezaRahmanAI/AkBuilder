@@ -18,7 +18,6 @@ namespace Real_Estate.server.api.Data
         }
 
         public DbSet<Project> Projects { get; set; }
-        public DbSet<ProjectGallery> ProjectGalleries { get; set; }
         public DbSet<ProjectFeature> ProjectFeatures { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
 
@@ -30,7 +29,6 @@ namespace Real_Estate.server.api.Data
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new UserRoleEntityConfig());
             builder.ApplyConfiguration(new ProjectFeatureEntityConfig());
-            builder.ApplyConfiguration(new ProjectGalleryEntityConfig());
             builder.ApplyConfiguration(new BlogEntityConfig());
         }
     }

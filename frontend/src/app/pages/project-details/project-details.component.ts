@@ -16,11 +16,6 @@ interface Feature {
   icon: string;
 }
 
-interface GalleryItem {
-  content: string;
-  contentType: 'Image' | 'Video';
-}
-
 interface RelatedProject {
   id: string;
   name: string;
@@ -44,7 +39,6 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   baseUrl = environment.baseUrl;
   state = {
     list: [] as Feature[],
-    gallery: [] as GalleryItem[],
     projects: [] as RelatedProject[],
     data: null as Project | null,
     timer: {
@@ -73,7 +67,6 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
         if (this.projectId) {
           this.getProject();
           this.getFeatures();
-          this.getGallery();
           this.getProjects();
         } else {
           this.toastr.error('Invalid project ID.', 'Error');
@@ -165,40 +158,6 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
         error: (err) => {
           console.error('Error fetching features:', err);
           this.toastr.error('Failed to load project features.', 'Error');
-        },
-      });
-  }
-
-  getGallery(): void {
-    if (!this.projectId) return;
-    this.http
-      .get<GalleryItem[]>(
-        `${this.baseUrl}/api/website/getgalleries?projectId=${this.projectId}`
-      )
-      .subscribe({
-        next: (data) => {
-          console.log('Gallery data:', data);
-          this.state.gallery = data;
-          if (!data.length) {
-            this.toastr.info(
-              'No gallery items available for this project.',
-              'Info'
-            );
-          } else {
-            this.state.gallery.forEach((item) => {
-              console.log(
-                'Gallery item URL:',
-                `${this.baseUrl}/api/attachment/get/${item.content}`
-              );
-            });
-          }
-        },
-        error: (err) => {
-          console.error('Error fetching gallery:', err);
-          this.toastr.error(
-            'Failed to load gallery. Please try again.',
-            'Error'
-          );
         },
       });
   }

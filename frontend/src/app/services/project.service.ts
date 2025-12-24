@@ -7,7 +7,6 @@ import {
   Project,
   ProjectDashboardSummary,
   ProjectFeature,
-  ProjectGallery,
 } from '../models/model';
 
 @Injectable({
@@ -91,37 +90,6 @@ export class ProjectService {
   toggleFeatureActive(id: string, value: boolean): Observable<string> {
     return this.http.post(
       `${this.apiBaseUrl}/api/project/featureactiveinactive?id=${id}&value=${value}`,
-      {},
-      { responseType: 'text' }
-    );
-  }
-
-  // Gallery APIs
-  getGallery(projectId: string): Observable<ProjectGallery[]> {
-    return this.http.get<ProjectGallery[]>(
-      `${this.apiBaseUrl}/api/project/getgallery?projectId=${projectId}`
-    );
-  }
-
-  createGallery(formData: FormData): Observable<string> {
-    return this.http.post(
-      `${this.apiBaseUrl}/api/project/gallerycreate`,
-      formData,
-      { responseType: 'text' }
-    );
-  }
-
-  deleteGallery(id: string): Observable<string> {
-    return this.http.post(
-      `${this.apiBaseUrl}/api/project/gallerydelete?id=${id}`,
-      {},
-      { responseType: 'text' }
-    );
-  }
-
-  toggleGalleryActive(id: string, value: boolean): Observable<string> {
-    return this.http.post(
-      `${this.apiBaseUrl}/api/project/galleryactiveinactive?id=${id}&value=${value}`,
       {},
       { responseType: 'text' }
     );

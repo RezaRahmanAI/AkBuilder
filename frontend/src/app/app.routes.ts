@@ -5,7 +5,6 @@ import { AboutComponent } from './pages/about/about.component';
 import { ProjectsComponent } from './pages/project/project.component';
 import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
 import { ContactComponent } from './pages/contact/contact.component';
-import { GalleryPageComponent } from './pages/gallery-page/gallery-page.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { BlogDetailsComponent } from './pages/blog-details/blog-details.component';
 
@@ -16,7 +15,6 @@ import { ProjectsIndexComponent } from './features/projects/projects-index/proje
 import { ProjectCreateComponent } from './features/projects/project-create/project-create.component';
 import { ProjectEditComponent } from './features/projects/project-edit/project-edit.component';
 import { ProjectFeaturesComponent } from './features/projects/project-features/project-features.component';
-import { ProjectGalleryComponent } from './features/projects/project-gallery/project-gallery.component';
 import { TeamsIndexComponent } from './features/teams/teams-index/teams-index.component';
 import { ClientComponent } from './features/client/client.component';
 import { BlogsIndexComponent } from './features/blogs/blogs-index/blogs-index.component';
@@ -54,16 +52,6 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'gallery',
-    component: GalleryPageComponent,
-    data: {
-      title:
-        'Project Gallery | AK Builders Ltd — Real Estate Projects in Rajshahi',
-      description:
-        'Explore AK Builders’ photo gallery featuring our latest residential and commercial projects in Rajshahi. See interiors, exteriors, and on-site progress.',
-    },
-  },
-  {
     path: 'blogs',
     component: BlogComponent,
     data: {
@@ -88,7 +76,7 @@ export const routes: Routes = [
     data: {
       title: 'Our Projects | AK Builders Ltd — Rajshahi Properties',
       description:
-        'Explore the latest residential, commercial, and mixed-use projects by AK Builders in Rajshahi. View galleries, project features, floor plans & pricing.',
+        'Explore the latest residential, commercial, and mixed-use projects by AK Builders in Rajshahi. View project features, floor plans & pricing.',
     },
   },
   {
@@ -130,7 +118,6 @@ export const routes: Routes = [
           { path: 'create', component: ProjectCreateComponent },
           { path: ':id/edit', component: ProjectEditComponent },
           { path: ':id/features', component: ProjectFeaturesComponent },
-          { path: ':id/gallery', component: ProjectGalleryComponent },
         ],
       },
     ],
