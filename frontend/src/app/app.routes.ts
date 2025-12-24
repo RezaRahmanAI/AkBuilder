@@ -22,8 +22,6 @@ import { OffersIndexComponent } from './features/offers/offers-index/offers-inde
 import { AboutUsIndexComponent } from './features/about-us/about-us-index/about-us-index.component';
 import { FaqComponent } from './features/faq/faq.component';
 import { TestimonialsIndexComponent } from './features/testimonials/testimonials-index/testimonials-index.component';
-import { AboutContentComponent } from './features/site-content/about-content.component';
-import { SiteSettingsComponent } from './features/site-settings/site-settings.component';
 
 export const routes: Routes = [
   {
@@ -112,9 +110,7 @@ export const routes: Routes = [
       { path: 'blogs', component: BlogsIndexComponent },
       { path: 'offers', component: OffersIndexComponent },
       { path: 'about-us', component: AboutUsIndexComponent },
-      { path: 'about-content', component: AboutContentComponent },
       { path: 'faq', component: FaqComponent },
-      { path: 'settings', component: SiteSettingsComponent },
       {
         path: 'projects',
         children: [

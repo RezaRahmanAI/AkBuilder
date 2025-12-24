@@ -1,6 +1,5 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SiteStoreService } from '../../store/site-store.service';
 
 @Component({
   selector: 'app-floating-social',
@@ -10,12 +9,8 @@ import { SiteStoreService } from '../../store/site-store.service';
   styleUrls: ['./floating-social.component.css'],
 })
 export class FloatingSocialComponent {
-  private siteStore = inject(SiteStoreService);
   isOpen = false;
   isSpinning = false;
-  readonly floatingLinks = computed(() =>
-    this.siteStore.settings().socialLinks.filter((link) => link.showInFloating)
-  );
 
   toggleSocialIcons(): void {
     this.isSpinning = true;
