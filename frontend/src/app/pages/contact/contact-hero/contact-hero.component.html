@@ -1,6 +1,6 @@
 
 
-<section class="site-container flex-1 w-full py-10 md:py-16 text-carbon">
+<section class="site-container flex-1 w-full py-10  text-carbon">
   <nav class="flex flex-wrap gap-2 py-4 mb-6 items-center text-sm text-steel">
     <a routerLink="/" class="font-medium hover:text-accent transition-colors">Home</a>
     <span class="text-steel/60">/</span>
@@ -25,18 +25,5 @@
     </p>
   </div>
 
-  <div class="flex flex-wrap gap-3">
-    <a
-      [attr.href]="contactPage().hero.primaryCtaLink"
-      class="px-6 py-2.5 rounded-full bg-brand text-carbon text-sm font-bold shadow-sm transition-all hover:bg-accent"
-    >
-      {{ contactPage().hero.primaryCtaLabel }}
-    </a>
-    <a
-      [routerLink]="contactPage().hero.secondaryCtaLink"
-      class="px-6 py-2.5 rounded-full bg-pure border border-steel/20 text-steel hover:border-accent hover:text-accent text-sm font-bold transition-all"
-    >
-      {{ contactPage().hero.secondaryCtaLabel }}
-    </a>
-  </div>
+  
 </section>

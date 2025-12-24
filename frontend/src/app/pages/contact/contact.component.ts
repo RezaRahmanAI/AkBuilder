@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContactHeroComponent } from './contact-hero/contact-hero.component';
-import { GetInTouchComponent } from './get-in-touch/get-in-touch.component';
 import { ContactInfoMapComponent } from './contact-info-map/contact-info-map.component';
 import { FaqComponent } from './faq/faq.component';
 
@@ -11,7 +10,6 @@ import { FaqComponent } from './faq/faq.component';
   imports: [
     CommonModule,
     ContactHeroComponent,
-    GetInTouchComponent,
     ContactInfoMapComponent,
     FaqComponent,
   ],
