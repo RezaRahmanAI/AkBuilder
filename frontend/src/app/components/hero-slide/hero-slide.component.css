@@ -10,8 +10,7 @@
 }
 
 .neo-hero__shell {
-  width: min(1180px, 92%);
-  margin: 0 auto;
+  width: 100%;
 }
 
 .neo-hero__grid {
