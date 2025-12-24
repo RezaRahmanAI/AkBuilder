@@ -1,32 +1,32 @@
-<section class="relative mx-auto w-full max-w-6xl px-4 py-16 lg:py-20">
-  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-100 via-white to-slate-50"></div>
-  <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+<section class="relative w-full px-4 py-16 md:px-10 lg:px-40 lg:py-20">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-pure via-pure to-pure"></div>
+  <div class="mx-auto grid max-w-[1200px] gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
     <div class="space-y-6">
-      <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.5em] text-amber-600" [@headingAnimation]>
-        <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+      <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.5em] text-accent" [@headingAnimation]>
+        <span class="h-2 w-2 rounded-full bg-brand"></span>
         Our History
       </p>
-      <h2 class="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl lg:text-5xl" [@headingAnimation]>
+      <h2 class="text-3xl font-bold leading-tight text-carbon sm:text-4xl lg:text-5xl" [@headingAnimation]>
         Built on trust, inspired by community
       </h2>
-      <p class="text-lg leading-relaxed text-slate-600" *ngIf="history; else noHistory" [@textAnimation]>
+      <p class="text-lg leading-relaxed text-steel" *ngIf="history; else noHistory" [@textAnimation]>
         {{ history }}
       </p>
       <ng-template #noHistory>
-        <p class="text-slate-500" [@textAnimation]>No history available.</p>
+        <p class="text-steel" [@textAnimation]>No history available.</p>
       </ng-template>
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div class="rounded-xl border border-slate-200 bg-white/90 p-5 shadow-sm">
-          <p class="text-sm font-medium uppercase tracking-[0.2em] text-amber-600">Years of excellence</p>
-          <p class="mt-2 text-2xl font-bold text-slate-900">19+</p>
+        <div class="rounded-xl border border-steel/20 bg-pure/90 p-5 shadow-sm">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-accent">Years of excellence</p>
+          <p class="mt-2 text-2xl font-bold text-carbon">19+</p>
         </div>
-        <div class="rounded-xl border border-slate-200 bg-white/90 p-5 shadow-sm">
-          <p class="text-sm font-medium uppercase tracking-[0.2em] text-amber-600">Cities served</p>
-          <p class="mt-2 text-2xl font-bold text-slate-900">5</p>
+        <div class="rounded-xl border border-steel/20 bg-pure/90 p-5 shadow-sm">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-accent">Cities served</p>
+          <p class="mt-2 text-2xl font-bold text-carbon">5</p>
         </div>
-        <div class="rounded-xl border border-slate-200 bg-white/90 p-5 shadow-sm">
-          <p class="text-sm font-medium uppercase tracking-[0.2em] text-amber-600">Happy residents</p>
-          <p class="mt-2 text-2xl font-bold text-slate-900">5,000+</p>
+        <div class="rounded-xl border border-steel/20 bg-pure/90 p-5 shadow-sm">
+          <p class="text-sm font-medium uppercase tracking-[0.2em] text-accent">Happy residents</p>
+          <p class="mt-2 text-2xl font-bold text-carbon">5,000+</p>
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@
           class="aspect-[3/4] w-full bg-cover bg-center"
           [ngStyle]="{ 'background-image': primaryImage ? 'url(' + primaryImage + ')' : 'none' }"
         ></div>
-        <div *ngIf="!primaryImage" class="absolute inset-0 flex items-center justify-center bg-slate-100 text-slate-500">
+        <div *ngIf="!primaryImage" class="absolute inset-0 flex items-center justify-center bg-pure text-steel">
           No image
         </div>
       </div>
@@ -46,7 +46,7 @@
           class="aspect-[3/4] w-full bg-cover bg-center"
           [ngStyle]="{ 'background-image': secondaryImage ? 'url(' + secondaryImage + ')' : 'none' }"
         ></div>
-        <div *ngIf="!secondaryImage" class="absolute inset-0 flex items-center justify-center bg-slate-100 text-slate-500">
+        <div *ngIf="!secondaryImage" class="absolute inset-0 flex items-center justify-center bg-pure text-steel">
           No image
         </div>
       </div>
