@@ -41,6 +41,18 @@ const seededStats: ProjectStats = {
   completed: 28,
 };
 
+const seededContactHero: ContactPageContent['hero'] = {
+  title: 'Contact',
+  eyebrow: "Let's create a connection",
+  breadcrumbLabel: 'Contact',
+  backgroundImage: '/images/banner/banner-3.png',
+  highlight: 'Stills • Motion • Atmospheres',
+  primaryCtaLabel: 'Start a conversation',
+  primaryCtaLink: '#connect',
+  secondaryCtaLabel: 'Explore projects',
+  secondaryCtaLink: '/projects',
+};
+
 const initialState: AppState = {
   aboutPage: {
     aboutEntries: [seededAbout],
@@ -99,18 +111,7 @@ const initialState: AppState = {
     },
   },
   contactPage: {
-    hero: {
-      title: 'Contact',
-      eyebrow: "Let's create a connection",
-      breadcrumbLabel: 'Contact',
-      backgroundImage: '/images/banner/banner-3.png',
-      highlight:
-        'Stills • Motion • Atmospheres',
-      primaryCtaLabel: 'Start a conversation',
-      primaryCtaLink: '#connect',
-      secondaryCtaLabel: 'Explore projects',
-      secondaryCtaLink: '/projects',
-    },
+    hero: seededContactHero,
     getInTouch: {
       eyebrow: 'Ways to reach us',
       title: 'A concierge team dedicated to making every conversation memorable.',
