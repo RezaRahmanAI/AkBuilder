@@ -155,15 +155,6 @@ export interface ProjectFeature {
   isActive?: boolean;
 }
 
-export interface ProjectGallery {
-  id: string;
-  contentType: string;
-  content: string;
-  order: number;
-  projectId: string;
-  isActive: boolean;
-}
-
 export interface Blog {
   id: string;
   title: string;

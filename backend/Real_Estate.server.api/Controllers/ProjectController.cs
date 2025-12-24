@@ -294,88 +294,6 @@ namespace Real_Estate.server.api.Controllers
             return File(fileBytes, contentType, fileName);
         }
 
-        // Gallery Part
-        [HttpGet]
-        [Route("getgallery")]
-        public async Task<IActionResult> GetGallery(string projectId)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(projectId))
-                    return BadRequest("Missing projectId");
-
-                var data = await context.ProjectGalleries
-                    .AsNoTracking()
-                    .Where(e => e.ProjectId == projectId)
-                    .ToListAsync();
-
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Gallery fetch error: " + ex.Message);
-                return StatusCode(500, "Server error");
-            }
-        }
-
-        [HttpPost]
-        [Route("gallerycreate")]
-        public async Task<IActionResult> GalleryCreate(ProjectGalleryModel model)
-        {
-            if (model.projectId == null || model.projectId == "")
-            {
-                return BadRequest("Select Project ID");
-            }
-
-            ProjectGallery newModel = new ProjectGallery();
-            newModel.Id = Guid.CreateVersion7().ToString();
-            newModel.Order = model.order;
-            newModel.IsActive = true;
-            newModel.ProjectId = model.projectId;
-            newModel.ContentType = model.contentType;
-            if (model.content != null && model.content.Length > 0)
-            {
-                var extension = Path.GetExtension(model.content.FileName);
-                var fileName = DateTime.UtcNow.ToString("ddMMyyyHHmmssffffff") + extension;
-                string Rootpath = webHostEnvironment.ContentRootPath;
-                string fileUploadRoot = Path.Combine(Rootpath, "assets", "images");
-                if (!Directory.Exists(fileUploadRoot))
-                    Directory.CreateDirectory(fileUploadRoot);
-                using (var stream = new FileStream(Path.Combine(fileUploadRoot, fileName), FileMode.Create))
-                {
-                    await model.content.CopyToAsync(stream);
-                }
-                newModel.Content = fileName;
-            }
-
-            await context.ProjectGalleries.AddAsync(newModel);
-            await context.SaveChangesAsync();
-            return Ok("Item has been created.");
-        }
-
-        [HttpPost]
-        [Route("galleryactiveinactive")]
-        public async Task<IActionResult> GalleryActiveInactive(string id, bool value)
-        {
-            var data = await context.ProjectGalleries.Where(e => e.Id == id).FirstOrDefaultAsync();
-            if (data == null) return NotFound("Data not found.");
-            data.IsActive = value;
-            context.Entry(data).State = EntityState.Modified;
-            await context.SaveChangesAsync();
-            return Ok("Item has been updated.");
-        }
-
-        [HttpPost]
-        [Route("gallerydelete")]
-        public async Task<IActionResult> GalleryDelete(string? id)
-        {
-            var data = await context.ProjectGalleries.Where(e => e.Id == id).FirstOrDefaultAsync();
-            if (data == null) return NotFound("Data not found.");
-            context.ProjectGalleries.Remove(data);
-            await context.SaveChangesAsync();
-            return Ok("Item has been deleted.");
-        }
-
         // Feature Part
         [HttpGet]
         [Route("getfeature")]
@@ -459,15 +377,6 @@ namespace Real_Estate.server.api.Controllers
         public int? NoOfMotorParking { get; set; }
         public IFormFile? pdfFile { get; set; }
         public DateTime? offerDateTime { get; set; }
-    }
-
-    public class ProjectGalleryModel
-    {
-        public string? id { get; set; }
-        public string? contentType { get; set; }
-        public IFormFile? content { get; set; }
-        public int order { get; set; }
-        public string? projectId { get; set; }
     }
 
     public class ProjectFeatureModel

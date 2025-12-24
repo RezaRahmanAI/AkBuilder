@@ -31,7 +31,6 @@
         public int? NoOfMotorParking { get; set; }
         //public string? Longitude { get; set; }
         public DateTime? OfferDateTime { get; set; }
-        public ICollection<ProjectGallery>? ProjectGalleries { get; set; }
         public ICollection<ProjectFeature>? ProjectFeatures { get; set; }
 
     }
