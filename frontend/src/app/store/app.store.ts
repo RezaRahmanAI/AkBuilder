@@ -106,6 +106,10 @@ const initialState: AppState = {
       backgroundImage: '/images/banner/banner-3.png',
       highlight:
         'Stills • Motion • Atmospheres',
+      primaryCtaLabel: 'Start a conversation',
+      primaryCtaLink: '#connect',
+      secondaryCtaLabel: 'Explore projects',
+      secondaryCtaLink: '/projects',
     },
     getInTouch: {
       eyebrow: 'Ways to reach us',

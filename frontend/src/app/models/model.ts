@@ -194,6 +194,10 @@ export interface ContactHeroContent {
   breadcrumbLabel: string;
   backgroundImage: string;
   highlight: string;
+  primaryCtaLabel: string;
+  primaryCtaLink: string;
+  secondaryCtaLabel: string;
+  secondaryCtaLink: string;
 }
 
 export interface ContactInfoMapContent {
