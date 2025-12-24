@@ -1,24 +1,15 @@
 import { Component, AfterViewInit, NgZone, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 // import { LenisService } from '../../services/lenis.service';
 import { ScrollService } from '../../services/scroll.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ProjectService } from '../../services/project.service';
+import { Project } from '../../models/model';
 
-interface ProjectItem {
-  id: number | string;
-  name: string;
-  category: string;
-  type: string;
-  thumbnail: string;
-  address: string;
-  canSchedule?: boolean;
-  order: number;
-}
+type ProjectItem = Project;
 
 @Component({
   selector: 'app-projects',
@@ -29,7 +20,6 @@ interface ProjectItem {
 })
 export class ProjectsComponent implements AfterViewInit, OnDestroy {
   scrollTransform = 'translateY(-60px)';
-  baseUrl = environment.baseUrl;
   selectedCategory: string = 'all';
   selectedType: string = 'all';
 
@@ -40,7 +30,7 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   constructor(
-    private http: HttpClient,
+    private projectService: ProjectService,
     // private lenisService: LenisService,
     private toastr: ToastrService,
     private route: ActivatedRoute,
@@ -76,41 +66,40 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
     const category = this.selectedCategory || 'all';
     const type = this.selectedType || 'all';
 
-    const params = new URLSearchParams();
-    if (category !== 'all') params.append('category', category);
-    if (type !== 'all') params.append('type', type);
+    this.projectService.getActiveProjects().subscribe({
+      next: (projects) => {
+        const filtered = projects.filter((project) => {
+          const matchesCategory =
+            category === 'all' || project.category === category;
+          const matchesType = type === 'all' || project.type === type;
+          return matchesCategory && matchesType;
+        });
 
-    this.http
-      .get<ProjectItem[]>(
-        `${this.baseUrl}/api/website/getprojects?${params.toString()}`
-      )
-      .subscribe({
-        next: (data) => {
-          this.state.list = data.sort((a, b) => {
-            // Put items without order at the bottom
-            if (a.order == null && b.order == null) return 0;
-            if (a.order == null) return 1;
-            if (b.order == null) return -1;
+        this.state.list = filtered.sort((a, b) => {
+          // Put items without order at the bottom
+          if (a.order == null && b.order == null) return 0;
+          if (a.order == null) return 1;
+          if (b.order == null) return -1;
 
-            return a.order - b.order; // ascending
-          });
+          return a.order - b.order; // ascending
+        });
 
-          if (!data.length) {
-            this.toastr.info(
-              'No projects match your filters. Try adjusting criteria.',
-              'No Results'
-            );
-          }
-        },
-        error: (err) => {
-          console.error('Error fetching projects:', err);
-          this.state.list = [];
-          this.toastr.error(
-            'Failed to load projects. Please try again.',
-            'Error'
+        if (!filtered.length) {
+          this.toastr.info(
+            'No projects match your filters. Try adjusting criteria.',
+            'No Results'
           );
-        },
-      });
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching projects:', err);
+        this.state.list = [];
+        this.toastr.error(
+          'Failed to load projects. Please try again.',
+          'Error'
+        );
+      },
+    });
   }
 
   resetFilters(): void {
