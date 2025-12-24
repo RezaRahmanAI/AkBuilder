@@ -86,7 +86,7 @@ img {
 .shape-accent::after {
   content: '';
   position: absolute;
-  background: url('/image/shape/shapte-1.png') no-repeat center / contain;
+  background: url('/images/shape/shape-1.png') no-repeat center / contain;
   opacity: 0.08;
   pointer-events: none;
   z-index: 0;
