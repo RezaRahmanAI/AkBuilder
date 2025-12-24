@@ -40,6 +40,29 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.site-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .site-container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    padding-left: 10rem;
+    padding-right: 10rem;
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;

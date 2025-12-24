@@ -4,8 +4,7 @@
 }
 
 .neo-discover__shell {
-  width: min(1180px, 92%);
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: clamp(1.5rem, 4vw, 2.6rem);
