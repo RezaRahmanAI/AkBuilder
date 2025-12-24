@@ -45,9 +45,20 @@ body {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: clamp(1rem, 6vw, 10rem);
-  padding-right: clamp(1rem, 6vw, 10rem);
+
+  /* No padding on tablet/desktop */
+  padding-left: 0;
+  padding-right: 0;
 }
+
+/* Padding only on mobile */
+@media (max-width: 768px) {
+  .site-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 
 a {
   color: inherit;
