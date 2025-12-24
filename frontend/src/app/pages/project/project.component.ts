@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ProjectService } from '../../services/project.service';
 import { Project } from '../../models/model';
+import { environment } from '../../environments/environment';
 
 type ProjectItem = Project;
 
@@ -22,6 +23,7 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
   scrollTransform = 'translateY(-60px)';
   selectedCategory: string = 'all';
   selectedType: string = 'all';
+  baseUrl = environment.baseUrl;
 
   state = {
     list: [] as ProjectItem[],

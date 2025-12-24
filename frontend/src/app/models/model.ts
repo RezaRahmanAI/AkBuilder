@@ -143,6 +143,7 @@ export interface Project {
   pdfFile: string;
   videoLink: string;
   order: number;
+  canSchedule?: boolean;
 }
 
 export interface ProjectFeature {
