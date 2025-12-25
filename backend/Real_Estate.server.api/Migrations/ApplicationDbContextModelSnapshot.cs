@@ -21,6 +21,7 @@ namespace Real_Estate.server.api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            modelBuilder.HasDefaultSchema("dbo");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
@@ -44,7 +45,7 @@ namespace Real_Estate.server.api.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("AspNetRoleClaims", "dbo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -69,7 +70,7 @@ namespace Real_Estate.server.api.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("AspNetUserClaims", "dbo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -93,7 +94,7 @@ namespace Real_Estate.server.api.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("AspNetUserLogins", "dbo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -114,7 +115,7 @@ namespace Real_Estate.server.api.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("AspNetUserTokens", "dbo");
                 });
 
             modelBuilder.Entity("Real_Estate.server.api.Models.ApplicationRole", b =>
@@ -141,7 +142,7 @@ namespace Real_Estate.server.api.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("AspNetRoles", "dbo");
                 });
 
             modelBuilder.Entity("Real_Estate.server.api.Models.ApplicationUser", b =>
@@ -219,7 +220,7 @@ namespace Real_Estate.server.api.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("AspNetUsers", "dbo");
                 });
 
             modelBuilder.Entity("Real_Estate.server.api.Models.Blog", b =>
@@ -255,7 +256,7 @@ namespace Real_Estate.server.api.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("Blogs", "dbo");
                 });
 
             modelBuilder.Entity("Real_Estate.server.api.Models.Project", b =>
@@ -341,7 +342,7 @@ namespace Real_Estate.server.api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projects");
+                    b.ToTable("Projects", "dbo");
                 });
 
             modelBuilder.Entity("Real_Estate.server.api.Models.ProjectFeature", b =>
@@ -368,7 +369,7 @@ namespace Real_Estate.server.api.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("ProjectFeatures");
+                    b.ToTable("ProjectFeatures", "dbo");
                 });
 
             modelBuilder.Entity("Real_Estate.server.api.Models.Team", b =>
@@ -405,7 +406,7 @@ namespace Real_Estate.server.api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Teams");
+                    b.ToTable("Teams", "dbo");
                 });
 
             modelBuilder.Entity("Real_Estate.server.api.Models.Testimonial", b =>
@@ -439,7 +440,7 @@ namespace Real_Estate.server.api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Testimonials");
+                    b.ToTable("Testimonials", "dbo");
                 });
 
             modelBuilder.Entity("Real_Estate.server.api.Models.UserRole", b =>
@@ -454,7 +455,7 @@ namespace Real_Estate.server.api.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("AspNetUserRoles", "dbo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

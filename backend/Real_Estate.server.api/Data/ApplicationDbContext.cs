@@ -27,6 +27,7 @@ namespace Real_Estate.server.api.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.HasDefaultSchema("dbo");
             builder.ApplyConfiguration(new UserRoleEntityConfig());
             builder.ApplyConfiguration(new ProjectFeatureEntityConfig());
             builder.ApplyConfiguration(new BlogEntityConfig());
