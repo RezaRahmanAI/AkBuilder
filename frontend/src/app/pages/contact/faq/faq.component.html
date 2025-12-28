@@ -1,34 +1,54 @@
-<div class=" relative overflow-hidden">
-
+<section class="relative overflow-hidden bg-pure">
+  <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-brand/15 via-brand/5 to-transparent"></div>
   <div class="relative site-container py-20 md:py-24">
-    <div class="text-center fade-up space-y-4">
-      <span class="faq-pill">Frequently asked</span>
-      <h2 class="text-3xl md:text-4xl font-semibold text-brand">
+    <div class="mx-auto max-w-3xl text-center space-y-4">
+      <span
+        class="inline-flex items-center gap-2 rounded-full bg-brand/15 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-accent"
+      >
+        Frequently asked
+      </span>
+      <h2 class="text-3xl font-semibold text-charcoal md:text-4xl">
         Answers to the questions our residents ask the most.
       </h2>
-      <p class="text-brand/70 max-w-3xl mx-auto">
-        We have compiled the insights that help you move forward faster. If you cannot find what you need, our concierge team is just a message away.
+      <p class="text-base text-steel md:text-lg">
+        We have compiled the insights that help you move forward faster. If you
+        cannot find what you need, our concierge team is just a message away.
       </p>
     </div>
 
-    <div class="mt-12 space-y-4 fade-up">
-      <div *ngFor="let faq of faqs; let i = index" class="faq-card" [class.is-open]="faq.isOpen">
-        <button class="faq-toggle" (click)="toggleFaq(faq)">
-          <div class="toggle-copy">
-            <span class="toggle-index">0{{ i + 1 }}</span>
-            <span class="toggle-question">{{ faq.question }}</span>
+    <div class="mt-12 space-y-4">
+      <div
+        *ngFor="let faq of faqs; let i = index"
+        class="rounded-2xl border border-brand/10 bg-white/95 p-6 shadow-industrial-soft transition"
+        [ngClass]="faq.isOpen ? 'bg-brand/5' : ''"
+      >
+        <button
+          class="flex w-full items-center justify-between gap-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40"
+          (click)="toggleFaq(faq)"
+          type="button"
+        >
+          <div class="space-y-2">
+            <span class="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
+              0{{ i + 1 }}
+            </span>
+            <span class="block text-lg font-semibold text-charcoal md:text-xl">
+              {{ faq.question }}
+            </span>
           </div>
-          <span class="toggle-icon" [ngClass]="{'is-open': faq.isOpen}">
-            <i class="ri-add-line"></i>
+          <span
+            class="flex h-11 w-11 items-center justify-center rounded-full border border-brand/30 bg-brand/10 text-brand transition-all duration-300"
+            [ngClass]="faq.isOpen ? 'rotate-45 bg-brand text-carbon shadow-industrial-soft' : 'rotate-0'"
+          >
+            <i class="ri-add-line text-xl"></i>
           </span>
         </button>
         <div
           [@slideInOut]="faq.isOpen ? 'open' : 'closed'"
-          class="faq-answer"
+          class="overflow-hidden pt-4 text-sm leading-relaxed text-steel md:text-base"
         >
           <p>{{ faq.answer }}</p>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
