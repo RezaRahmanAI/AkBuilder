@@ -1,4 +1,4 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, signal } from '@angular/core';
 import {
   AboutPageContent,
   AboutUs,
@@ -262,11 +262,19 @@ const initialState: AppState = {
 })
 export class AppStore {
   private readonly state = signal<AppState>(initialState);
+  private readonly storageKey = 'akbuilder-app-state';
 
   readonly aboutPage = computed(() => this.state().aboutPage);
   readonly contactPage = computed(() => this.state().contactPage);
   readonly settings = computed(() => this.state().settings);
   readonly contactSubmissions = computed(() => this.state().contactSubmissions);
+
+  constructor() {
+    this.hydrateState();
+    effect(() => {
+      this.persistState(this.state());
+    });
+  }
 
   updateSettings(settings: Settings): void {
     this.state.update((current) => ({
@@ -336,5 +344,56 @@ export class AppStore {
 
   private generateId(prefix: string): string {
     return `${prefix}-${Math.random().toString(36).slice(2, 9)}-${Date.now()}`;
+  }
+
+  private hydrateState(): void {
+    if (typeof window === 'undefined') return;
+    const raw = window.localStorage.getItem(this.storageKey);
+    if (!raw) return;
+    try {
+      const parsed = JSON.parse(raw) as Partial<AppState>;
+      this.state.set(this.mergeState(parsed));
+    } catch {
+      window.localStorage.removeItem(this.storageKey);
+    }
+  }
+
+  private persistState(state: AppState): void {
+    if (typeof window === 'undefined') return;
+    window.localStorage.setItem(this.storageKey, JSON.stringify(state));
+  }
+
+  private mergeState(partial: Partial<AppState>): AppState {
+    return {
+      ...initialState,
+      ...partial,
+      aboutPage: {
+        ...initialState.aboutPage,
+        ...partial.aboutPage,
+        aboutEntries:
+          partial.aboutPage?.aboutEntries ?? initialState.aboutPage.aboutEntries,
+        stats: partial.aboutPage?.stats ?? initialState.aboutPage.stats,
+        coreValuesSection:
+          partial.aboutPage?.coreValuesSection ??
+          initialState.aboutPage.coreValuesSection,
+        hero: partial.aboutPage?.hero ?? initialState.aboutPage.hero,
+        statsLabels:
+          partial.aboutPage?.statsLabels ?? initialState.aboutPage.statsLabels,
+        cta: partial.aboutPage?.cta ?? initialState.aboutPage.cta,
+      },
+      contactPage: {
+        ...initialState.contactPage,
+        ...partial.contactPage,
+        hero: partial.contactPage?.hero ?? initialState.contactPage.hero,
+        getInTouch:
+          partial.contactPage?.getInTouch ??
+          initialState.contactPage.getInTouch,
+        infoMap:
+          partial.contactPage?.infoMap ?? initialState.contactPage.infoMap,
+      },
+      settings: partial.settings ?? initialState.settings,
+      contactSubmissions:
+        partial.contactSubmissions ?? initialState.contactSubmissions,
+    };
   }
 }
