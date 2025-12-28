@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { AboutUsService } from '../services/about-us.service';
 import { CommonModule } from '@angular/common';
 import { AboutUs } from '../../../models/model';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-about-us-form',
@@ -29,6 +30,7 @@ export class AboutUsFormComponent {
   };
 
   _aboutUs: AboutUs = { ...this.defaultAboutUs };
+  apiBaseUrl = environment.baseUrl;
 
   constructor(private aboutUsService: AboutUsService) {}
 
@@ -60,5 +62,26 @@ export class AboutUsFormComponent {
 
   closeModal() {
     this.close.emit();
+  }
+
+  resolveImageUrl(image?: string): string | null {
+    if (!image) {
+      return null;
+    }
+
+    if (this.isExternalOrAbsoluteImage(image)) {
+      return image;
+    }
+
+    return `${this.apiBaseUrl}/api/attachment/get/${image}`;
+  }
+
+  private isExternalOrAbsoluteImage(image: string): boolean {
+    return (
+      image.startsWith('http://') ||
+      image.startsWith('https://') ||
+      image.startsWith('//') ||
+      image.startsWith('/')
+    );
   }
 }

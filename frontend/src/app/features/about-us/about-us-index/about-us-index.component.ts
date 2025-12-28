@@ -77,4 +77,25 @@ export class AboutUsIndexComponent implements OnInit {
       },
     });
   }
+
+  resolveImageUrl(image?: string): string {
+    if (!image) {
+      return '';
+    }
+
+    if (this.isExternalOrAbsoluteImage(image)) {
+      return image;
+    }
+
+    return `${this.apiBaseUrl}/api/attachment/get/${image}`;
+  }
+
+  private isExternalOrAbsoluteImage(image: string): boolean {
+    return (
+      image.startsWith('http://') ||
+      image.startsWith('https://') ||
+      image.startsWith('//') ||
+      image.startsWith('/')
+    );
+  }
 }

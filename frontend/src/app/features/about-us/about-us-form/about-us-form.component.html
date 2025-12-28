@@ -82,8 +82,11 @@
           type="text"
           [(ngModel)]="_aboutUs.visionImage"
           class="w-full rounded-xl border border-slate-200 bg-slate-50 p-2 text-xs text-slate-700 transition focus:border-brand focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand sm:p-2.5 sm:text-sm"
-          placeholder="/images/vision.jpg"
+          placeholder="https://example.com/vision.jpg or /images/vision.jpg"
         />
+        <p class="mt-1 text-[11px] text-slate-400">
+          Paste a full image URL, a local /images path, or an attachment id.
+        </p>
       </div>
 
       <div>
@@ -96,8 +99,38 @@
           type="text"
           [(ngModel)]="_aboutUs.missionImage"
           class="w-full rounded-xl border border-slate-200 bg-slate-50 p-2 text-xs text-slate-700 transition focus:border-brand focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand sm:p-2.5 sm:text-sm"
-          placeholder="/images/mission.jpg"
+          placeholder="https://example.com/mission.jpg or /images/mission.jpg"
         />
+        <p class="mt-1 text-[11px] text-slate-400">
+          Paste a full image URL, a local /images path, or an attachment id.
+        </p>
+      </div>
+
+      <div class="sm:col-span-3 grid gap-3 sm:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+          <p class="text-xs font-semibold text-slate-500">Vision preview</p>
+          <img
+            *ngIf="_aboutUs.visionImage"
+            class="mt-2 h-32 w-full rounded-xl object-cover"
+            [src]="resolveImageUrl(_aboutUs.visionImage)"
+            alt="Vision preview"
+          />
+          <p *ngIf="!_aboutUs.visionImage" class="mt-2 text-xs text-slate-400">
+            No vision image set yet.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+          <p class="text-xs font-semibold text-slate-500">Mission preview</p>
+          <img
+            *ngIf="_aboutUs.missionImage"
+            class="mt-2 h-32 w-full rounded-xl object-cover"
+            [src]="resolveImageUrl(_aboutUs.missionImage)"
+            alt="Mission preview"
+          />
+          <p *ngIf="!_aboutUs.missionImage" class="mt-2 text-xs text-slate-400">
+            No mission image set yet.
+          </p>
+        </div>
       </div>
 
       <!-- Submit Button -->
