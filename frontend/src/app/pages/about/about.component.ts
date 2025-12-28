@@ -40,17 +40,10 @@ export class AboutComponent implements OnInit, AfterViewInit {
   state: {
     about: {
       history?: string;
-      ownerName?: string;
-      ownerDesignation?: string;
-      ownerSpeech?: string;
-      ownerImage?: string;
       mission?: string;
       missionImage?: string;
       vision?: string;
       visionImage?: string;
-      facebook?: string;
-      linkedIn?: string;
-      twitter?: string;
     };
     teams: Team[];
     selectedTeamMember: Team | null;
@@ -58,17 +51,10 @@ export class AboutComponent implements OnInit, AfterViewInit {
   } = {
     about: {
       history: '',
-      ownerName: '',
-      ownerDesignation: '',
-      ownerSpeech: '',
-      ownerImage: '',
       mission: '',
       missionImage: '',
       vision: '',
       visionImage: '',
-      twitter: '',
-      linkedIn: '',
-      facebook: '',
     },
     teams: [],
     selectedTeamMember: null,
@@ -77,13 +63,6 @@ export class AboutComponent implements OnInit, AfterViewInit {
       upcoming: 0,
       completed: 0,
     },
-  };
-
-  expandedSections: { [key: string]: boolean } = {
-    history: true, 
-    missionVision: false,
-    ownerSpeech: false,
-    team: false,
   };
 
   isModalVisible = false;
@@ -118,13 +97,6 @@ export class AboutComponent implements OnInit, AfterViewInit {
     const stats = pageData.stats;
     this.state.about = {
       history: about?.history || '',
-      ownerName: about?.ownerName || '',
-      ownerDesignation: about?.ownerDesignation || '',
-      ownerSpeech: about?.ownerSpeech || '',
-      twitter: about?.twitter || '',
-      facebook: about?.facebook || '',
-      linkedIn: about?.linkedIn || '',
-      ownerImage: about?.ownerImage || '/images/fallback.png',
       mission: about?.mission || '',
       missionImage: about?.missionImage || '/images/fallback.png',
       vision: about?.vision || '',
@@ -176,10 +148,6 @@ export class AboutComponent implements OnInit, AfterViewInit {
         console.error('Error fetching project stats:', error);
       },
     });
-  }
-
-  toggleSection(section: string): void {
-    this.expandedSections[section] = !this.expandedSections[section];
   }
 
   onToggle(member: Team | null = null): void {

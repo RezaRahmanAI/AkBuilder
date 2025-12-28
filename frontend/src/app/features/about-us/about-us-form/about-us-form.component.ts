@@ -26,13 +26,6 @@ export class AboutUsFormComponent {
     visionImage: '',
     mission: '',
     missionImage: '',
-    ownerName: '',
-    ownerDesignation: '',
-    ownerSpeech: '',
-    ownerImage: '',
-    facebook: '',
-    twitter: '',
-    linkedIn: ''
   };
 
   _aboutUs: AboutUs = { ...this.defaultAboutUs };

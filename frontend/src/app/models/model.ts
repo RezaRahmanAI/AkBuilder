@@ -71,13 +71,6 @@ export interface AboutUs {
   visionImage: string;
   mission: string;
   missionImage: string;
-  ownerName: string;
-  ownerDesignation: string;
-  ownerSpeech: string;
-  ownerImage: string;
-  facebook: string;
-  linkedIn: string;
-  twitter: string;
 }
 
 export interface ProjectStats {
