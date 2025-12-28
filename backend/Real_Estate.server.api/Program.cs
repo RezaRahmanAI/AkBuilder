@@ -16,10 +16,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontendApp", policy =>
         policy.WithOrigins(
             "http://localhost:4200",
-            "http://ashavendevelopersltd.com",
-            "https://ashavendevelopersltd.com",
-            "http://www.ashavendevelopersltd.com",
-            "https://ashavendevelopersltd.com"
+            "http://akbuilderskhulna.com",
+            "https://akbuilderskhulna.com",
+            "http://www.akbuilderskhulna.com"
             )
             .AllowAnyHeader()
             .AllowAnyMethod()
@@ -27,21 +26,7 @@ builder.Services.AddCors(options =>
     );
 });
 
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("AllowFrontendApp", policy =>
-//        policy.WithOrigins(
-//            "http://localhost:4200",
-//            "https://triconproperty.com",
-//            "http://triconproperty.com",
-//            "http://www.triconproperty.com",
-//            "https://www.triconproperty.com"
-//            )
-//            .AllowAnyHeader()
-//            .AllowAnyMethod()
-//            .AllowCredentials()
-//    );
-//});
+
 
 // --- Serilog (minimal, keep your existing if you want) ---
 Log.Logger = new LoggerConfiguration()

@@ -1,4 +1,4 @@
 export const environment = {
-  //baseUrl: 'https://api.ashavendevelopersltd.com',
-  baseUrl: 'https://localhost:7208',
+  baseUrl: 'https://api.akbuilderskhulna.com',
+  //baseUrl: 'https://localhost:7208',
 };
