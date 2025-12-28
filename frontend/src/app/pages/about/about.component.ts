@@ -10,6 +10,7 @@ import { TeamComponent } from './team/team.component';
 import { environment } from '../../environments/environment';
 import { AnimationService } from '../../services/animation.service';
 import { TeamService } from '../../services/team.service';
+import { ProjectService } from '../../services/project.service';
 import { AppStore } from '../../store/app.store';
 
 @Component({
@@ -87,7 +88,11 @@ export class AboutComponent implements OnInit, AfterViewInit {
 
   isModalVisible = false;
 
-  constructor(private teamService: TeamService, private anim: AnimationService) {
+  constructor(
+    private teamService: TeamService,
+    private anim: AnimationService,
+    private projectService: ProjectService
+  ) {
     effect(() => {
       const aboutPage = this.store.aboutPage();
       this.setAboutData(aboutPage);
@@ -105,6 +110,7 @@ export class AboutComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.fetchTeams();
+    this.fetchProjectStats();
   }
 
   setAboutData(pageData = this.store.aboutPage()): void {
@@ -150,6 +156,24 @@ export class AboutComponent implements OnInit, AfterViewInit {
           `Failed to fetch team data: ${error.message || 'Unknown error'}`
         );
         console.error('Error fetching team data:', error);
+      },
+    });
+  }
+
+  fetchProjectStats(): void {
+    this.projectService.getDashboardSummary().subscribe({
+      next: (summary) => {
+        this.state.stats = {
+          ongoing: summary?.ongoing ?? this.state.stats.ongoing,
+          upcoming: summary?.upcoming ?? this.state.stats.upcoming,
+          completed: summary?.completed ?? this.state.stats.completed,
+        };
+      },
+      error: (error) => {
+        this.projectService.showError(
+          `Failed to fetch project stats: ${error.message || 'Unknown error'}`
+        );
+        console.error('Error fetching project stats:', error);
       },
     });
   }
