@@ -1,43 +1,35 @@
-<section class="neo-discover" id="projects">
-  <div class="neo-discover__shell site-container">
-    <div class="neo-discover__header">
-      <div>
-        <span class="neo-discover__tag">Curated atlas</span>
-        <h2>Choose how you want to live.</h2>
-        <p>
+<section class="px-4 md:px-10 lg:px-40 py-16 bg-white dark:bg-[#111921]" id="projects">
+  <div class="max-w-[1200px] mx-auto">
+    <div class="flex flex-col gap-10">
+      <div class="flex flex-col gap-4 text-center items-center">
+        <h2 class="text-[#111418] dark:text-white tracking-tight text-[32px] font-bold leading-tight max-w-[720px]">
+          Choose how you want to live.
+        </h2>
+        <p class="text-[#637588] dark:text-gray-400 text-base font-normal leading-normal max-w-[720px]">
           Glide through residences, amenities, and experiences crafted for people who move differently. Each path reveals
           a new facet of the portfolio.
         </p>
       </div>
-      
-    </div>
 
-    <div class="neo-discover__grid">
-      <article
-        *ngFor="let item of projects"
-        class="discover-card"
-        (mousemove)="onMouseMove($event)"
-        (mouseleave)="onMouseLeave($event)"
-      >
-        <div class="discover-card__inner">
-          <div class="discover-card__halo" aria-hidden="true"></div>
-          <div class="discover-card__top">
-            <div class="discover-card__icon">
-              <img [src]="item.image" [alt]="item.title + ' icon'" />
-            </div>
-            <span class="discover-card__pulse"></span>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article
+          *ngFor="let item of projects"
+          class="flex flex-1 gap-4 rounded-xl border border-[#dce0e5] dark:border-gray-700 bg-white dark:bg-[#1a2632] p-6 flex-col items-center text-center hover:shadow-lg transition-shadow duration-300"
+        >
+          <div class="w-14 h-14 rounded-full bg-[#f5f6f8] dark:bg-white/10 flex items-center justify-center text-[#C4161C] mb-2">
+            <img class="w-8 h-8" [src]="item.image" [alt]="item.title + ' icon'" />
           </div>
-          <div class="discover-card__body">
-            <p class="discover-card__eyebrow">{{ item.id | number : '2.0' }} realm</p>
-            <h3>{{ item.title }}</h3>
-            <p class="discover-card__copy">Dive into the atmospheres, see the textures, and preview the amenities.</p>
-            <a [routerLink]="item.route" [queryParams]="{ category: item.title.split(' ')[0] }" class="discover-card__cta">
-              Explore this track
-              <i class="ri-arrow-right-up-line"></i>
+          <div class="flex flex-col gap-2">
+            <h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight">{{ item.title }}</h3>
+            <p class="text-[#637588] dark:text-gray-400 text-sm font-normal leading-relaxed">
+              {{ item.description }}
+            </p>
+            <a class="text-[#D99A00] font-bold text-sm mt-2 hover:underline" [routerLink]="item.route">
+              {{ item.cta }}
             </a>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </div>
   </div>
 </section>
