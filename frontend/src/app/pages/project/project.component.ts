@@ -2,7 +2,6 @@ import { Component, AfterViewInit, NgZone, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-// import { LenisService } from '../../services/lenis.service';
 import { ScrollService } from '../../services/scroll.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -33,7 +32,6 @@ export class ProjectsComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private projectService: ProjectService,
-    // private lenisService: LenisService,
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private scrollService: ScrollService,

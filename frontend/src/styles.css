@@ -16,17 +16,6 @@ body {
   width: 100%;
 }
 
-html.has-lenis {
-  height: auto;
-  overflow: hidden;
-}
-
-body.has-lenis {
-  min-height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
-
 body {
   min-height: 100vh;
   overflow-x: hidden;

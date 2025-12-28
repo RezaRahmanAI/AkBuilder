@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LenisService } from '../../services/lenis.service';
+import { ScrollService } from '../../services/scroll.service';
 import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
 import { environment } from '../../environments/environment';
 import { Project, ProjectFeature } from '../../models/model';
@@ -44,7 +44,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     private http: HttpClient,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-    private lenisService: LenisService,
+    private scrollService: ScrollService,
     private projectService: ProjectService
   ) {}
 
@@ -193,6 +193,6 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   }
 
   scrollToContactForm() {
-    this.lenisService.scrollTo('#contacting', { duration: 0.8 });
+    this.scrollService.scrollTo('#contacting');
   }
 }

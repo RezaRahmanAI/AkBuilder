@@ -19,7 +19,6 @@
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
     "@splidejs/splide": "^4.1.4",
-    "@studio-freight/lenis": "^1.0.42",
     "@types/aos": "^3.0.7",
     "aos": "^2.3.4",
     "gsap": "^3.13.0",

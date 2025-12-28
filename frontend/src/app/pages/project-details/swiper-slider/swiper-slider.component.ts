@@ -14,7 +14,7 @@ import { RouterModule, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { ProjectService } from '../../../services/project.service';
 import { Project } from '../../../models/model';
-import { LenisService } from '../../../services/lenis.service';
+import { ScrollService } from '../../../services/scroll.service';
 import { Subject, takeUntil } from 'rxjs';
 
 interface Slide {
@@ -71,7 +71,7 @@ export class SwiperSliderComponent implements OnInit, OnDestroy, AfterViewInit {
     private projectService: ProjectService,
     private router: Router,
     private ngZone: NgZone,
-    private lenisService: LenisService,
+    private scrollService: ScrollService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -259,7 +259,7 @@ export class SwiperSliderComponent implements OnInit, OnDestroy, AfterViewInit {
         onSameUrlNavigation: 'reload',
       })
       .then(() => {
-        this.lenisService.scrollTo(0, { duration: 0.8 });
+        this.scrollService.scrollTo(0);
       })
       .catch((err) => console.error('Navigation error:', err));
   }
