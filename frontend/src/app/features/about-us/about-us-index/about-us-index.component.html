@@ -46,13 +46,21 @@
             {{ item.vision | truncateWords:18:'...' }}
           </td>
           <td class="px-6 py-4">
-            <img class="w-12 h-12 rounded object-cover" [src]="apiBaseUrl + '/api/attachment/get/' + item.visionImage" alt="Vision Image" />
+            <img
+              class="w-12 h-12 rounded object-cover"
+              [src]="resolveImageUrl(item.visionImage)"
+              alt="Vision Image"
+            />
           </td>
           <td class="px-6 py-4" [title]="item.mission">
             {{ item.mission | truncateWords:18:'...' }}
           </td>
           <td class="px-6 py-4">
-            <img class="w-12 h-12 rounded object-cover" [src]="apiBaseUrl + '/api/attachment/get/' + item.missionImage" alt="Mission Image" />
+            <img
+              class="w-12 h-12 rounded object-cover"
+              [src]="resolveImageUrl(item.missionImage)"
+              alt="Mission Image"
+            />
           </td>
           <td class="px-6 py-4 text-right">
             <div class="flex justify-end gap-2">
