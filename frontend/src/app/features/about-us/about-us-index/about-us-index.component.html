@@ -3,7 +3,7 @@
   <div class="flex items-center justify-between gap-4">
     <div>
       <h6 class="text-xl font-semibold text-slate-900">About us entries</h6>
-      <p class="text-sm text-slate-500">Manage the story and leadership shown on your site.</p>
+      <p class="text-sm text-slate-500">Manage the story and mission shown on your site.</p>
     </div>
     <button
       (click)="openCreateModal()"
@@ -33,10 +33,6 @@
           <th class="px-6 py-3">Vision image</th>
           <th class="px-6 py-3">Mission</th>
           <th class="px-6 py-3">Mission image</th>
-          <th class="px-6 py-3">Owner</th>
-          <th class="px-6 py-3">Designation</th>
-          <th class="px-6 py-3">Speech</th>
-          <th class="px-6 py-3">Owner image</th>
           <th class="px-6 py-3 text-right">Actions</th>
         </tr>
       </thead>
@@ -57,18 +53,6 @@
           </td>
           <td class="px-6 py-4">
             <img class="w-12 h-12 rounded object-cover" [src]="apiBaseUrl + '/api/attachment/get/' + item.missionImage" alt="Mission Image" />
-          </td>
-          <td class="px-6 py-4 text-slate-900">
-            {{ item.ownerName }}
-          </td>
-          <td class="px-6 py-4">
-            {{ item.ownerDesignation }}
-          </td>
-          <td class="px-6 py-4" [title]="item.ownerSpeech">
-            {{ item.ownerSpeech | truncateWords:22:'...' }}
-          </td>
-          <td class="px-6 py-4">
-            <img class="w-12 h-12 rounded object-cover" [src]="apiBaseUrl + '/api/attachment/get/' + item.ownerImage" alt="Owner Image" />
           </td>
           <td class="px-6 py-4 text-right">
             <div class="flex justify-end gap-2">

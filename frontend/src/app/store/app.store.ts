@@ -25,14 +25,6 @@ const seededAbout: AboutUs = {
   mission:
     'Deliver transparent, people-first real estate solutions through quality construction, responsible development, and long-term community care.',
   missionImage: '/images/land.jpg',
-  ownerName: 'AK Builders Leadership',
-  ownerDesignation: 'Managing Director',
-  ownerSpeech:
-    'Our commitment is to build homes that enrich lives and neighborhoods that stand the test of time.',
-  ownerImage: '/images/service.jpg',
-  facebook: 'https://www.facebook.com',
-  linkedIn: 'https://www.linkedin.com',
-  twitter: 'https://www.twitter.com',
 };
 
 const seededStats: ProjectStats = {
