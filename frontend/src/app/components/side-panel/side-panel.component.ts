@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LenisService } from '../../services/lenis.service';
+import { ScrollService } from '../../services/scroll.service';
 import { SidePanelService } from '../../services/sidepanel.service';
 import { Router, RouterLink } from '@angular/router';
 
@@ -14,12 +14,12 @@ import { Router, RouterLink } from '@angular/router';
 export class SidePanelComponent implements OnDestroy {
   constructor(
     public sidePanel: SidePanelService,
-    private lenisService: LenisService,
+    private scrollService: ScrollService,
     private router: Router
   ) {}
 
   scrollToSection(sectionId: string) {
-    this.lenisService.scrollTo(`#${sectionId}`, { duration: 0.8 });
+    this.scrollService.scrollTo(`#${sectionId}`);
     this.sidePanel.close();
   }
 

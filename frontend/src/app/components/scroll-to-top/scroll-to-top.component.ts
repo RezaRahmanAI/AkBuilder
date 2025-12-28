@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 import { ScrollService } from '../../services/scroll.service';
-import { LenisService } from '../../services/lenis.service';
 
 @Component({
   selector: 'app-scroll-to-top',
@@ -25,7 +24,6 @@ export class ScrollToTopComponent implements OnInit, OnDestroy {
 
   constructor(
     private scrollService: ScrollService,
-    private lenisService: LenisService,
     private zone: NgZone
   ) {}
 
@@ -55,6 +53,6 @@ export class ScrollToTopComponent implements OnInit, OnDestroy {
   }
 
   scrollToTop() {
-    this.lenisService.scrollTo(0, { duration: 0.8 });
+    this.scrollService.scrollTo(0);
   }
 }
