@@ -4,6 +4,7 @@ import {
   AboutUs,
   ContactPageContent,
   Contactus,
+  Faq,
   ProjectStats,
   Settings,
 } from '../models/model';
@@ -13,6 +14,7 @@ interface AppState {
   contactPage: ContactPageContent;
   settings: Settings;
   contactSubmissions: Contactus[];
+  faqs: Faq[];
 }
 
 const seededAbout: AboutUs = {
@@ -255,6 +257,7 @@ const initialState: AppState = {
     ],
   },
   contactSubmissions: [],
+  faqs: [],
 };
 
 @Injectable({
@@ -268,6 +271,7 @@ export class AppStore {
   readonly contactPage = computed(() => this.state().contactPage);
   readonly settings = computed(() => this.state().settings);
   readonly contactSubmissions = computed(() => this.state().contactSubmissions);
+  readonly faqs = computed(() => this.state().faqs);
 
   constructor() {
     this.hydrateState();
@@ -342,8 +346,44 @@ export class AppStore {
     }));
   }
 
+  addFaq(faq: Faq): Faq {
+    let createdFaq: Faq;
+    this.state.update((current) => {
+      const nextId =
+        faq.id && faq.id > 0 ? faq.id : this.nextFaqId(current.faqs);
+      createdFaq = { ...faq, id: nextId };
+      return {
+        ...current,
+        faqs: [...current.faqs, createdFaq],
+      };
+    });
+    return createdFaq!;
+  }
+
+  updateFaq(faq: Faq): Faq {
+    this.state.update((current) => ({
+      ...current,
+      faqs: current.faqs.map((item) =>
+        item.id === faq.id ? { ...faq } : item
+      ),
+    }));
+    return faq;
+  }
+
+  deleteFaq(id: number): void {
+    this.state.update((current) => ({
+      ...current,
+      faqs: current.faqs.filter((item) => item.id !== id),
+    }));
+  }
+
   private generateId(prefix: string): string {
     return `${prefix}-${Math.random().toString(36).slice(2, 9)}-${Date.now()}`;
+  }
+
+  private nextFaqId(faqs: Faq[]): number {
+    const maxId = faqs.reduce((max, item) => Math.max(max, item.id), 0);
+    return maxId + 1;
   }
 
   private hydrateState(): void {
@@ -394,6 +434,7 @@ export class AppStore {
       settings: partial.settings ?? initialState.settings,
       contactSubmissions:
         partial.contactSubmissions ?? initialState.contactSubmissions,
+      faqs: partial.faqs ?? initialState.faqs,
     };
   }
 }
