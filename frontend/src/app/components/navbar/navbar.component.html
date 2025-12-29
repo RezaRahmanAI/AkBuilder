@@ -1,44 +1,79 @@
-<header class="sticky top-0 z-50 border-b border-brand/15 bg-pure/95 shadow-sm backdrop-blur dark:border-charcoal/70 dark:bg-charcoal/95">
-  <div class="site-container flex w-full items-center justify-between whitespace-nowrap py-3">
+<header
+  class="sticky top-0 z-50 border-b border-brand/15 bg-pure/95 shadow-sm backdrop-blur dark:border-charcoal/70 dark:bg-charcoal/95"
+>
+  <div
+    class="site-container flex w-full items-center justify-between whitespace-nowrap py-3"
+  >
+    <!-- Logo + Text -->
     <div class="flex items-center gap-3 md:gap-4 text-carbon dark:text-pure">
-      <a routerLink="/" aria-label="AK Builders home" class="size-12 text-power">
-        <img src="/images/logo.png" alt="AK Builders Logo" class="w-full h-full object-contain" />
+      <a
+        routerLink="/"
+        aria-label="AK Builders home"
+        class="flex items-center gap-2"
+      >
+        <span class="size-14 md:size-16 text-power">
+          <img
+            src="/images/logo.png"
+            alt="AK Builders Logo"
+            class="w-full h-full object-contain"
+          />
+        </span>
+
+        <!-- New text beside logo -->
+        <span
+          class="text-2xl lg:text-4xl font-extrabold tracking-tight text-carbon dark:text-pure"
+        >
+          Builders
+        </span>
       </a>
     </div>
 
     <div class="hidden md:flex flex-1 justify-end gap-8">
-      <div class="flex items-center gap-8 text-sm font-medium leading-normal text-carbon dark:text-pure">
+      <div
+        class="flex items-center gap-8 text-sm font-medium leading-normal text-carbon dark:text-pure"
+      >
         <a
           routerLink="/"
           routerLinkActive="text-accent after:w-full"
           [routerLinkActiveOptions]="{ exact: true }"
           class="relative transition-colors hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
-        >Home</a>
+          >Home</a
+        >
+
         <a
           routerLink="/about"
           routerLinkActive="text-accent after:w-full"
           class="relative transition-colors hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
-        >About Us</a>
+          >About Us</a
+        >
+
         <a
           routerLink="/projects"
           routerLinkActive="text-accent after:w-full"
           class="relative transition-colors hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
-        >Property</a>
+          >Property</a
+        >
+
         <a
           routerLink="/gallery"
           routerLinkActive="text-accent after:w-full"
           class="relative transition-colors hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
-        >Gallery</a>
+          >Gallery</a
+        >
+
         <a
           routerLink="/blogs"
           routerLinkActive="text-accent after:w-full"
           class="relative transition-colors hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
-        >News</a>
+          >News</a
+        >
+
         <a
           routerLink="/contact"
           routerLinkActive="text-accent after:w-full"
           class="relative transition-colors hover:text-accent after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
-        >Contact</a>
+          >Contact</a
+        >
       </div>
     </div>
 
