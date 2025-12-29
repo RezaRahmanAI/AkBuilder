@@ -14,8 +14,8 @@ import { environment } from '../../environments/environment';
 export class GalleryComponent implements OnInit {
   galleries: Gallery[] = [];
   filteredGalleries: Gallery[] = [];
-  categories: string[] = ['All Projects'];
-  activeCategory = 'All Projects';
+  galleryTypes: string[] = ['All', 'Residential', 'Commercial', 'Land', 'Other'];
+  activeType = 'All';
   baseUrl = environment.baseUrl;
 
   constructor(private galleryService: GalleryService) {}
@@ -24,17 +24,12 @@ export class GalleryComponent implements OnInit {
     this.loadGallery();
   }
 
-  loadGallery(): void {
-    this.galleryService.getActiveGalleries().subscribe({
+  loadGallery(type?: string): void {
+    const selectedType = type && type !== 'All' ? type : undefined;
+    this.galleryService.getGalleries(selectedType).subscribe({
       next: (data) => {
         this.galleries = data || [];
-        const categorySet = new Set(
-          this.galleries
-            .map((item) => item.category)
-            .filter((category) => category && category.trim())
-        );
-        this.categories = ['All Projects', ...Array.from(categorySet)];
-        this.applyFilter(this.activeCategory);
+        this.filteredGalleries = [...this.galleries];
       },
       error: (error) => {
         this.galleryService.showError(
@@ -45,20 +40,14 @@ export class GalleryComponent implements OnInit {
     });
   }
 
-  applyFilter(category: string): void {
-    this.activeCategory = category;
-    if (category === 'All Projects') {
-      this.filteredGalleries = [...this.galleries];
-      return;
-    }
-    this.filteredGalleries = this.galleries.filter(
-      (item) => item.category?.toLowerCase() === category.toLowerCase()
-    );
+  applyFilter(type: string): void {
+    this.activeType = type;
+    this.loadGallery(type);
   }
 
-  imageUrl(image: string): string {
-    return image
-      ? `${this.baseUrl}/api/attachment/get/${image}`
+  imageUrl(img: string): string {
+    return img
+      ? `${this.baseUrl}/api/attachment/get/${img}`
       : 'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg';
   }
 
@@ -68,19 +57,16 @@ export class GalleryComponent implements OnInit {
       'https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg';
   }
 
-  categoryIcon(category: string): string {
-    const key = category.toLowerCase();
+  categoryIcon(type: string): string {
+    const key = type.toLowerCase();
     if (key.includes('residential')) {
       return 'apartment';
     }
     if (key.includes('commercial')) {
       return 'domain';
     }
-    if (key.includes('mixed')) {
-      return 'storefront';
-    }
-    if (key.includes('industrial')) {
-      return 'factory';
+    if (key.includes('land')) {
+      return 'terrain';
     }
     return 'category';
   }

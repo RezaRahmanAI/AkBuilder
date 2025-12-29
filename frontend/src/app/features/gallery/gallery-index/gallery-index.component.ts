@@ -15,8 +15,6 @@ import { environment } from '../../../environments/environment';
 export class GalleryIndexComponent implements OnInit {
   galleries: Gallery[] = [];
   showCreateModal = false;
-  showEditModal = false;
-  selectedGallery: Gallery | null = null;
   apiBaseUrl = environment.baseUrl;
 
   constructor(private galleryService: GalleryService) {}
@@ -41,19 +39,11 @@ export class GalleryIndexComponent implements OnInit {
   }
 
   openCreateModal() {
-    this.selectedGallery = null;
     this.showCreateModal = true;
-  }
-
-  openEditModal(item: Gallery) {
-    this.selectedGallery = { ...item };
-    this.showEditModal = true;
   }
 
   closeModal() {
     this.showCreateModal = false;
-    this.showEditModal = false;
-    this.selectedGallery = null;
   }
 
   onGallerySaved() {
@@ -61,32 +51,8 @@ export class GalleryIndexComponent implements OnInit {
     this.closeModal();
   }
 
-  toggleActiveStatus(id: string, isActive: boolean) {
-    this.galleryService.toggleActiveStatus(id, isActive).subscribe({
-      next: (response) => {
-        if (response === 'Data not found.') {
-          this.galleryService.showError(response);
-        } else {
-          this.galleryService.showSuccess(
-            response ||
-              `Gallery item ${isActive ? 'activated' : 'deactivated'} successfully`
-          );
-          this.fetchGalleries();
-        }
-      },
-      error: (error) => {
-        this.galleryService.showError(
-          `Failed to ${isActive ? 'activate' : 'deactivate'} item: ${
-            error.message || 'Unknown error'
-          }`
-        );
-        console.error(error);
-      },
-    });
-  }
-
-  deleteGallery(id: string) {
-    this.galleryService.deleteGallery(id).subscribe({
+  deleteGallery(img: string) {
+    this.galleryService.deleteGallery(img).subscribe({
       next: (response) => {
         this.galleryService.showSuccess(
           response || 'Gallery item deleted successfully'

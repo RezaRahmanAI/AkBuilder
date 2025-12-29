@@ -57,12 +57,8 @@ export interface Team {
 }
 
 export interface Gallery {
-  id: string;
-  title: string;
-  category: string;
-  location: string;
-  image: string;
-  isActive: boolean;
+  type: string;
+  img: string;
   order: number;
 }
 
