@@ -3,7 +3,7 @@
   class="relative w-full bg-white dark:bg-background-dark overflow-hidden"
   aria-live="polite"
 >
-  <div class="site-container flex flex-col md:flex-row min-h-[600px] h-[85vh] md:h-[700px]">
+  <div class="site-container flex flex-col md:flex-row min-h-[600px] h-[85vh] md:h-[700px] lg:h-screen lg:min-h-screen">
     <!-- LEFT (Text) -->
     <div
       *ngIf="activeSlide as active"
@@ -182,7 +182,7 @@
 
 <ng-template #heroSkeleton>
   <section
-    class="relative isolate flex h-[480px] items-center justify-center overflow-hidden bg-slate-950"
+    class="relative isolate flex h-[480px] items-center justify-center overflow-hidden bg-slate-950 lg:h-screen"
     aria-busy="true"
   >
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.18),_transparent_55%)]"></div>
