@@ -159,10 +159,11 @@
     <div
       class="w-full md:w-1/2 relative h-[70vh] sm:h-[75vh] md:h-[700px] lg:h-[760px] bg-gray-100 dark:bg-gray-800 overflow-hidden transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100"
       [ngClass]="
-        animateIn ? 'opacity-100 translate-x-0' : 'opacity-0 ' + imageOffsetClass
+        animateIn
+          ? 'opacity-100 translate-x-0'
+          : 'opacity-0 ' + imageOffsetClass
       "
     >
-
       <!-- Crossfade image (no more instant swap) -->
       <div class="absolute inset-0">
         <ng-container
@@ -173,15 +174,13 @@
             [class.opacity-100]="i === currentIndex"
             [class.opacity-0]="i !== currentIndex"
           >
-            <div class="absolute inset-0 flex items-center justify-center">
-              <img
-                class="h-full w-full object-contain"
-                [src]="s.image"
-                [alt]="s.title"
-                loading="lazy"
-              />
-            </div>
-
+            <div
+              class="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform transition-transform duration-700 ease-out"
+              [style.backgroundImage]="'url(' + s.image + ')'"
+              [ngClass]="
+                i === currentIndex && animateIn ? 'scale-100' : 'scale-[1.03]'
+              "
+            ></div>
           </div>
         </ng-container>
 
