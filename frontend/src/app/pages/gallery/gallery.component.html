@@ -74,9 +74,12 @@
       <div class="w-full max-w-[1200px]">
         <!-- Masonry Layout using Columns -->
         <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          <div
+          <a
             *ngFor="let item of filteredGalleries"
-            class="break-inside-avoid group relative overflow-hidden rounded-xl cursor-pointer"
+            class="break-inside-avoid group relative block overflow-hidden rounded-xl"
+            [href]="imageUrl(item.image)"
+            target="_blank"
+            rel="noopener"
           >
             <img
               class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
@@ -94,7 +97,7 @@
                 {{ item.type || 'Project' }}
               </span>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
