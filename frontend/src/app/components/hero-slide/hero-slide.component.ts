@@ -35,7 +35,6 @@ interface Slide {
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './hero-slide.component.html',
-  styleUrls: ['./hero-slide.component.css'],
   providers: [ProjectService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
