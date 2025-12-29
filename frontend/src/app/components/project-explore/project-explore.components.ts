@@ -6,7 +6,7 @@ export interface ExploreItem {
   id: number;
   title: string;
   route: string;
-  image: string;
+  icon: string;
   description: string;
   cta: string;
 }
@@ -24,7 +24,7 @@ export class ProjectExploreComponent {
       id: 1,
       title: 'Ongoing Residences',
       route: '/projects',
-      image: 'images/icons/hook.png',
+      icon: 'construction',
       description:
         'Track the progress of our current developments and see how we elevate every neighborhood we touch.',
       cta: 'View progress',
@@ -33,7 +33,7 @@ export class ProjectExploreComponent {
       id: 2,
       title: 'Upcoming Landmark',
       route: '/projects',
-      image: 'images/icons/coming-soon.png',
+      icon: 'architecture',
       description:
         'Discover what is next in our pipeline with early access to plans, amenities, and investment opportunities.',
       cta: 'View pipeline',
@@ -42,7 +42,7 @@ export class ProjectExploreComponent {
       id: 3,
       title: 'Completed Masterpieces',
       route: '/projects',
-      image: 'images/icons/architect.png',
+      icon: 'apartment',
       description:
         'Browse the portfolio of delivered properties and experience the craftsmanship that defines our builds.',
       cta: 'View portfolio',
