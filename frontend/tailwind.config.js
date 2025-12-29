@@ -5,13 +5,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        accent: "#F2B705",
-        "accent-dark": "#D99A00",
-        accentLight: "#FFC164",
-        "accent-light": "#FFC164",
         primary: "#197fe6",
         "background-light": "#f6f7f8",
         "background-dark": "#111921",
+        brand: "#197fe6",
+        accent: "#197fe6",
+        "accent-dark": "#111921",
+        accentLight: "#f6f7f8",
+        "accent-light": "#f6f7f8",
       },
       fontFamily: {
         display: ["Inter", "sans-serif"],

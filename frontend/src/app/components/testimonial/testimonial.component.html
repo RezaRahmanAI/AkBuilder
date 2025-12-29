@@ -1,15 +1,15 @@
 <section class="px-4 md:px-10 lg:px-40 py-16 bg-white dark:bg-[#111921]" *ngIf="testimonials.length">
   <div class="max-w-[1200px] mx-auto">
-    <h2 class="text-[#111418] dark:text-white text-[28px] font-bold leading-tight mb-10 text-center">
+    <h2 class="text-background-dark dark:text-white text-[28px] font-bold leading-tight mb-10 text-center">
       What our clients say
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <article
         *ngFor="let testimonial of testimonials"
-        class="bg-white dark:bg-[#1a2632] p-8 rounded-xl flex flex-col gap-4 border border-[#dce0e5] dark:border-gray-700"
+        class="bg-white dark:bg-[#1a2632] p-8 rounded-xl flex flex-col gap-4 border border-background-dark/10 dark:border-gray-700"
       >
-        <div class="flex gap-1 text-[#D99A00]">
+        <div class="flex gap-1 text-primary">
           <span class="material-symbols-outlined text-sm">star</span>
           <span class="material-symbols-outlined text-sm">star</span>
           <span class="material-symbols-outlined text-sm">star</span>
@@ -17,7 +17,7 @@
           <span class="material-symbols-outlined text-sm">star</span>
         </div>
 
-        <p class="text-[#111418] dark:text-gray-300 italic">
+        <p class="text-background-dark dark:text-gray-300 italic">
           "{{ testimonial.description }}"
         </p>
 
@@ -31,8 +31,8 @@
             />
           </div>
           <div>
-            <p class="text-sm font-bold text-[#111418] dark:text-white">{{ testimonial.name }}</p>
-            <p class="text-xs text-[#637588] dark:text-gray-500">
+            <p class="text-sm font-bold text-background-dark dark:text-white">{{ testimonial.name }}</p>
+            <p class="text-xs text-background-dark/60 dark:text-gray-500">
               {{ testimonial.customerType || 'Client' }}
             </p>
           </div>

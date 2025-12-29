@@ -252,7 +252,7 @@ const initialState: AppState = {
         label: 'Facebook',
         url: 'https://www.facebook.com/HavenDeveloperLtd',
         iconClass: 'ri-facebook-fill',
-        colorClass: 'bg-[#1877F2]',
+        colorClass: 'bg-primary',
       },
     ],
   },

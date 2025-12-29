@@ -4,7 +4,7 @@
     <div class="flex flex-col items-start gap-12 lg:gap-16">
       <div class="space-y-6 lg:w-2/3">
         <span
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F2B705]/20 border border-[#D99A00]/35 text-xs uppercase tracking-wider"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/35 text-xs uppercase tracking-wider"
           >{{ contactPage().infoMap.eyebrow }}</span
         >
         <h2 class="text-3xl md:text-4xl font-semibold leading-snug">
@@ -51,7 +51,7 @@
               id="message"
               formControlName="message"
               rows="4"
-              class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-[#F2B705]/65 focus:ring-4 focus:ring-[#F2B705]/18 resize-y min-h-[160px]"
+              class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-primary/65 focus:ring-4 focus:ring-primary/18 resize-y min-h-[160px]"
               placeholder="Share location preferences, budget, timelines, or inspirations."
             ></textarea>
             <p *ngIf="isFieldInvalid('message')" class="text-xs text-accent">
@@ -71,7 +71,7 @@
                 id="name"
                 type="text"
                 formControlName="name"
-                class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-[#F2B705]/65 focus:ring-4 focus:ring-[#F2B705]/18"
+                class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-primary/65 focus:ring-4 focus:ring-primary/18"
                 placeholder="Enter your full name"
               />
               <p *ngIf="isFieldInvalid('name')" class="text-xs text-accent">
@@ -89,7 +89,7 @@
                 id="phone"
                 type="tel"
                 formControlName="phone"
-                class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-[#F2B705]/65 focus:ring-4 focus:ring-[#F2B705]/18"
+                class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-primary/65 focus:ring-4 focus:ring-primary/18"
                 placeholder="e.g. +8801X-XXXXXXX"
               />
             </div>
@@ -104,7 +104,7 @@
                 id="email"
                 type="email"
                 formControlName="email"
-                class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-[#F2B705]/65 focus:ring-4 focus:ring-[#F2B705]/18"
+                class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-primary/65 focus:ring-4 focus:ring-primary/18"
                 placeholder="you@example.com"
               />
               <p *ngIf="isFieldInvalid('email')" class="text-xs text-accent">
@@ -122,7 +122,7 @@
                 id="subject"
                 type="text"
                 formControlName="subject"
-                class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-[#F2B705]/65 focus:ring-4 focus:ring-[#F2B705]/18"
+                class="w-full rounded-2xl border border-white/18 bg-[rgba(250,250,250,0.85)] text-carbon p-3 text-sm placeholder-carbon/40 focus:outline-none focus:border-primary/65 focus:ring-4 focus:ring-primary/18"
                 placeholder="How can we help?"
               />
               <p *ngIf="isFieldInvalid('subject')" class="text-xs text-accent">
@@ -135,7 +135,7 @@
             <button
               type="submit"
               [disabled]="isSubmitting"
-              class="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#F2B705] to-[#C4161C] text-white font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition disabled:opacity-60 disabled:cursor-not-allowed"
+              class="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-background-dark text-white font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {{ isSubmitting ? "Sending..." : contactPage().infoMap.submitLabel }}
             </button>
@@ -148,8 +148,8 @@
             *ngIf="submitMessage"
             class="p-3 rounded-xl text-sm font-semibold text-center"
             [ngClass]="{
-              'bg-[#F2B705]/16 text-accent': !submitMessage.includes('Error'),
-              'bg-[#C4161C]/16 text-accent': submitMessage.includes('Error')
+              'bg-primary/16 text-accent': !submitMessage.includes('Error'),
+              'bg-background-dark/16 text-accent': submitMessage.includes('Error')
             }"
           >
             {{ submitMessage }}
@@ -164,7 +164,7 @@
         >
           <div>
             <span
-              class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F2B705]/20 border border-[#D99A00]/35 text-xs uppercase tracking-wider"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/35 text-xs uppercase tracking-wider"
               >{{ contactPage().infoMap.mapBadge }}</span
             >
             <p class="mt-2">
@@ -173,10 +173,10 @@
           </div>
 
           <div
-            class="relative rounded-2xl border border-[#D99A00]/25 flex-1 min-h-[320px] overflow-hidden"
+            class="relative rounded-2xl border border-primary/25 flex-1 min-h-[320px] overflow-hidden"
           >
             <div
-              class="absolute inset-0 bg-gradient-to-br from-[rgba(26,26,26,0.25)] to-[rgba(242,183,5,0.25)] flex items-center justify-center animate-[shimmer_1.2s_ease-in-out_infinite] z-10"
+              class="absolute inset-0 bg-gradient-to-br from-[rgba(17,25,33,0.25)] to-[rgba(25,127,230,0.25)] flex items-center justify-center animate-[shimmer_1.2s_ease-in-out_infinite] z-10"
               [class.hidden]="isMapLoaded"
             ></div>
             <iframe
@@ -213,7 +213,7 @@
     class="fixed inset-0 flex items-center justify-center z-50 p-6"
   >
     <div
-      class="relative w-full max-w-sm rounded-3xl p-8 bg-gradient-to-br from-[rgba(11,11,11,0.95)] to-[rgba(26,26,26,0.92)] border border-[#D99A00]/30 shadow-2xl text-center text-white/95"
+      class="relative w-full max-w-sm rounded-3xl p-8 bg-gradient-to-br from-[rgba(17,25,33,0.95)] to-[rgba(17,25,33,0.9)] border border-primary/30 shadow-2xl text-center text-white/95"
     >
       <button
         class="absolute top-4 right-4 bg-transparent border-none text-white/75 text-lg cursor-pointer"
@@ -229,7 +229,7 @@
         shortly.
       </p>
       <button
-        class="mt-6 w-full md:w-auto px-6 py-3 rounded-full bg-gradient-to-r from-[#F2B705] to-[#C4161C] text-white font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition"
+        class="mt-6 w-full md:w-auto px-6 py-3 rounded-full bg-gradient-to-r from-primary to-background-dark text-white font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition"
         (click)="closePopup()"
       >
         Close
