@@ -56,6 +56,16 @@ export interface Team {
   order: number;
 }
 
+export interface Gallery {
+  id: string;
+  title: string;
+  category: string;
+  location: string;
+  image: string;
+  isActive: boolean;
+  order: number;
+}
+
 export interface Consultant {
   id: string;
   name: string;

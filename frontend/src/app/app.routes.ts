@@ -7,6 +7,7 @@ import { ProjectDetailsComponent } from './pages/project-details/project-details
 import { ContactComponent } from './pages/contact/contact.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { BlogDetailsComponent } from './pages/blog-details/blog-details.component';
+import { GalleryComponent } from './pages/gallery/gallery.component';
 
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { AuthGuard } from './pipes/auth-guard';
@@ -23,6 +24,7 @@ import { AboutUsIndexComponent } from './features/about-us/about-us-index/about-
 import { FaqComponent } from './features/faq/faq.component';
 import { TestimonialsIndexComponent } from './features/testimonials/testimonials-index/testimonials-index.component';
 import { SettingsComponent } from './features/settings/settings.component';
+import { GalleryIndexComponent } from './features/gallery/gallery-index/gallery-index.component';
 
 export const routes: Routes = [
   {
@@ -81,6 +83,15 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'gallery',
+    component: GalleryComponent,
+    data: {
+      title: 'Gallery | AK Builders Ltd — Architectural Portfolio',
+      description:
+        'Browse the architectural gallery showcasing AK Builders residential, commercial, and mixed-use developments.',
+    },
+  },
+  {
     path: 'projectdetails/:id',
     component: ProjectDetailsComponent,
     data: {
@@ -108,6 +119,7 @@ export const routes: Routes = [
       { path: 'teams', component: TeamsIndexComponent },
       { path: 'clients', component: ClientComponent },
       { path: 'testimonials', component: TestimonialsIndexComponent },
+      { path: 'gallery', component: GalleryIndexComponent },
       { path: 'blogs', component: BlogsIndexComponent },
       { path: 'offers', component: OffersIndexComponent },
       { path: 'about-us', component: AboutUsIndexComponent },

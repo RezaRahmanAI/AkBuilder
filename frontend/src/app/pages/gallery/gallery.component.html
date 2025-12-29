@@ -1,0 +1,119 @@
+<div class="bg-background-light dark:bg-background-dark">
+  <!-- Main Content -->
+  <main class="flex-1">
+    <!-- Hero Section -->
+    <section
+      class="px-4 py-8 md:px-10 lg:px-20 xl:px-40 flex justify-center bg-background-light dark:bg-background-dark"
+    >
+      <div class="w-full max-w-[1200px]">
+        <div
+          class="relative overflow-hidden rounded-xl bg-cover bg-center min-h-[320px] md:min-h-[400px] flex items-center justify-center"
+          data-alt="Modern high-rise building reflecting sunset"
+          style='background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDWFN2H96zFFDwInfaCkYwPmiAMBQBuIqw1d6FLQQIG81LCr7BC_hZWN2ZLwNiU95-yJUzoI-32dnoyKexmJtLWUZRo6URQt-QkrLKhrxhepBeLGuV6x5bpN8GyU9HJaV_lu066z6qqNQOtCY-7vKkauYJPCa79ZMK-P1vWPHdudG58w6A5O6BWLHPZ8vixYhnaKM2H5V1QvK1k414js1zBgJ-XeNEz9G7EVQlcahNnkD8bDXuGy9LhOMWhKY8L2yxleCtlR3serw");'
+        >
+          <div class="relative z-10 flex flex-col gap-4 text-center p-6 max-w-3xl">
+            <h1
+              class="text-white text-4xl font-black leading-tight tracking-[-0.033em] md:text-5xl lg:text-6xl"
+            >
+              Architectural Portfolio
+            </h1>
+            <p class="text-gray-100 text-base font-normal leading-relaxed md:text-lg">
+              Explore our collection of landmark developments, ranging from
+              high-rise residential towers to state-of-the-art commercial
+              headquarters.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Filters Section -->
+    <section
+      class="sticky top-[65px] z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800"
+    >
+      <div class="px-4 py-4 md:px-10 lg:px-20 xl:px-40 flex justify-center">
+        <div class="w-full max-w-[1200px]">
+          <div class="flex gap-3 overflow-x-auto pb-2 md:pb-0 md:flex-wrap items-center">
+            <button
+              *ngFor="let category of categories"
+              type="button"
+              (click)="applyFilter(category)"
+              class="group flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full border px-5 transition-all active:scale-95"
+              [ngClass]="
+                activeCategory === category
+                  ? 'bg-primary border-primary'
+                  : 'bg-white dark:bg-background-dark border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800'
+              "
+            >
+              <span
+                class="material-symbols-outlined text-[20px]"
+                [ngClass]="
+                  activeCategory === category
+                    ? 'text-white'
+                    : 'text-gray-500 dark:text-gray-400 group-hover:text-primary'
+                "
+              >
+                {{ category === 'All Projects' ? 'check' : categoryIcon(category) }}
+              </span>
+              <span
+                class="text-sm font-medium"
+                [ngClass]="
+                  activeCategory === category
+                    ? 'text-white font-bold'
+                    : 'text-gray-700 dark:text-gray-200 group-hover:text-primary'
+                "
+              >
+                {{ category }}
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Gallery Masonry Grid -->
+    <section class="px-4 py-8 md:px-10 lg:px-20 xl:px-40 flex justify-center">
+      <div class="w-full max-w-[1200px]">
+        <!-- Masonry Layout using Columns -->
+        <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+          <div
+            *ngFor="let item of filteredGalleries"
+            class="break-inside-avoid group relative overflow-hidden rounded-xl cursor-pointer"
+          >
+            <img
+              class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+              [attr.alt]="item.title || 'Gallery image'"
+              [src]="imageUrl(item.image)"
+              (error)="onImageError($event)"
+              loading="lazy"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6"
+            >
+              <span
+                class="text-primary text-xs font-bold uppercase tracking-wider mb-1"
+              >
+                {{ item.category || 'Project' }}
+              </span>
+              <h3 class="text-white text-xl font-bold">
+                {{ item.title || 'Gallery highlight' }}
+              </h3>
+              <div class="flex items-center gap-1 text-gray-300 text-sm mt-1">
+                <span class="material-symbols-outlined text-[16px]">
+                  location_on
+                </span>
+                {{ item.location || 'Location forthcoming' }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Load More Button -->
+    <section class="px-4 py-8 pb-16 flex justify-center">
+      <button
+        class="flex min-w-[84px] max-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-700 text-[#111418] dark:text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors shadow-sm"
+      >
+        <span class="truncate">Load More Projects</span>
+      </button>
+    </section>
+  </main>
+</div>
