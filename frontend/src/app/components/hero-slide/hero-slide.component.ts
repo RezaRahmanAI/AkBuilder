@@ -45,6 +45,7 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
   progress = 0;
   timeAutoNext = 9000;
   baseUrl = environment.baseUrl;
+  animateIn = true;
 
   private progressInterval?: ReturnType<typeof setInterval>;
   private observer?: IntersectionObserver;
@@ -87,6 +88,7 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
 
         if (this.slides.length) {
           this.currentIndex = 0;
+          this.triggerAnimation();
           this.startAutoSlide(true);
         } else {
           this.progress = 0;
@@ -138,6 +140,7 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
     if (!this.slides.length) return;
 
     this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+    this.triggerAnimation();
     this.scrollCurrentIntoView();
     this.startAutoSlide(true);
     this.cdr.markForCheck();
@@ -148,6 +151,7 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.currentIndex =
       (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+    this.triggerAnimation();
     this.scrollCurrentIntoView();
     this.startAutoSlide(true);
     this.cdr.markForCheck();
@@ -163,6 +167,7 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
       return;
 
     this.currentIndex = index;
+    this.triggerAnimation();
     this.scrollCurrentIntoView();
     this.startAutoSlide(true);
     this.cdr.markForCheck();
@@ -228,6 +233,19 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
     el.scrollIntoView({
       block: 'nearest',
       inline: 'nearest',
+    });
+  }
+
+  private triggerAnimation(): void {
+    this.animateIn = false;
+    this.cdr.markForCheck();
+    this.zone.runOutsideAngular(() => {
+      requestAnimationFrame(() => {
+        this.zone.run(() => {
+          this.animateIn = true;
+          this.cdr.markForCheck();
+        });
+      });
     });
   }
 }
