@@ -10,8 +10,10 @@
     <div class="relative">
       <swiper-container #swiper init="false" class="w-full" aria-label="Signature properties slider">
         <swiper-slide *ngFor="let slide of slides; let i = index" class="p-2">
-          <article
-            class="group flex h-full cursor-pointer flex-col gap-3 overflow-hidden rounded-xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-[#1a2632] shadow-sm transition-all hover:shadow-md"
+          <a
+            class="group flex h-full flex-col gap-3 overflow-hidden rounded-xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-[#1a2632] shadow-sm transition-all hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+            [routerLink]="['/projectdetails', slide.id]"
+            [attr.aria-label]="'View details for ' + (slide.name || 'this project')"
           >
             <div class="relative w-full aspect-[4/3] overflow-hidden">
               <img
@@ -54,7 +56,7 @@
                 
               </div>
             </div>
-          </article>
+          </a>
         </swiper-slide>
 
         <div class="swiper-pagination mt-4"></div>
