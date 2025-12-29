@@ -57,9 +57,11 @@ export interface Team {
 }
 
 export interface Gallery {
+  id: string;
   type: string;
-  img: string;
+  image: string;
   order: number;
+  isActive: boolean;
 }
 
 export interface Consultant {

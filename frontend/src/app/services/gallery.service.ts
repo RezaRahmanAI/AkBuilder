@@ -26,9 +26,9 @@ export class GalleryService {
     });
   }
 
-  deleteGallery(img: string): Observable<string> {
+  deleteGallery(id: string): Observable<string> {
     return this.http.post(
-      `${this.apiBaseUrl}/api/gallery/delete?img=${encodeURIComponent(img)}`,
+      `${this.apiBaseUrl}/api/gallery/delete?id=${encodeURIComponent(id)}`,
       {},
       { responseType: 'text' }
     );
