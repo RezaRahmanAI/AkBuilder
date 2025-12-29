@@ -17,6 +17,8 @@ export class GalleryComponent implements OnInit {
   galleryTypes: string[] = ['All', 'Residential', 'Commercial', 'Land', 'Other'];
   activeType = 'All';
   baseUrl = environment.baseUrl;
+  selectedImageUrl: string | null = null;
+  selectedImageType: string | null = null;
 
   constructor(private galleryService: GalleryService) {}
 
@@ -43,6 +45,16 @@ export class GalleryComponent implements OnInit {
   applyFilter(type: string): void {
     this.activeType = type;
     this.loadGallery(type);
+  }
+
+  openImage(item: Gallery): void {
+    this.selectedImageUrl = this.imageUrl(item.image);
+    this.selectedImageType = item.type || 'Project';
+  }
+
+  closeImage(): void {
+    this.selectedImageUrl = null;
+    this.selectedImageType = null;
   }
 
   imageUrl(img: string): string {
