@@ -107,8 +107,7 @@
         *ngFor="let slide of slides; index as i; trackBy: trackBySlide"
         type="button"
         class="w-2 h-2 rounded-full"
-        [class.bg-white]="i === currentIndex"
-        [class.bg-white\/50]="i !== currentIndex"
+        [ngClass]="{ 'bg-white': i === currentIndex, 'bg-white/50': i !== currentIndex }"
         (click)="goToSlide(i)"
         [attr.aria-label]="'Go to slide ' + (i + 1)"
       ></button>
