@@ -129,7 +129,7 @@
             [class.opacity-0]="i !== currentIndex"
           >
             <div
-              class="absolute inset-0 bg-cover bg-center will-change-transform
+              class="absolute inset-0 bg-contain md:bg-cover bg-center bg-no-repeat will-change-transform
                      transition-transform duration-700 ease-out"
               [style.backgroundImage]="'url(' + s.image + ')'"
               [ngClass]="i === currentIndex && animateIn ? 'scale-100' : 'scale-[1.03]'"
