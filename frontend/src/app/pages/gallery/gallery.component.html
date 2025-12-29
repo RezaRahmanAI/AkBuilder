@@ -74,9 +74,11 @@
       <div class="w-full max-w-[1200px]">
         <!-- Masonry Layout using Columns -->
         <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          <div
+          <button
             *ngFor="let item of filteredGalleries"
-            class="break-inside-avoid group relative overflow-hidden rounded-xl cursor-pointer"
+            type="button"
+            class="break-inside-avoid group relative block overflow-hidden rounded-xl text-left"
+            (click)="openImage(item)"
           >
             <img
               class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
@@ -94,10 +96,34 @@
                 {{ item.type || 'Project' }}
               </span>
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </section>
+    <div
+      *ngIf="selectedImageUrl"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+      (click)="closeImage()"
+    >
+      <div
+        class="relative max-h-[90vh] w-full max-w-5xl overflow-hidden rounded-2xl bg-black"
+        (click)="$event.stopPropagation()"
+      >
+        <button
+          type="button"
+          class="absolute right-4 top-4 z-10 rounded-full bg-black/70 p-2 text-white transition hover:bg-black"
+          (click)="closeImage()"
+          aria-label="Close image preview"
+        >
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+        <img
+          class="h-full max-h-[90vh] w-full object-contain"
+          [src]="selectedImageUrl"
+          [attr.alt]="selectedImageType || 'Gallery image'"
+        />
+      </div>
+    </div>
     <!-- Load More Button -->
     <section class="px-4 py-8 pb-16 flex justify-center">
       <button
