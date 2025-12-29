@@ -46,6 +46,9 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
   timeAutoNext = 9000;
   baseUrl = environment.baseUrl;
   animateIn = true;
+  slideDirection: 'next' | 'prev' = 'next';
+  textOffsetClass = '-translate-x-6';
+  imageOffsetClass = 'translate-x-6';
 
   private progressInterval?: ReturnType<typeof setInterval>;
   private observer?: IntersectionObserver;
@@ -139,6 +142,7 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
   next(): void {
     if (!this.slides.length) return;
 
+    this.setSlideDirection('next');
     this.currentIndex = (this.currentIndex + 1) % this.slides.length;
     this.triggerAnimation();
     this.scrollCurrentIntoView();
@@ -149,6 +153,7 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
   prev(): void {
     if (!this.slides.length) return;
 
+    this.setSlideDirection('prev');
     this.currentIndex =
       (this.currentIndex - 1 + this.slides.length) % this.slides.length;
     this.triggerAnimation();
@@ -166,6 +171,7 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
     )
       return;
 
+    this.setSlideDirection(index > this.currentIndex ? 'next' : 'prev');
     this.currentIndex = index;
     this.triggerAnimation();
     this.scrollCurrentIntoView();
@@ -252,5 +258,11 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
         }, 30);
       });
     });
+  }
+
+  private setSlideDirection(direction: 'next' | 'prev'): void {
+    this.slideDirection = direction;
+    this.textOffsetClass = direction === 'next' ? '-translate-x-6' : 'translate-x-6';
+    this.imageOffsetClass = direction === 'next' ? 'translate-x-6' : '-translate-x-6';
   }
 }
