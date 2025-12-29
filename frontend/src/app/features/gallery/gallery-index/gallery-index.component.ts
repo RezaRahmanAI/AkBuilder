@@ -51,8 +51,8 @@ export class GalleryIndexComponent implements OnInit {
     this.closeModal();
   }
 
-  deleteGallery(img: string) {
-    this.galleryService.deleteGallery(img).subscribe({
+  deleteGallery(id: string) {
+    this.galleryService.deleteGallery(id).subscribe({
       next: (response) => {
         this.galleryService.showSuccess(
           response || 'Gallery item deleted successfully'

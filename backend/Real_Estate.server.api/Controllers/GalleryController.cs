@@ -67,9 +67,11 @@ namespace Real_Estate.server.api.Controllers
 
                 newModels.Add(new Gallery
                 {
-                    Img = fileName,
+                    Id = Guid.CreateVersion7().ToString(),
+                    Image = fileName,
                     Type = model.type,
-                    Order = order
+                    Order = order,
+                    IsActive = true
                 });
                 order += 1;
             }
@@ -86,14 +88,14 @@ namespace Real_Estate.server.api.Controllers
 
         [HttpPost]
         [Route("delete")]
-        public async Task<IActionResult> Delete(string? img)
+        public async Task<IActionResult> Delete(string? id)
         {
-            if (string.IsNullOrWhiteSpace(img))
+            if (string.IsNullOrWhiteSpace(id))
             {
-                return BadRequest("Image identifier is required.");
+                return BadRequest("Gallery identifier is required.");
             }
 
-            var data = await context.Galleries.Where(e => e.Img == img).FirstOrDefaultAsync();
+            var data = await context.Galleries.Where(e => e.Id == id).FirstOrDefaultAsync();
             if (data == null) return Ok("Data not found.");
             context.Galleries.Remove(data);
             await context.SaveChangesAsync();
