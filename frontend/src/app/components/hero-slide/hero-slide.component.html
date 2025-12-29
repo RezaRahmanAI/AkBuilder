@@ -1,120 +1,120 @@
-<section
+<div
   *ngIf="slides.length; else heroSkeleton"
-  class="relative isolate overflow-hidden bg-slate-950 text-white"
+  class="relative w-full bg-white dark:bg-background-dark overflow-hidden flex flex-col md:flex-row min-h-[600px] h-[85vh] md:h-[700px]"
   aria-live="polite"
 >
-  <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.18),_transparent_55%)]"></div>
-    <div class="absolute -right-24 top-16 h-72 w-72 rounded-full bg-emerald-400/20 blur-3xl"></div>
-    <div class="absolute -left-32 bottom-10 h-72 w-72 rounded-full bg-indigo-500/20 blur-3xl"></div>
+  <div
+    *ngIf="activeSlide as active"
+    class="w-full md:w-5/12 p-8 md:p-16 flex flex-col justify-center relative z-10 bg-white dark:bg-background-dark"
+  >
+    <div class="flex items-center gap-2 mb-6">
+      <span class="w-8 h-[2px] bg-primary"></span>
+      <span class="text-primary font-bold uppercase tracking-widest text-sm">{{ active.topic }}</span>
+    </div>
+    <h1 class="text-4xl md:text-6xl font-black leading-tight text-[#111418] dark:text-white mb-6">
+      {{ active.title }} <br />
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">{{
+        active.thumbnailTitle
+      }}</span>
+    </h1>
+    <p class="text-[#637588] dark:text-gray-400 text-lg mb-8 leading-relaxed max-w-md">
+      {{ active.des }}
+    </p>
+    <div class="flex gap-4 mb-12 flex-wrap">
+      <a
+        class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg text-sm font-bold shadow-lg shadow-primary/30 transition-all flex items-center gap-2 group"
+        [routerLink]="['/projectdetails', active.id]"
+        [attr.aria-label]="'Explore ' + active.title"
+      >
+        Explore Project
+        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+      </a>
+      <a
+        class="border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-[#111418] dark:text-white px-8 py-4 rounded-lg text-sm font-bold transition-all"
+        [routerLink]="['/project']"
+        aria-label="Download project brochure"
+      >
+        Download Brochure
+      </a>
+    </div>
+    <div class="flex items-center gap-12 border-t border-gray-100 dark:border-gray-800 pt-8 mt-auto md:mt-0 flex-wrap">
+      <div>
+        <p class="text-3xl font-bold text-[#111418] dark:text-white">{{ active.author }}</p>
+        <p class="text-sm text-[#637588] dark:text-gray-500 uppercase tracking-wide">Stories</p>
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-[#111418] dark:text-white">{{ active.thumbnailTitle }}</p>
+        <p class="text-sm text-[#637588] dark:text-gray-500 uppercase tracking-wide">Units</p>
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-[#111418] dark:text-white">{{ active.thumbnailDescription }}</p>
+        <p class="text-sm text-[#637588] dark:text-gray-500 uppercase tracking-wide">Completion</p>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-8 md:left-16 flex gap-4">
+      <button
+        type="button"
+        class="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all text-[#111418] dark:text-white"
+        (click)="prev()"
+        aria-label="Previous highlight"
+      >
+        <span class="material-symbols-outlined">chevron_left</span>
+      </button>
+      <button
+        type="button"
+        class="w-12 h-12 rounded-full border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all text-[#111418] dark:text-white"
+        (click)="next()"
+        aria-label="Next highlight"
+      >
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
   </div>
-
-  <div *ngIf="activeSlide as active" class="relative mx-auto flex max-w-6xl flex-col gap-12 px-6 py-16 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-24">
-    <div class="space-y-8">
-      <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200">
-        <span class="h-2 w-2 rounded-full bg-emerald-300"></span>
-        Featured spotlight
-      </div>
-
-      <div class="space-y-5">
-        <p class="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-300/90">
-          {{ active.topic }}
-        </p>
-        <h1 class="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-          {{ active.title }}
-        </h1>
-        <p class="max-w-xl text-base leading-relaxed text-slate-200 sm:text-lg">
-          {{ active.des }}
-        </p>
-      </div>
-
-      <div class="flex flex-wrap items-center gap-4">
-        <a
-          class="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:-translate-y-0.5 hover:bg-emerald-300"
-          [routerLink]="['/projectdetails', active.id]"
-          [attr.aria-label]="'Explore ' + active.title"
-        >
-          Schedule a viewing
-          <i class="ri-arrow-right-up-line text-lg"></i>
-        </a>
-        <a
-          class="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/40 hover:text-white"
-          [routerLink]="['/project']"
-          aria-label="Browse all projects"
-        >
-          See the full portfolio
-        </a>
-      </div>
-
-      <dl class="grid gap-6 sm:grid-cols-3">
-        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-300">Collection</dt>
-          <dd class="mt-2 text-base font-semibold text-white">{{ active.author }}</dd>
-        </div>
-        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-300">Focus</dt>
-          <dd class="mt-2 text-base font-semibold text-white">{{ active.thumbnailTitle }}</dd>
-        </div>
-        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-          <dt class="text-xs uppercase tracking-[0.2em] text-slate-300">Stories</dt>
-          <dd class="mt-2 text-base font-semibold text-white">{{ slides.length }} curated journeys</dd>
-        </div>
-      </dl>
-
-      <div class="space-y-3">
-        <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">
-          <span>Spotlight rhythm</span>
-          <span class="text-white">
-            {{ currentIndex + 1 | number : '2.0' }} / {{ slides.length | number : '2.0' }}
-          </span>
-        </div>
-        <div class="h-2 w-full overflow-hidden rounded-full bg-white/10">
-          <div
-            class="h-full origin-left rounded-full bg-gradient-to-r from-emerald-300 via-emerald-200 to-indigo-300 transition-transform"
-            [style.transform]="'scaleX(' + progress / 100 + ')'
-            "
-          ></div>
+  <div class="w-full md:w-7/12 relative h-[50vh] md:h-full bg-gray-100 dark:bg-gray-800">
+    <div class="absolute inset-0 w-full h-full">
+      <div
+        class="w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105"
+        [style.backgroundImage]="'url(' + activeSlide?.image + ')'
+        "
+      ></div>
+      <div
+        class="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/10 dark:to-background-dark/20 pointer-events-none"
+      ></div>
+    </div>
+    <div
+      class="absolute bottom-8 right-8 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md p-4 rounded-xl shadow-xl max-w-xs hidden md:block"
+    >
+      <div class="flex items-start gap-4">
+        <div
+          class="w-16 h-16 rounded-lg bg-cover bg-center"
+          [style.backgroundImage]="'url(' + activeSlide?.image + ')'
+          "
+        ></div>
+        <div>
+          <h4 class="font-bold text-[#111418] dark:text-white text-sm">{{ activeSlide?.title }}</h4>
+          <p class="text-xs text-[#637588] dark:text-gray-400 mt-1">{{ activeSlide?.author }}</p>
+          <a
+            class="text-primary text-xs font-bold mt-2 inline-block hover:underline"
+            [routerLink]="['/projectdetails', activeSlide?.id]"
+          >
+            View Details
+          </a>
         </div>
       </div>
     </div>
-
-    <div class="relative">
-      <div class="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 shadow-2xl shadow-slate-900/60">
-        <img
-          [src]="active.image"
-          [alt]="active.alt || 'Project visual'"
-          class="h-[420px] w-full object-cover sm:h-[480px]"
-          loading="lazy"
-        />
-        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/90 to-transparent"></div>
-        <div class="absolute bottom-6 left-6 rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 backdrop-blur">
-          <p class="text-xs uppercase tracking-[0.3em] text-emerald-200">Now showing</p>
-          <p class="mt-2 text-lg font-semibold text-white">{{ active.title }}</p>
-          <p class="text-sm text-slate-300">{{ active.author }}</p>
-        </div>
-
-        <div class="absolute right-6 top-6 flex items-center gap-3" role="group" aria-label="Hero navigation">
-          <button
-            type="button"
-            class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-slate-950/70 text-white transition hover:border-white/30 hover:bg-slate-900/80"
-            (click)="prev()"
-            aria-label="Previous highlight"
-          >
-            <span aria-hidden="true">&#8592;</span>
-          </button>
-          <button
-            type="button"
-            class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-slate-950/70 text-white transition hover:border-white/30 hover:bg-slate-900/80"
-            (click)="next()"
-            aria-label="Next highlight"
-          >
-            <span aria-hidden="true">&#8594;</span>
-          </button>
-        </div>
-      </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:hidden">
+      <button
+        *ngFor="let slide of slides; index as i; trackBy: trackBySlide"
+        type="button"
+        class="w-2 h-2 rounded-full"
+        [class.bg-white]="i === currentIndex"
+        [class.bg-white\/50]="i !== currentIndex"
+        (click)="goToSlide(i)"
+        [attr.aria-label]="'Go to slide ' + (i + 1)"
+      ></button>
     </div>
   </div>
-</section>
+</div>
 
 <ng-template #heroSkeleton>
   <section
