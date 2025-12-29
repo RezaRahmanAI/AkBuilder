@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../environments/environment';
@@ -13,12 +13,11 @@ export class GalleryService {
 
   constructor(private http: HttpClient, private toastr: ToastrService) {}
 
-  getGalleries(): Observable<Gallery[]> {
-    return this.http.get<Gallery[]>(`${this.apiBaseUrl}/api/gallery`);
-  }
-
-  getActiveGalleries(): Observable<Gallery[]> {
-    return this.http.get<Gallery[]>(`${this.apiBaseUrl}/api/gallery/active`);
+  getGalleries(type?: string): Observable<Gallery[]> {
+    const params = type ? new HttpParams().set('type', type) : undefined;
+    return this.http.get<Gallery[]>(`${this.apiBaseUrl}/api/gallery`, {
+      params,
+    });
   }
 
   createGallery(formData: FormData): Observable<string> {
@@ -27,23 +26,9 @@ export class GalleryService {
     });
   }
 
-  editGallery(formData: FormData): Observable<string> {
-    return this.http.post(`${this.apiBaseUrl}/api/gallery/edit`, formData, {
-      responseType: 'text',
-    });
-  }
-
-  toggleActiveStatus(id: string, isActive: boolean): Observable<string> {
+  deleteGallery(img: string): Observable<string> {
     return this.http.post(
-      `${this.apiBaseUrl}/api/gallery/itemactiveinactive?id=${id}&value=${isActive}`,
-      {},
-      { responseType: 'text' }
-    );
-  }
-
-  deleteGallery(id: string): Observable<string> {
-    return this.http.post(
-      `${this.apiBaseUrl}/api/gallery/delete?id=${id}`,
+      `${this.apiBaseUrl}/api/gallery/delete?img=${encodeURIComponent(img)}`,
       {},
       { responseType: 'text' }
     );

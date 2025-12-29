@@ -34,12 +34,12 @@
         <div class="w-full max-w-[1200px]">
           <div class="flex gap-3 overflow-x-auto pb-2 md:pb-0 md:flex-wrap items-center">
             <button
-              *ngFor="let category of categories"
+              *ngFor="let type of galleryTypes"
               type="button"
-              (click)="applyFilter(category)"
+              (click)="applyFilter(type)"
               class="group flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full border px-5 transition-all active:scale-95"
               [ngClass]="
-                activeCategory === category
+                activeType === type
                   ? 'bg-primary border-primary'
                   : 'bg-white dark:bg-background-dark border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800'
               "
@@ -47,22 +47,22 @@
               <span
                 class="material-symbols-outlined text-[20px]"
                 [ngClass]="
-                  activeCategory === category
+                  activeType === type
                     ? 'text-white'
                     : 'text-gray-500 dark:text-gray-400 group-hover:text-primary'
                 "
               >
-                {{ category === 'All Projects' ? 'check' : categoryIcon(category) }}
+                {{ type === 'All' ? 'check' : categoryIcon(type) }}
               </span>
               <span
                 class="text-sm font-medium"
                 [ngClass]="
-                  activeCategory === category
+                  activeType === type
                     ? 'text-white font-bold'
                     : 'text-gray-700 dark:text-gray-200 group-hover:text-primary'
                 "
               >
-                {{ category }}
+                {{ type }}
               </span>
             </button>
           </div>
@@ -80,8 +80,8 @@
           >
             <img
               class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-              [attr.alt]="item.title || 'Gallery image'"
-              [src]="imageUrl(item.image)"
+              [attr.alt]="item.type || 'Gallery image'"
+              [src]="imageUrl(item.img)"
               (error)="onImageError($event)"
               loading="lazy"
             />
@@ -91,17 +91,8 @@
               <span
                 class="text-primary text-xs font-bold uppercase tracking-wider mb-1"
               >
-                {{ item.category || 'Project' }}
+                {{ item.type || 'Project' }}
               </span>
-              <h3 class="text-white text-xl font-bold">
-                {{ item.title || 'Gallery highlight' }}
-              </h3>
-              <div class="flex items-center gap-1 text-gray-300 text-sm mt-1">
-                <span class="material-symbols-outlined text-[16px]">
-                  location_on
-                </span>
-                {{ item.location || 'Location forthcoming' }}
-              </div>
             </div>
           </div>
         </div>

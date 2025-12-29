@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Real_Estate.server.api.Data;
 using Real_Estate.server.api.Models;
-using System.Diagnostics;
 
 namespace Real_Estate.server.api.Controllers
 {
@@ -20,106 +19,81 @@ namespace Real_Estate.server.api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] string? type)
         {
-            var model = await context.Galleries.AsNoTracking().OrderBy(e => e.Order).ToListAsync();
-            return Ok(model);
-        }
+            var query = context.Galleries.AsNoTracking();
+            if (!string.IsNullOrWhiteSpace(type))
+            {
+                query = query.Where(item => item.Type == type);
+            }
 
-        [HttpGet]
-        [Route("active")]
-        public async Task<IActionResult> GetAllActive()
-        {
-            var model = await context.Galleries.Where(t => t.IsActive).OrderBy(e => e.Order).ToListAsync();
+            var model = await query.OrderBy(e => e.Order).ToListAsync();
             return Ok(model);
         }
 
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> Create(GalleryModel model)
+        public async Task<IActionResult> Create([FromForm] GalleryCreateModel model)
         {
-            var newModel = new Gallery
+            if (string.IsNullOrWhiteSpace(model.type))
             {
-                Id = Guid.CreateVersion7().ToString(),
-                Title = model.title,
-                Category = model.category,
-                Location = model.location,
-                Order = model.order,
-                IsActive = true
-            };
+                return BadRequest("Gallery type is required.");
+            }
 
-            if (model.image != null && model.image.Length > 0)
+            if (model.images == null || model.images.Count == 0)
             {
-                var extension = Path.GetExtension(model.image.FileName);
-                var fileName = DateTime.UtcNow.ToString("ddMMyyyHHmmssffffff") + extension;
-                string rootpath = webHostEnvironment.ContentRootPath;
-                string fileUploadRoot = Path.Combine(rootpath, "assets", "images");
-                Directory.CreateDirectory(fileUploadRoot);
-                Debug.WriteLine(fileUploadRoot);
+                return BadRequest("At least one image is required.");
+            }
+
+            string rootpath = webHostEnvironment.ContentRootPath;
+            string fileUploadRoot = Path.Combine(rootpath, "assets", "images");
+            Directory.CreateDirectory(fileUploadRoot);
+
+            var order = model.order;
+            var newModels = new List<Gallery>();
+            foreach (var file in model.images)
+            {
+                if (file.Length <= 0)
+                {
+                    continue;
+                }
+
+                var extension = Path.GetExtension(file.FileName);
+                var fileName = $"{Guid.NewGuid():N}{extension}";
                 using (var stream = new FileStream(Path.Combine(fileUploadRoot, fileName), FileMode.Create))
                 {
-                    await model.image.CopyToAsync(stream);
+                    await file.CopyToAsync(stream);
                 }
-                newModel.Image = fileName;
-            }
 
-            await context.Galleries.AddAsync(newModel);
-            await context.SaveChangesAsync();
-            return Ok("Item has been created.");
-        }
-
-        [HttpPost]
-        [Route("edit")]
-        public async Task<IActionResult> Edit(GalleryModel model)
-        {
-            var exModel = await context.Galleries.Where(e => e.Id == model.id).FirstOrDefaultAsync();
-            if (exModel != null)
-            {
-                exModel.Title = model.title;
-                exModel.Category = model.category;
-                exModel.Location = model.location;
-                exModel.Order = model.order;
-
-                if (model.image != null && model.image.Length > 0)
+                newModels.Add(new Gallery
                 {
-                    var extension = Path.GetExtension(model.image.FileName);
-                    var fileName = DateTime.UtcNow.ToString("ddMMyyyHHmmssffffff") + extension;
-                    string rootpath = webHostEnvironment.ContentRootPath;
-                    string fileUploadRoot = Path.Combine(rootpath, "assets", "images");
-                    Directory.CreateDirectory(fileUploadRoot);
-                    Debug.WriteLine(fileUploadRoot);
-                    using (var stream = new FileStream(Path.Combine(fileUploadRoot, fileName), FileMode.Create))
-                    {
-                        await model.image.CopyToAsync(stream);
-                    }
-                    exModel.Image = fileName;
-                }
-
-                context.Entry(exModel).State = EntityState.Modified;
-                await context.SaveChangesAsync();
-                return Ok("Item has been updated.");
+                    Img = fileName,
+                    Type = model.type,
+                    Order = order
+                });
+                order += 1;
             }
 
-            return Ok("Data not found.");
-        }
+            if (newModels.Count == 0)
+            {
+                return BadRequest("No valid images were provided.");
+            }
 
-        [HttpPost]
-        [Route("itemactiveinactive")]
-        public async Task<IActionResult> ItemActiveInactive(string id, bool value)
-        {
-            var data = await context.Galleries.Where(e => e.Id == id).FirstOrDefaultAsync();
-            if (data == null) return Ok("Data not found.");
-            data.IsActive = value;
-            context.Entry(data).State = EntityState.Modified;
+            await context.Galleries.AddRangeAsync(newModels);
             await context.SaveChangesAsync();
-            return Ok("Item has been updated.");
+            return Ok("Gallery items have been created.");
         }
 
         [HttpPost]
         [Route("delete")]
-        public async Task<IActionResult> Delete(string? id)
+        public async Task<IActionResult> Delete(string? img)
         {
-            var data = await context.Galleries.Where(e => e.Id == id).FirstOrDefaultAsync();
+            if (string.IsNullOrWhiteSpace(img))
+            {
+                return BadRequest("Image identifier is required.");
+            }
+
+            var data = await context.Galleries.Where(e => e.Img == img).FirstOrDefaultAsync();
             if (data == null) return Ok("Data not found.");
             context.Galleries.Remove(data);
             await context.SaveChangesAsync();
@@ -127,13 +101,10 @@ namespace Real_Estate.server.api.Controllers
         }
     }
 
-    public class GalleryModel
+    public class GalleryCreateModel
     {
-        public string? id { get; set; }
-        public string? title { get; set; }
-        public string? category { get; set; }
-        public string? location { get; set; }
-        public IFormFile? image { get; set; }
+        public string? type { get; set; }
+        public List<IFormFile>? images { get; set; }
         public int order { get; set; }
     }
 }

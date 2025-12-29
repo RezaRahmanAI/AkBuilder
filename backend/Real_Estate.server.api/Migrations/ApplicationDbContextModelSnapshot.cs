@@ -374,28 +374,16 @@ namespace Real_Estate.server.api.Migrations
 
             modelBuilder.Entity("Real_Estate.server.api.Models.Gallery", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("Img")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Img");
 
                     b.ToTable("Galleries", "dbo");
                 });
