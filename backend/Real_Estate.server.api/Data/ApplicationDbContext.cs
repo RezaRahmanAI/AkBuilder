@@ -20,6 +20,7 @@ namespace Real_Estate.server.api.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectFeature> ProjectFeatures { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<Gallery> Galleries { get; set; }
 
         public DbSet<Team> Teams { get; set; }
         public DbSet<Blog> Blogs { get; set; }

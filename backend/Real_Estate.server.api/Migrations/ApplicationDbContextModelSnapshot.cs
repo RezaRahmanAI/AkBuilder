@@ -372,6 +372,34 @@ namespace Real_Estate.server.api.Migrations
                     b.ToTable("ProjectFeatures", "dbo");
                 });
 
+            modelBuilder.Entity("Real_Estate.server.api.Models.Gallery", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Galleries", "dbo");
+                });
+
             modelBuilder.Entity("Real_Estate.server.api.Models.Team", b =>
                 {
                     b.Property<string>("Id")

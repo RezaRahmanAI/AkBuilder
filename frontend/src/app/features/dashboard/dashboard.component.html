@@ -51,6 +51,20 @@
         <span>Property listings</span>
       </a>
       <a
+        routerLink="/dashboard/gallery"
+        routerLinkActive
+        #galleryRla="routerLinkActive"
+        class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-pure"
+        [ngClass]="
+          galleryRla.isActive
+            ? 'bg-brand text-charcoal shadow-industrial-soft'
+            : 'text-steel hover:bg-brand/10 hover:text-charcoal'
+        "
+      >
+        <i class="fas fa-images"></i>
+        <span>Gallery</span>
+      </a>
+      <a
         routerLink="/dashboard/clients"
         routerLinkActive
         #clientsRla="routerLinkActive"
@@ -275,6 +289,21 @@
         >
           <i class="fas fa-comment-dots"></i>
           <span>Testimonials</span>
+        </a>
+        <a
+          routerLink="/dashboard/gallery"
+          routerLinkActive
+          #mobileGallery="routerLinkActive"
+          (click)="closeSidebar()"
+          class="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-pure"
+          [ngClass]="
+            mobileGallery.isActive
+              ? 'bg-brand text-charcoal'
+              : 'text-steel hover:bg-brand/10 hover:text-charcoal'
+          "
+        >
+          <i class="fas fa-images"></i>
+          <span>Gallery</span>
         </a>
         <a
           routerLink="/dashboard/blogs"
