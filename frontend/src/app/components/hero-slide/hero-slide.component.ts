@@ -237,14 +237,19 @@ export class HeroSlideComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private triggerAnimation(): void {
+    // Turn off, then re-enable on next frame + small delay so transitions always re-fire
     this.animateIn = false;
     this.cdr.markForCheck();
+
     this.zone.runOutsideAngular(() => {
       requestAnimationFrame(() => {
-        this.zone.run(() => {
-          this.animateIn = true;
-          this.cdr.markForCheck();
-        });
+        // small timeout helps ensure class change is committed before re-adding
+        setTimeout(() => {
+          this.zone.run(() => {
+            this.animateIn = true;
+            this.cdr.markForCheck();
+          });
+        }, 30);
       });
     });
   }
