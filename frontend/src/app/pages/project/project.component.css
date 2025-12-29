@@ -1,6 +1,6 @@
 :host {
   display: block;
-  background: linear-gradient(180deg, #fafafa 0%, #ffffff 45%, #fafafa 100%);
+  background: linear-gradient(180deg, var(--background-light) 0%, #ffffff 45%, var(--background-light) 100%);
   min-height: 100vh;
 }
 
@@ -13,14 +13,14 @@
   border-radius: 999px;
   border: 1px solid #e2e8f0;
   background: #ffffff;
-  color: #0b0b0b;
+  color: var(--background-dark);
   transition: all 160ms ease;
   box-shadow: 0 6px 18px rgba(17, 20, 24, 0.06);
 }
 
 .category-toggle:hover {
-  border-color: #D99A00;
-  background: rgba(242, 183, 5, 0.12);
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
 }
 
 .filter-pill {
@@ -30,9 +30,9 @@
 }
 
 .filter-pill--active {
-  border-color: #C4161C;
-  background: rgba(196, 22, 28, 0.08);
-  color: #C4161C;
+  border-color: var(--background-dark);
+  background: color-mix(in srgb, var(--background-dark) 10%, transparent);
+  color: var(--background-dark);
 }
 
 .status-badge {
@@ -45,44 +45,44 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #0b0b0b;
+  color: var(--background-dark);
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 10px 26px rgba(15, 23, 42, 0.15);
 }
 
 .status-badge--ongoing {
-  background: #F2B705;
-  color: #0b0b0b;
+  background: var(--primary);
+  color: var(--background-light);
 }
 
 .status-badge--upcoming {
-  background: #C4161C;
-  color: #fafafa;
+  background: var(--background-dark);
+  color: var(--background-light);
 }
 
 .status-badge--completed {
-  background: #1a1a1a;
-  color: #fafafa;
+  background: var(--background-dark);
+  color: var(--background-light);
 }
 
 .status-dot {
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 999px;
-  background: #8a8a8a;
+  background: color-mix(in srgb, var(--background-dark) 45%, var(--background-light));
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
 }
 
 .status-dot--ongoing {
-  background: #D99A00;
+  background: var(--primary);
 }
 
 .status-dot--upcoming {
-  background: #C4161C;
+  background: var(--background-dark);
 }
 
 .status-dot--completed {
-  background: #1a1a1a;
+  background: var(--background-dark);
 }
 
 .project-card img {

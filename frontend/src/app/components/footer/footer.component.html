@@ -1,22 +1,22 @@
-<footer class="bg-white dark:bg-[#111921] border-t border-[#e5e7eb] dark:border-gray-800 pt-16 pb-8 shape-accent">
+<footer class="bg-white dark:bg-[#111921] border-t border-background-dark/10 dark:border-gray-800 pt-16 pb-8 shape-accent">
   <div class="site-container">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
       <div class="flex flex-col gap-4">
-        <div class="flex items-center gap-2 text-[#111418] dark:text-white">
-          <div class="size-6 flex items-center justify-center text-brand">
+        <div class="flex items-center gap-2 text-background-dark dark:text-white">
+          <div class="size-6 flex items-center justify-center text-primary">
             <svg viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor" aria-hidden="true">
               <path d="M12 3.172 4 9.2V21h6v-6h4v6h6V9.2l-8-6.028Z" />
             </svg>
           </div>
           <span class="text-lg font-bold">{{ settings().companyName }}</span>
         </div>
-        <p class="text-[#637588] dark:text-gray-400 text-sm">
+        <p class="text-background-dark/60 dark:text-gray-400 text-sm">
           {{ settings().footerDescription }}
         </p>
         <div class="flex gap-4 mt-2">
           <a
             *ngFor="let link of settings().socialLinks"
-            class="text-[#637588] hover:text-brand transition-colors"
+            class="text-background-dark/60 hover:text-primary transition-colors"
             [href]="link.url"
             target="_blank"
             rel="noreferrer noopener"
@@ -28,32 +28,32 @@
       </div>
 
       <div class="flex flex-col gap-4">
-        <h4 class="font-bold text-[#111418] dark:text-white">Quick Links</h4>
-        <a class="text-[#637588] dark:text-gray-400 hover:text-brand text-sm" routerLink="/home">Home</a>
-        <a class="text-[#637588] dark:text-gray-400 hover:text-brand text-sm" routerLink="/about">About Us</a>
-        <a class="text-[#637588] dark:text-gray-400 hover:text-brand text-sm" routerLink="/projects">Projects</a>
-        <a class="text-[#637588] dark:text-gray-400 hover:text-brand text-sm" routerLink="/contact">Contact</a>
+        <h4 class="font-bold text-background-dark dark:text-white">Quick Links</h4>
+        <a class="text-background-dark/60 dark:text-gray-400 hover:text-primary text-sm" routerLink="/home">Home</a>
+        <a class="text-background-dark/60 dark:text-gray-400 hover:text-primary text-sm" routerLink="/about">About Us</a>
+        <a class="text-background-dark/60 dark:text-gray-400 hover:text-primary text-sm" routerLink="/projects">Projects</a>
+        <a class="text-background-dark/60 dark:text-gray-400 hover:text-primary text-sm" routerLink="/contact">Contact</a>
       </div>
 
       <div class="flex flex-col gap-4">
-        <h4 class="font-bold text-[#111418] dark:text-white">Company</h4>
-        <a class="text-[#637588] dark:text-gray-400 hover:text-brand text-sm" routerLink="/about">Our Story</a>
-        <a class="text-[#637588] dark:text-gray-400 hover:text-brand text-sm" routerLink="/blog">Blog</a>
-        <a class="text-[#637588] dark:text-gray-400 hover:text-brand text-sm" routerLink="/contact">Contact</a>
+        <h4 class="font-bold text-background-dark dark:text-white">Company</h4>
+        <a class="text-background-dark/60 dark:text-gray-400 hover:text-primary text-sm" routerLink="/about">Our Story</a>
+        <a class="text-background-dark/60 dark:text-gray-400 hover:text-primary text-sm" routerLink="/blog">Blog</a>
+        <a class="text-background-dark/60 dark:text-gray-400 hover:text-primary text-sm" routerLink="/contact">Contact</a>
       </div>
 
       <div class="flex flex-col gap-4">
-        <h4 class="font-bold text-[#111418] dark:text-white">Support</h4>
-        <span class="text-[#637588] dark:text-gray-400 text-sm">{{ settings().address }}</span>
+        <h4 class="font-bold text-background-dark dark:text-white">Support</h4>
+        <span class="text-background-dark/60 dark:text-gray-400 text-sm">{{ settings().address }}</span>
         <a
           *ngFor="let phone of settings().phones"
-          class="text-[#637588] dark:text-gray-400 hover:text-brand text-sm"
+          class="text-background-dark/60 dark:text-gray-400 hover:text-primary text-sm"
           [href]="'tel:' + phone"
         >
           {{ phone }}
         </a>
         <a
-          class="text-[#637588] dark:text-gray-400 hover:text-brand text-sm"
+          class="text-background-dark/60 dark:text-gray-400 hover:text-primary text-sm"
           [href]="'mailto:' + settings().email"
         >
           {{ settings().email }}
@@ -61,12 +61,12 @@
       </div>
     </div>
 
-    <div class="border-t border-[#e5e7eb] dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-[#637588] dark:text-gray-500 text-sm">© {{ currentYear }} AK Builders. All rights reserved.</p>
+    <div class="border-t border-background-dark/10 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-background-dark/60 dark:text-gray-500 text-sm">© {{ currentYear }} AK Builders. All rights reserved.</p>
       <div class="flex gap-6">
-        <span class="text-[#637588] dark:text-gray-500 text-sm cursor-pointer hover:text-brand">Privacy</span>
-        <span class="text-[#637588] dark:text-gray-500 text-sm cursor-pointer hover:text-brand">Terms</span>
-        <span class="text-[#637588] dark:text-gray-500 text-sm cursor-pointer hover:text-brand">Sitemap</span>
+        <span class="text-background-dark/60 dark:text-gray-500 text-sm cursor-pointer hover:text-primary">Privacy</span>
+        <span class="text-background-dark/60 dark:text-gray-500 text-sm cursor-pointer hover:text-primary">Terms</span>
+        <span class="text-background-dark/60 dark:text-gray-500 text-sm cursor-pointer hover:text-primary">Sitemap</span>
       </div>
     </div>
   </div>
