@@ -1,107 +1,116 @@
 <section
   *ngIf="slides.length; else heroSkeleton"
-
-  class="neo-hero relative isolate overflow-hidden text-pure"
-
+  class="relative isolate overflow-hidden bg-slate-950 text-white"
   aria-live="polite"
 >
-  <div class="neo-hero__atmosphere" aria-hidden="true">
-    <span class="neo-hero__orb neo-hero__orb--one"></span>
-    <span class="neo-hero__orb neo-hero__orb--two"></span>
-    <span class="neo-hero__mesh"></span>
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.18),_transparent_55%)]"></div>
+    <div class="absolute -right-24 top-16 h-72 w-72 rounded-full bg-emerald-400/20 blur-3xl"></div>
+    <div class="absolute -left-32 bottom-10 h-72 w-72 rounded-full bg-indigo-500/20 blur-3xl"></div>
   </div>
 
-  <div *ngIf="activeSlide as active" class="neo-hero__shell side-container">
-    <div class="neo-hero__grid">
-      <div class="neo-hero__intro">
-        <div class="neo-hero__eyebrow">
-          <span class="neo-hero__pulse" aria-hidden="true"></span>
-          Featured spotlight
-        </div>
-        <div class="neo-hero__title">
-          <p class="neo-hero__caption">{{ active.topic }}</p>
-          <h1>
-            <span class="neo-hero__title-accent">{{ active.title }}</span>
-            <span class="neo-hero__underline mb-2"></span>
-          </h1>
-          <p class="neo-hero__lede">
-            {{ active.des }}
-          </p>
-        </div>
+  <div *ngIf="activeSlide as active" class="relative mx-auto flex max-w-6xl flex-col gap-12 px-6 py-16 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-24">
+    <div class="space-y-8">
+      <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200">
+        <span class="h-2 w-2 rounded-full bg-emerald-300"></span>
+        Featured spotlight
+      </div>
 
-        <div class="neo-hero__actions">
-          <a
-            class="neo-button"
-            [routerLink]="['/projectdetails', active.id]"
-            [attr.aria-label]="'Explore ' + active.title"
-          >
-            Schedule a viewing
-            <i class="ri-arrow-right-up-line"></i>
-          </a>
-          <a
-            class="neo-outline-button"
-            [routerLink]="['/project']"
-            aria-label="Browse all projects"
-          >
-            See the full portfolio
-          </a>
+      <div class="space-y-5">
+        <p class="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-300/90">
+          {{ active.topic }}
+        </p>
+        <h1 class="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+          {{ active.title }}
+        </h1>
+        <p class="max-w-xl text-base leading-relaxed text-slate-200 sm:text-lg">
+          {{ active.des }}
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-4">
+        <a
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:-translate-y-0.5 hover:bg-emerald-300"
+          [routerLink]="['/projectdetails', active.id]"
+          [attr.aria-label]="'Explore ' + active.title"
+        >
+          Schedule a viewing
+          <i class="ri-arrow-right-up-line text-lg"></i>
+        </a>
+        <a
+          class="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/40 hover:text-white"
+          [routerLink]="['/project']"
+          aria-label="Browse all projects"
+        >
+          See the full portfolio
+        </a>
+      </div>
+
+      <dl class="grid gap-6 sm:grid-cols-3">
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-300">Collection</dt>
+          <dd class="mt-2 text-base font-semibold text-white">{{ active.author }}</dd>
         </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-300">Focus</dt>
+          <dd class="mt-2 text-base font-semibold text-white">{{ active.thumbnailTitle }}</dd>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+          <dt class="text-xs uppercase tracking-[0.2em] text-slate-300">Stories</dt>
+          <dd class="mt-2 text-base font-semibold text-white">{{ slides.length }} curated journeys</dd>
+        </div>
+      </dl>
 
-        <ul class="neo-hero__highlights" role="list">
-          <li>
-            <span>Collection</span>
-            <strong>{{ active.author }}</strong>
-          </li>
-          <li>
-            <span>Focus</span>
-            <strong>{{ active.thumbnailTitle }}</strong>
-          </li>
-          <li>
-            <span>Stories</span>
-            <strong>{{ slides.length }} curated journeys</strong>
-          </li>
-        </ul>
-
-        <div class="neo-hero__progress" aria-hidden="true">
-          <div class="neo-hero__progress-label">Spotlight rhythm</div>
-          <div class="neo-hero__progress-bar">
-            <div
-              class="neo-hero__progress-fill"
-              [style.transform]="'scaleX(' + progress / 100 + ')'
-              "
-            ></div>
-          </div>
-          <span class="neo-hero__progress-count">
+      <div class="space-y-3">
+        <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">
+          <span>Spotlight rhythm</span>
+          <span class="text-white">
             {{ currentIndex + 1 | number : '2.0' }} / {{ slides.length | number : '2.0' }}
           </span>
         </div>
+        <div class="h-2 w-full overflow-hidden rounded-full bg-white/10">
+          <div
+            class="h-full origin-left rounded-full bg-gradient-to-r from-emerald-300 via-emerald-200 to-indigo-300 transition-transform"
+            [style.transform]="'scaleX(' + progress / 100 + ')'
+            "
+          ></div>
+        </div>
       </div>
+    </div>
 
-      <div class="neo-hero__visual">
-        <div class="neo-hero__frame">
-          <img
-            [src]="active.image"
-            [alt]="active.alt || 'Project visual'"
-            class="neo-hero__image"
-            loading="lazy"
-          />
-          <div class="neo-hero__glow"></div>
-          <div class="neo-hero__info-card">
-            <span>Now showing</span>
-            <strong>{{ active.title }}</strong>
-            <p>{{ active.author }}</p>
-          </div>
-          
-          <div class="neo-hero__controls" role="group" aria-label="Hero navigation">
-            <button type="button" (click)="prev()" aria-label="Previous highlight">
-              <span aria-hidden="true">&#8592;</span>
-            </button>
-            <button type="button" (click)="next()" aria-label="Next highlight">
-              <span aria-hidden="true">&#8594;</span>
-            </button>
-          </div>
+    <div class="relative">
+      <div class="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 shadow-2xl shadow-slate-900/60">
+        <img
+          [src]="active.image"
+          [alt]="active.alt || 'Project visual'"
+          class="h-[420px] w-full object-cover sm:h-[480px]"
+          loading="lazy"
+        />
+        <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/90 to-transparent"></div>
+        <div class="absolute bottom-6 left-6 rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 backdrop-blur">
+          <p class="text-xs uppercase tracking-[0.3em] text-emerald-200">Now showing</p>
+          <p class="mt-2 text-lg font-semibold text-white">{{ active.title }}</p>
+          <p class="text-sm text-slate-300">{{ active.author }}</p>
         </div>
 
+        <div class="absolute right-6 top-6 flex items-center gap-3" role="group" aria-label="Hero navigation">
+          <button
+            type="button"
+            class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-slate-950/70 text-white transition hover:border-white/30 hover:bg-slate-900/80"
+            (click)="prev()"
+            aria-label="Previous highlight"
+          >
+            <span aria-hidden="true">&#8592;</span>
+          </button>
+          <button
+            type="button"
+            class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-slate-950/70 text-white transition hover:border-white/30 hover:bg-slate-900/80"
+            (click)="next()"
+            aria-label="Next highlight"
+          >
+            <span aria-hidden="true">&#8594;</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -109,9 +118,10 @@
 
 <ng-template #heroSkeleton>
   <section
-    class="relative isolate flex h-[480px] items-center justify-center overflow-hidden bg-gradient-to-br from-brand to-emerald-900"
+    class="relative isolate flex h-[480px] items-center justify-center overflow-hidden bg-slate-950"
     aria-busy="true"
   >
-    <div class="h-32 w-32 animate-pulse rounded-full bg-white/10"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.18),_transparent_55%)]"></div>
+    <div class="h-32 w-32 animate-pulse rounded-full border border-white/10 bg-white/5"></div>
   </section>
 </ng-template>
