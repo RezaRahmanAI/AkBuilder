@@ -108,7 +108,8 @@ const initialState: AppState = {
     hero: seededContactHero,
     getInTouch: {
       eyebrow: 'Ways to reach us',
-      title: 'A concierge team dedicated to making every conversation memorable.',
+      title:
+        'A concierge team dedicated to making every conversation memorable.',
       description:
         'Whether you prefer a private tour, a quick voice note, or a detailed proposal, our specialists respond with the same care we give our residences.',
       cards: [
@@ -202,7 +203,7 @@ const initialState: AppState = {
       mapDescription:
         'Tour our model residences, material library, and immersive planning studio.',
       mapIframeUrl:
-        'https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1816.9133006603704!2d88.60534652694886!3d24.387334802924492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sas%20haven%20developer%20rajshahi!5e0!3m2!1sen!2sbd!4v1760330603927!5m2!1sen!2sbd',
+        '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d58842.778249690564!2d89.5270762!3d22.8145538!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff91b47f842d43%3A0x2e39a7e6f26ea400!2sA.K%20tower!5e0!3m2!1sen!2sbd!4v1767175886377!5m2!1sen!2sbd',
       highlights: [
         {
           label: 'Parking',
@@ -411,7 +412,8 @@ export class AppStore {
         ...initialState.aboutPage,
         ...partial.aboutPage,
         aboutEntries:
-          partial.aboutPage?.aboutEntries ?? initialState.aboutPage.aboutEntries,
+          partial.aboutPage?.aboutEntries ??
+          initialState.aboutPage.aboutEntries,
         stats: partial.aboutPage?.stats ?? initialState.aboutPage.stats,
         coreValuesSection:
           partial.aboutPage?.coreValuesSection ??
