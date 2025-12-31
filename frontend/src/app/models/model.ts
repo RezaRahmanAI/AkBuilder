@@ -213,6 +213,8 @@ export interface ContactInfoMapContent {
   mapBadge: string;
   mapDescription: string;
   mapIframeUrl: string;
+  mapAddress: string;
+  mapPhones: string[];
   highlights: { label: string; value: string }[];
 }
 
