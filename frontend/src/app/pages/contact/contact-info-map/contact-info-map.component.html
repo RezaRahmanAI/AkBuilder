@@ -190,6 +190,26 @@
             ></iframe>
           </div>
 
+          <div class="rounded-2xl border border-white/12 bg-white/5 p-4 space-y-4">
+            <div class="space-y-1">
+              <span class="block text-xs uppercase tracking-wider text-accent">Address</span>
+              <span class="block text-white/88">
+                {{ contactPage().infoMap.mapAddress }}
+              </span>
+            </div>
+            <div class="space-y-2">
+              <span class="block text-xs uppercase tracking-wider text-accent">Phone</span>
+              <div class="flex flex-col gap-1">
+                <a
+                  *ngFor="let phone of contactPage().infoMap.mapPhones"
+                  class="text-white/88 hover:text-white"
+                  [href]="'tel:' + phone"
+                  >{{ phone }}</a
+                >
+              </div>
+            </div>
+          </div>
+
           <ul class="grid gap-4 list-none p-0">
             <li class="space-y-1" *ngFor="let highlight of contactPage().infoMap.highlights">
               <span class="block text-xs uppercase tracking-wider text-accent"
