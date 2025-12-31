@@ -1,4 +1,4 @@
-import { Component, OnInit, effect, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
@@ -26,6 +26,7 @@ export class ContactInfoMapComponent implements OnInit {
   showPopup = false;
   mapUrl: SafeResourceUrl;
   private readonly store = inject(AppStore);
+  readonly settings = this.store.settings;
 
   constructor(
     private fb: FormBuilder,
@@ -40,13 +41,8 @@ export class ContactInfoMapComponent implements OnInit {
       message: ['', [Validators.required, Validators.minLength(10)]],
     });
     this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-      this.store.contactPage().infoMap.mapIframeUrl
+      'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d58842.778249690564!2d89.5270762!3d22.8145538!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff91b47f842d43%3A0x2e39a7e6f26ea400!2sA.K%20tower!5e0!3m2!1sen!2sbd!4v1767181354117!5m2!1sen!2sbd'
     );
-    effect(() => {
-      this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-        this.store.contactPage().infoMap.mapIframeUrl
-      );
-    });
   }
 
   ngOnInit(): void {}
