@@ -202,10 +202,6 @@ const initialState: AppState = {
       mapBadge: 'Showroom & Experience Centre',
       mapDescription:
         'Tour our model residences, material library, and immersive planning studio.',
-      mapIframeUrl:
-        'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d229.84351858144987!2d89.554774!3d22.8211209!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff91b47f842d43%3A0x2e39a7e6f26ea400!2sA.K%20tower!5e0!3m2!1sen!2sbd!4v1767180026898!5m2!1sen!2sbd',
-      mapAddress: 'A.K tower, Khulna, Bangladesh',
-      mapPhones: ['01762194232', '01339347540'],
       highlights: [
         {
           label: 'Parking',

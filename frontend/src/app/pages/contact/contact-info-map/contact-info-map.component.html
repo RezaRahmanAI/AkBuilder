@@ -194,14 +194,14 @@
             <div class="space-y-1">
               <span class="block text-xs uppercase tracking-wider text-accent">Address</span>
               <span class="block text-white/88">
-                {{ contactPage().infoMap.mapAddress }}
+                {{ settings().address }}
               </span>
             </div>
             <div class="space-y-2">
               <span class="block text-xs uppercase tracking-wider text-accent">Phone</span>
               <div class="flex flex-col gap-1">
                 <a
-                  *ngFor="let phone of contactPage().infoMap.mapPhones"
+                  *ngFor="let phone of settings().phones"
                   class="text-white/88 hover:text-white"
                   [href]="'tel:' + phone"
                   >{{ phone }}</a
