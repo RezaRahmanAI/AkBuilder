@@ -24,7 +24,8 @@
         "
       >
         <span class="w-8 h-[2px] bg-primary"></span>
-        <span class="text-primary font-bold uppercase tracking-widest text-sm"
+        <span
+          class="text-primary font-bold uppercase tracking-widest text-sm"
           >{{ active.topic }}</span
         >
       </div>
@@ -156,7 +157,7 @@
 
     <!-- RIGHT (Image) -->
     <div
-      class="w-full md:w-1/2 relative h-[60vh] sm:h-[65vh] md:h-full  overflow-hidden transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100"
+      class="w-full md:w-1/2 relative h-[60vh] sm:h-[65vh] md:h-full overflow-hidden transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100"
       [ngClass]="
         animateIn
           ? 'opacity-100 translate-x-0'
@@ -164,21 +165,22 @@
       "
     >
       <!-- Crossfade image (no more instant swap) -->
-      <div class="absolute inset-0">
+      <div class="absolute inset-0 ">
         <ng-container
           *ngFor="let s of slides; let i = index; trackBy: trackBySlide"
         >
           <div
-            class="absolute inset-0 transition-opacity duration-700 ease-out motion-reduce:transition-none"
+            class="absolute inset-0 transition-opacity duration-700 ease-out motion-reduce:transition-none rounded-xl"
             [class.opacity-100]="i === currentIndex"
             [class.opacity-0]="i !== currentIndex"
           >
             <div
-  class="absolute inset-0 bg-contain bg-center bg-no-repeat will-change-transform transition-transform duration-700 ease-out"
-  [style.backgroundImage]="'url(' + s.image + ')'"
-  [ngClass]="i === currentIndex && animateIn ? 'scale-100' : 'scale-[1.01]'"
-></div>
-
+              class="absolute inset-0 bg-contain bg-center bg-no-repeat will-change-transform transition-transform duration-700 ease-out rounded-xl"
+              [style.backgroundImage]="'url(' + s.image + ')'"
+              [ngClass]="
+                i === currentIndex && animateIn ? 'scale-100' : 'scale-[1.01]'
+              "
+            ></div>
           </div>
         </ng-container>
 
@@ -187,35 +189,7 @@
         ></div>
       </div>
 
-      <div
-        class="absolute bottom-8 right-8 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md p-4 rounded-xl shadow-xl max-w-xs hidden md:block transition-all duration-700 ease-out delay-[180ms] motion-reduce:transition-none motion-reduce:transform-none"
-        [ngClass]="
-          animateIn
-            ? 'opacity-100 translate-x-0'
-            : 'opacity-0 ' + imageOffsetClass
-        "
-      >
-        <div class="flex items-start gap-4">
-          <div
-            class="w-16 h-16 rounded-lg bg-cover bg-center"
-            [style.backgroundImage]="'url(' + activeSlide?.image + ')'"
-          ></div>
-          <div>
-            <h4 class="font-bold text-[#111418] dark:text-white text-sm">
-              {{ activeSlide?.title }}
-            </h4>
-            <p class="text-xs text-[#637588] dark:text-gray-400 mt-1">
-              {{ activeSlide?.author }}
-            </p>
-            <a
-              class="text-primary text-xs font-bold mt-2 inline-block hover:underline"
-              [routerLink]="['/projectdetails', activeSlide?.id]"
-            >
-              View Details
-            </a>
-          </div>
-        </div>
-      </div>
+      
 
       <div
         class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:hidden"
