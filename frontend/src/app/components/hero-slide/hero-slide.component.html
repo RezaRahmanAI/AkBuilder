@@ -88,7 +88,7 @@
       </div>
 
       <div
-        class="grid grid-cols-3 gap-4 border-t border-gray-100 dark:border-gray-800 pt-8 mt-auto transition-all duration-700 ease-out delay-[300ms] motion-reduce:transition-none motion-reduce:transform-none"
+        class="grid grid-cols-3 gap-4 border-t border-gray-100 dark:border-gray-800 pt-2 transition-all duration-700 ease-out delay-[300ms] motion-reduce:transition-none motion-reduce:transform-none"
         [ngClass]="
           animateIn
             ? 'opacity-100 translate-x-0'
@@ -165,7 +165,7 @@
       "
     >
       <!-- Crossfade image (no more instant swap) -->
-      <div class="absolute inset-0 ">
+      <div class="absolute inset-0">
         <ng-container
           *ngFor="let s of slides; let i = index; trackBy: trackBySlide"
         >
@@ -188,8 +188,6 @@
           class="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/10 dark:to-background-dark/20 pointer-events-none"
         ></div>
       </div>
-
-      
 
       <div
         class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:hidden"
